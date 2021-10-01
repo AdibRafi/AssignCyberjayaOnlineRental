@@ -6,14 +6,14 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Login extends JFrame implements ActionListener {
+public class LoginTest extends JFrame implements ActionListener {
     JPanel panel;
     JLabel userLabel, passwordLabel, message;
     JTextField usernameText;
     JPasswordField passwordText;
     JButton enter;
 
-    Login(){
+    LoginTest(){
         //UserLabel
         userLabel = new JLabel();
         userLabel.setText("Enter your Username: ");
@@ -47,7 +47,7 @@ public class Login extends JFrame implements ActionListener {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     public static void main(String[] args) {
-        new Login();
+        new LoginTest();
     }
     @Override
     public void actionPerformed(ActionEvent ae) {
