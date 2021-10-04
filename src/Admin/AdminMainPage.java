@@ -38,6 +38,7 @@ public class AdminMainPage extends JFrame {
         //todo: make manage profile button
 
         //Button panel
+        //todo: letak each button functionality
         JButton requestBtn = new JButton("Request Approval");
         JButton displayTenantBtn = new JButton("Display Tenant");
         JButton manageAdminBtn = new JButton("Manage Admin");

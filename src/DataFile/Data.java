@@ -1,6 +1,6 @@
 package DataFile;
 
-public class Data {
+public abstract class Data {
     private String accountID;
     private String name;
     private String password;

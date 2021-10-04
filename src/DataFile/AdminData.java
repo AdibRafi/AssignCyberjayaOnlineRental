@@ -7,6 +7,10 @@ public class AdminData extends Data{
         setUserRequestNotification(userRequestNotification);
     }
 
+    public AdminData(String adminPassword) {
+        this.adminPassword = adminPassword;
+    }
+
     private String adminPassword;
     private int userRequestNotification;
 
