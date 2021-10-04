@@ -1,19 +1,19 @@
 package Admin;
 
 import DataFile.AdminData;
-import DataFile.Data;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class AdminMainPage extends JFrame implements ActionListener {
+
+public class AdminMainPage extends JFrame {
     AdminMainPage(String pictureName){
         AdminData data = new AdminData("Adib",3);
 
         JPanel welcomePanel = new JPanel();
-        JPanel btnPanel = new JPanel(new GridLayout(3,0));
+        JPanel btnPanel = new JPanel(new GridLayout(4,0));
         JSplitPane finalPanel = new JSplitPane();
 
         // welcomePanel
@@ -24,7 +24,7 @@ public class AdminMainPage extends JFrame implements ActionListener {
         pictureLabel.setIcon(finalImg);
         pictureLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 
-        JLabel welcomeLabel = new JLabel("Welcome " + data.getName());
+        JLabel welcomeLabel = new JLabel("Welcome " + data.getName() + "!");
         welcomeLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 
         JLabel notifLabel = new JLabel();
@@ -35,9 +35,13 @@ public class AdminMainPage extends JFrame implements ActionListener {
             + " Notification");
         notifLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 
-        JButton requestBtn = new JButton("User Request");
+        //todo: make manage profile button
+
+        //Button panel
+        JButton requestBtn = new JButton("Request Approval");
         JButton displayTenantBtn = new JButton("Display Tenant");
         JButton manageAdminBtn = new JButton("Manage Admin");
+        JButton viewBtn = new JButton("View ...");
 
 
         welcomePanel.setLayout(new BoxLayout(welcomePanel,BoxLayout.Y_AXIS));
@@ -51,6 +55,7 @@ public class AdminMainPage extends JFrame implements ActionListener {
         btnPanel.add(requestBtn);
         btnPanel.add(displayTenantBtn);
         btnPanel.add(manageAdminBtn);
+        btnPanel.add(viewBtn);
 
         finalPanel.setDividerLocation(350);
         finalPanel.setDividerSize(0);
@@ -63,13 +68,9 @@ public class AdminMainPage extends JFrame implements ActionListener {
 
         this.add(finalPanel);
         this.setTitle("Admin page");
-        this.setSize(500, 250);
+        this.setSize(500, 300);
         this.setVisible(true);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-
-    }
-    @Override
-    public void actionPerformed(ActionEvent e) {
 
     }
 
