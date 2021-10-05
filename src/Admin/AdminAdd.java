@@ -1,7 +1,6 @@
 package Admin;
 
-import DataFile.AdminData;
-import DataFile.Data;
+import DataSystem.AdminData;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

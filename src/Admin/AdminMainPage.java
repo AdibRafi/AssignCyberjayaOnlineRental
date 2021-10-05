@@ -1,11 +1,9 @@
 package Admin;
 
-import DataFile.AdminData;
+import DataSystem.AdminData;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 
 public class AdminMainPage extends JFrame {
@@ -39,10 +37,10 @@ public class AdminMainPage extends JFrame {
 
         //Button panel
         //todo: letak each button functionality
-        JButton requestBtn = new JButton("Request Approval");
-        JButton displayTenantBtn = new JButton("Display Tenant");
-        JButton manageAdminBtn = new JButton("Manage Admin");
-        JButton viewBtn = new JButton("View ...");
+        JButton requestBtn = new JButton("Notification");
+        JButton displayTenantBtn = new JButton("System report");
+        JButton manageAdminBtn = new JButton("Manage User");
+        JButton viewBtn = new JButton("Back to Main");
 
 
         welcomePanel.setLayout(new BoxLayout(welcomePanel,BoxLayout.Y_AXIS));
