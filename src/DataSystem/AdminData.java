@@ -1,10 +1,16 @@
-package DataFile;
+package DataSystem;
 
 public class AdminData extends Data{
     public AdminData(){};
     public AdminData(String name,int userRequestNotification){
         setName(name);
         setUserRequestNotification(userRequestNotification);
+    }
+
+
+
+    public AdminData(String adminPassword) {
+        this.adminPassword = adminPassword;
     }
 
     private String adminPassword;

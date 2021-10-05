@@ -1,12 +1,19 @@
-package DataFile;
+package DataSystem;
 
-public class Data {
+public abstract class Data {
     private String accountID;
     private String name;
     private String password;
     private String phoneNumber;
     private String gender;
 
+    public void setAllInfo(String[] info){
+        this.accountID = info[0];
+        this.name = info[1];
+        this.password = info[2];
+        this.phoneNumber = info[3];
+        this.gender = info[4];
+    }
     public String getAccountID() {
         return accountID;
     }
