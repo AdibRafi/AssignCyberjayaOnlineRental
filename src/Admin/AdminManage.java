@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class AdminManage extends JFrame {
-    //assign: need to add,remove admin
+    //assign: need to add,remove admin/user/tenant
 
 
     AdminManage(){

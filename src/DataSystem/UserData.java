@@ -4,6 +4,7 @@ public class UserData extends Data{
     private String userName;
     private String userOccupation;
 
+
     public String getUserName() {
         return userName;
     }

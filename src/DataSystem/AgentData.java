@@ -11,4 +11,6 @@ public class AgentData extends Data{
     String cityName;
     int postcode;
     String state;
+
+
 }

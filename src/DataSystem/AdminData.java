@@ -8,7 +8,6 @@ public class AdminData extends Data{
     }
 
 
-
     public AdminData(String adminPassword) {
         this.adminPassword = adminPassword;
     }
