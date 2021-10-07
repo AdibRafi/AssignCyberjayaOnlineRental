@@ -50,7 +50,6 @@ public class FileConverter {
         reader.close();
         return result;
     }
-    //todo: make read the WHOLE FILE (especially utk location)
     public static String[][] readAllLines(String filePath) throws IOException {
         List<String> file = new ArrayList<>(
                 Files.readAllLines(Path.of("src/FileSystem/" + filePath), StandardCharsets.UTF_8)
@@ -59,7 +58,6 @@ public class FileConverter {
         for (int i = 0; i < file.size(); i++) {
             row[i]= file.get(i);
         }
-        System.out.println(Arrays.toString(row));
         String[][] lineSplit = new String[row.length][lineSplitter(row[0]).length];
         for (int i = 0; i < row.length; i++) {
             String[] k = lineSplitter(row[i]);
@@ -68,6 +66,17 @@ public class FileConverter {
             }
         }
         return lineSplit;
+    }
+
+    // TODO: 07/10/2021 buat check if got value
+    public static boolean checkIfValueExist(String[] givenInfo, String[] infoInFile){
+        boolean result = false;
+        String check1 = addDashIntoString(givenInfo);
+        String check2 = addDashIntoString(infoInFile);
+        if (check1.equals(check2)) {
+            result = true;
+        }
+        return result;
     }
 
     //append file

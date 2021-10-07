@@ -33,14 +33,17 @@ public class AdminMainPage extends JFrame {
             + " Notification");
         notifLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 
-        //todo: make manage profile button
+        //todo: profile button function
+        JButton profileBtn = new JButton("Profile");
+        profileBtn.setAlignmentX(JLabel.CENTER_ALIGNMENT);
+
 
         //Button panel
         //todo: letak each button functionality
         JButton requestBtn = new JButton("Notification");
-        JButton displayTenantBtn = new JButton("System report");
-        JButton manageAdminBtn = new JButton("Manage User");
-        JButton viewBtn = new JButton("Back to Main");
+        JButton systemReportBtn = new JButton("System report");
+        JButton manageUserBtn = new JButton("Manage User");
+        JButton backToMainBtn = new JButton("Back to Main");
 
 
         welcomePanel.setLayout(new BoxLayout(welcomePanel,BoxLayout.Y_AXIS));
@@ -49,12 +52,14 @@ public class AdminMainPage extends JFrame {
         welcomePanel.add(Box.createRigidArea(new Dimension(0, 15)));
         welcomePanel.add(welcomeLabel);
         welcomePanel.add(notifLabel);
+        welcomePanel.add(Box.createRigidArea(new Dimension(0, 40)));
+        welcomePanel.add(profileBtn);
 
         btnPanel.setBackground(new Color(0x3957B7));
         btnPanel.add(requestBtn);
-        btnPanel.add(displayTenantBtn);
-        btnPanel.add(manageAdminBtn);
-        btnPanel.add(viewBtn);
+        btnPanel.add(systemReportBtn);
+        btnPanel.add(manageUserBtn);
+        btnPanel.add(backToMainBtn);
 
         finalPanel.setDividerLocation(350);
         finalPanel.setDividerSize(0);
