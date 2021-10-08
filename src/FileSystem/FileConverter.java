@@ -121,7 +121,7 @@ public class FileConverter {
             }
         }
 
-        //sort accId(user > tenant > admin)
+        //sort accId(admin > user > tenant)
         Arrays.sort(acc, new Comparator<String[]>(){
             @Override
             public int compare(final String[] first, final String[] second){
@@ -142,7 +142,6 @@ public class FileConverter {
                 }
             }
         }
-
         return acc;
     }
     public static void main(String[] args) throws IOException {
@@ -191,7 +190,5 @@ public class FileConverter {
 //            arr[4][i] = p[i];
 //        }
 //        System.out.println(arr[4][1]);
-
-
     }
 }
