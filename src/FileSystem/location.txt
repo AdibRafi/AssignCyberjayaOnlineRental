@@ -1,3 +1,2 @@
-TN2345-No.2-Jalan 4/7-Putrajaya-43000-Selangor
-TN2345-No.4-Jalan 6/6-CyberJaya-43222-Selangor
-TN2345-No.10-Jalan Tun Abdul Razak-Kuala Lumpur-50000-Wilayah
+AgentID,LocationID,houseNum,Street,City,PostCode,State
+TN2345,LO1234,
