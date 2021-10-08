@@ -16,10 +16,13 @@ public class AdminManageUser extends JFrame {
     AdminManageUser() throws IOException {
         JPanel btnPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 
-        JButton addBtn = new JButton("Add");
+        JLabel txtLabel = new JLabel("Double Click to Approve/Reject");
+        JButton addBtn = new JButton("Add User");
+        //check: either nak letak or not remove btn ni
         JButton removeBtn = new JButton("Remove");
         JButton backBtn = new JButton("Back");
 
+        btnPanel.add(txtLabel);
         btnPanel.add(addBtn);
         btnPanel.add(removeBtn);
         btnPanel.add(backBtn);
