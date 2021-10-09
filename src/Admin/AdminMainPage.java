@@ -1,13 +1,21 @@
 package Admin;
 
 import DataSystem.AdminData;
+import DataSystem.Data;
+import DataSystem.TenantData;
+import FileSystem.FileConverter;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.FileNotFoundException;
 
 
 public class AdminMainPage extends JFrame {
-    AdminMainPage(String pictureName){
+    AdminMainPage(String pictureName,String accountID) throws FileNotFoundException {
+        // TODO: 08/10/2021 make is reusable for 3 users
+        String[] user = FileConverter.getSingleLineInfo("account.txt", accountID);
+        int x = Data.checkTypeUser(accountID);
+
         AdminData data = new AdminData("Adib",3);
 
         JPanel welcomePanel = new JPanel();
@@ -33,14 +41,17 @@ public class AdminMainPage extends JFrame {
             + " Notification");
         notifLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 
-        //todo: make manage profile button
+        //todo: profile button function
+        JButton profileBtn = new JButton("Profile");
+        profileBtn.setAlignmentX(JLabel.CENTER_ALIGNMENT);
+
 
         //Button panel
         //todo: letak each button functionality
         JButton requestBtn = new JButton("Notification");
-        JButton displayTenantBtn = new JButton("System report");
-        JButton manageAdminBtn = new JButton("Manage User");
-        JButton viewBtn = new JButton("Back to Main");
+        JButton systemReportBtn = new JButton("System report");
+        JButton manageUserBtn = new JButton("Manage User");
+        JButton backToMainBtn = new JButton("Back to Main");
 
 
         welcomePanel.setLayout(new BoxLayout(welcomePanel,BoxLayout.Y_AXIS));
@@ -49,12 +60,14 @@ public class AdminMainPage extends JFrame {
         welcomePanel.add(Box.createRigidArea(new Dimension(0, 15)));
         welcomePanel.add(welcomeLabel);
         welcomePanel.add(notifLabel);
+        welcomePanel.add(Box.createRigidArea(new Dimension(0, 40)));
+        welcomePanel.add(profileBtn);
 
         btnPanel.setBackground(new Color(0x3957B7));
         btnPanel.add(requestBtn);
-        btnPanel.add(displayTenantBtn);
-        btnPanel.add(manageAdminBtn);
-        btnPanel.add(viewBtn);
+        btnPanel.add(systemReportBtn);
+        btnPanel.add(manageUserBtn);
+        btnPanel.add(backToMainBtn);
 
         finalPanel.setDividerLocation(350);
         finalPanel.setDividerSize(0);
@@ -73,8 +86,8 @@ public class AdminMainPage extends JFrame {
 
     }
 
-    public static void main(String[] args) {
-        new AdminMainPage("Myvi");
+    public static void main(String[] args) throws FileNotFoundException {
+        new AdminMainPage("Myvi","AD1234");
 
     }
 }

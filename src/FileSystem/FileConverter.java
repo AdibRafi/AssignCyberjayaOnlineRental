@@ -17,11 +17,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-import java.util.Comparator;
 
 public class FileConverter {
     //pre converter
-    private static String[] lineSplitter(String lineToBeSplit) {
+    private static String[] lineSplitter(String lineToBeSplit){
         return lineToBeSplit.split("-");
     }
 
@@ -31,10 +30,9 @@ public class FileConverter {
             content.append(s);
             content.append("-");
         }
-        content.deleteCharAt(content.length() - 1);
+        content.deleteCharAt(content.length()-1);
         return content.toString();
     }
-
     //cari single line
     public static String[] getSingleLineInfo(String filePath, String accountID) throws FileNotFoundException {
         Scanner reader = new Scanner(new File("src/FileSystem/" + filePath));
@@ -52,7 +50,6 @@ public class FileConverter {
         reader.close();
         return result;
     }
-
     //todo: make read the WHOLE FILE (especially utk location)
     public static String[][] readAllLines(String filePath) throws IOException {
         List<String> file = new ArrayList<>(
@@ -60,7 +57,7 @@ public class FileConverter {
         );
         String[] row = new String[file.size()];
         for (int i = 0; i < file.size(); i++) {
-            row[i] = file.get(i);
+            row[i]= file.get(i);
         }
         System.out.println(Arrays.toString(row));
         String[][] lineSplit = new String[row.length][lineSplitter(row[0]).length];
@@ -74,14 +71,13 @@ public class FileConverter {
     }
 
     //append file
-    public static void appendFile(String filePath, String[] info) throws IOException {
+    public static void appendFile(String filePath,String[] info) throws IOException {
         String content = addDashIntoString(info);
         List<String> fileContent = new ArrayList<>();
         fileContent.add(content);
         Files.write(Paths.get("src/FileSystem/" + filePath), fileContent,
                 StandardOpenOption.APPEND);
     }
-
     // update file
     private static void updateFile(String filePath, String[] oldInfo, String[] newInfo) throws IOException {
         String old = addDashIntoString(oldInfo);
@@ -97,58 +93,10 @@ public class FileConverter {
         Files.write(Path.of("src/FileSystem/" + filePath), fileContent, StandardCharsets.UTF_8);
         System.out.println(fileContent);
     }
-
-    //sort file
-    public static String[][] sortFile(String [][] arr){
-        String[][] acc = new String[arr.length][6];
-
-        System.out.println("test");
-        for (int j = 0; j < arr.length; j++) {
-            if (String.valueOf(Data.checkTypeUser(arr[j][0])).equals("2")) {
-                acc[j][0] = "0";
-            }
-            if (String.valueOf(Data.checkTypeUser(arr[j][0])).equals("0")) {
-                acc[j][0] = "1";
-            }
-            if (String.valueOf(Data.checkTypeUser(arr[j][0])).equals("1")) {
-                acc[j][0] = "2";
-            }
-        }
-
-        for (int j = 0; j < arr.length; j++) {
-            for (int k = 1; k < 6; k++) {
-                acc[j][k] = arr[j][k - 1];
-            }
-        }
-
-        //sort accId(admin > user > tenant)
-        Arrays.sort(acc, new Comparator<String[]>(){
-            @Override
-            public int compare(final String[] first, final String[] second){
-                String indicator2 = first[0];
-                String indicator1 = second[0];
-                return indicator2.compareTo(indicator1);
-
-            }
-        });
-
-        for (int j = 0; j < arr.length; j++) {
-            for (int k = 0; k < 6; k++) {
-                if(k == 5){
-                    acc[j][k] = null;
-                }
-                else {
-                    acc[j][k] = acc[j][k + 1];
-                }
-            }
-        }
-        return acc;
-    }
     public static void main(String[] args) throws IOException {
         AdminData data = new AdminData();
-
 //        System.out.println(Arrays.toString(getSingleLineInfo("account.txt","TN2345")));
-        data.setMainInfo(getSingleLineInfo("account.txt", "TN2345"));
+        data.setMainInfo(getSingleLineInfo("account.txt","TN2345"));
 
 
 //        String[] oldInfo = data.getMainInfo();
@@ -156,29 +104,19 @@ public class FileConverter {
 //        String[] newInfo = data.getMainInfo();
 //        updateFile("testWrite.txt",oldInfo,newInfo);
         String[][] n = readAllLines("account.txt");
-
         AdminData[] data1 = new AdminData[n.length];
         for (int i = 0; i < 3; i++) {
             data1[i] = new AdminData();
-            data1[i].setMainInfo(getSingleLineInfo("account.txt", n[i][0]));
+            data1[i].setMainInfo(getSingleLineInfo("account.txt",n[i][0]));
         }
         System.out.println(Arrays.toString(data1[0].getMainInfo()));
         System.out.println(Arrays.toString(data1[1].getMainInfo()));
         System.out.println(Arrays.toString(data1[2].getMainInfo()));
 
-        //data1[0].setPhoneNumber("test");
+        data1[0].setPhoneNumber("test");
         System.out.println(data1[0].getPhoneNumber());
         System.out.println(data1[0].getAccountID());
 
-        //test
-        n = sortFile(n);
-        System.out.println("new sorted array");
-        for (int j = 0; j < n.length; j++) {
-            for (int k = 0; k < 5; k++) {
-                System.out.print(n[j][k] + " ");
-            }
-            System.out.println();
-        }
 //        String[][] arr = new String[6][5];
 //        for (int i = 0; i < arr.length; i++) {
 //            arr[i][0] = n[i];
@@ -190,5 +128,6 @@ public class FileConverter {
 //            arr[4][i] = p[i];
 //        }
 //        System.out.println(arr[4][1]);
+
     }
 }

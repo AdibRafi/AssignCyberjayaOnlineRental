@@ -1,0 +1,2 @@
+locationID, bath,bed,parking,haveWifi,haveSwimming,haveAircond
+LO1234,

@@ -1,6 +1,6 @@
 package DataSystem;
 
-public class UserData extends Data{
+public class TenantData extends Data{
     private String userName;
     private String userOccupation;
 
