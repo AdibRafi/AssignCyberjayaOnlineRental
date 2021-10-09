@@ -6,12 +6,10 @@ import FileSystem.FileConverter;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.NoSuchElementException;
 import java.util.Objects;
 
-public class AdminAdd extends JFrame implements ActionListener {
+public class AdminAddUser extends JFrame implements ActionListener {
     AdminData data = new AdminData("mu123");
 
     String[] userType = {"Select", "Admin", "Agent", "Tenant"};
@@ -40,7 +38,7 @@ public class AdminAdd extends JFrame implements ActionListener {
 
 
 
-    AdminAdd(){
+    AdminAddUser(){
         JPanel panel = new JPanel();
         panel.setLayout(null);
 
@@ -97,7 +95,7 @@ public class AdminAdd extends JFrame implements ActionListener {
     }
 
     public static void main(String[] args) {
-        new AdminAdd();
+        new AdminAddUser();
     }
 
     @Override
@@ -140,7 +138,7 @@ public class AdminAdd extends JFrame implements ActionListener {
                             JOptionPane.showMessageDialog(this, "Added Successful");
                             FileConverter.appendFile("account.txt", result);
                             this.dispose();
-                            new AdminMainPage("Myvi");
+                            new AdminMainPage("Myvi","AD1234");
                         }
                     }else {
                         JOptionPane.showMessageDialog(this, "Incorrect Password");

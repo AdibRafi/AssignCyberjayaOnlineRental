@@ -1,13 +1,21 @@
 package Admin;
 
 import DataSystem.AdminData;
+import DataSystem.Data;
+import DataSystem.TenantData;
+import FileSystem.FileConverter;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.FileNotFoundException;
 
 
 public class AdminMainPage extends JFrame {
-    AdminMainPage(String pictureName){
+    AdminMainPage(String pictureName,String accountID) throws FileNotFoundException {
+        // TODO: 08/10/2021 make is reusable for 3 users
+        String[] user = FileConverter.getSingleLineInfo("account.txt", accountID);
+        int x = Data.checkTypeUser(accountID);
+
         AdminData data = new AdminData("Adib",3);
 
         JPanel welcomePanel = new JPanel();
@@ -78,8 +86,8 @@ public class AdminMainPage extends JFrame {
 
     }
 
-    public static void main(String[] args) {
-        new AdminMainPage("Myvi");
+    public static void main(String[] args) throws FileNotFoundException {
+        new AdminMainPage("Myvi","AD1234");
 
     }
 }

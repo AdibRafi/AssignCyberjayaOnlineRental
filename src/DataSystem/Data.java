@@ -7,6 +7,7 @@ public abstract class Data {
     private String phoneNumber;
     private String gender;
 
+
     public static int checkTypeUser(String accountID) {
         int result = 0;
         String letter = accountID.substring(0, 2);
