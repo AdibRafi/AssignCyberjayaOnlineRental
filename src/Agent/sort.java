@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Comparator;
 
-public class tenant {
+public class sort {
     //sort file
     public static String[][] sortFile(String [][] arr){
         String[][] acc = new String[arr.length][6];
