@@ -7,9 +7,13 @@ import java.awt.event.ActionListener;
 
 public class LoginForm extends JFrame implements ActionListener {
 
+    JFrame frame;
+
     Container container = getContentPane();
-    JLabel titleLabel = new JLabel("Cyberjaya Online House Rental", JLabel.CENTER);
+    JPanel titlePanel = new JPanel();
+    JLabel titleLabel = new JLabel("myProperty House Rental", JLabel.CENTER);
     JLabel title2Label = new JLabel("Log in", JLabel.CENTER);
+
     JLabel userLabel = new JLabel("Username");
     JLabel passwordLabel = new JLabel("Password");
     JTextField userTextField = new JTextField();
@@ -18,39 +22,55 @@ public class LoginForm extends JFrame implements ActionListener {
     JButton resetBtn = new JButton("Reset");
     JCheckBox showPassword = new JCheckBox("Show Password");
 
+    //Constructor
     LoginForm(){
-        setLayout();
+        createWindow();
         setLocationAndSize();
         addComponentsToContainer();
         addActionEvent();
-
     }
-    public void setLayout() {
-        container.setLayout(null);
+    public void createWindow(){
+        frame = new JFrame();
+        frame.setTitle("Login Form");
+        frame.setLayout(new BorderLayout());
+        titlePanel.setBackground(Color.darkGray);
+        frame.setBounds(10,10,370,450);
+        frame.getContentPane().setBackground(Color.cyan);
+        frame.getContentPane().setLayout(null);
+        frame.setVisible(true);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(false);
     }
     public void setLocationAndSize(){
         //setting location and Size of each components
+        titlePanel.setBounds(0,0,370,60);
         titleLabel.setBounds(80,0,200,60);
         title2Label.setBounds(80,30,200,60);
-        userLabel.setBounds(50,150,100,30);
-        passwordLabel.setBounds(50,220,100,30);
-        userTextField.setBounds(150,150,150,30);
-        passwordField.setBounds(150,220,150,30);
-        showPassword.setBounds(150,250,150,30);
-        loginBtn.setBounds(50,300,100,30);
-        resetBtn.setBounds(200,300,100,30);
+        userLabel.setBounds(50,100,100,30); //150
+        passwordLabel.setBounds(50,170,100,30); //220
+        userTextField.setBounds(150,100,150,30); //150
+        passwordField.setBounds(150,170,150,30); // 220
+        showPassword.setBounds(150,200,150,30); //250
+        loginBtn.setBounds(50,270,100,30); //300
+        resetBtn.setBounds(200,270,100,30); //300
     }
     public void addComponentsToContainer(){
-        //adding each components to the Container
-        container.add(titleLabel,BorderLayout.NORTH);
-        container.add(title2Label,BorderLayout.CENTER);
-        container.add(userLabel);
-        container.add(passwordLabel);
-        container.add(userTextField);
-        container.add(passwordField);
-        container.add(showPassword);
-        container.add(loginBtn);
-        container.add(resetBtn);
+        frame.add(titlePanel);
+        /*frame.add(titleLabel,BorderLayout.NORTH);
+        frame.add(title2Label,BorderLayout.CENTER);*/
+        titlePanel.add(titleLabel, BorderLayout.CENTER);
+        titleLabel.setForeground(Color.white);
+        titleLabel.setFont(new Font("Papyrus", Font.BOLD,20));
+        titlePanel.add(title2Label, BorderLayout.LINE_END);
+        title2Label.setForeground(Color.white);
+
+        frame.add(userLabel);
+        frame.add(passwordLabel);
+        frame.add(userTextField);
+        frame.add(passwordField);
+        frame.add(showPassword);
+        frame.add(loginBtn);
+        frame.add(resetBtn);
     }
     public void addActionEvent() {
         //adding Action listener to components
@@ -93,11 +113,6 @@ public class LoginForm extends JFrame implements ActionListener {
 }
 class Login{
     public static void main(String[] args) {
-        LoginForm frame = new LoginForm();
-        frame.setTitle("Login Form");
-        frame.setVisible(true);
-        frame.setBounds(10,10,370,600);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setResizable(false);
+        new LoginForm();
     }
 }

@@ -10,13 +10,13 @@ public class TenantManageProfile extends JFrame implements ActionListener {
     JFrame frame;
 
     String[] gender = {"Male", "Female"};
-    JLabel nameLabel = new JLabel("Name");
+    JLabel nameLabel = new JLabel("New UserName");
     JLabel genderLabel = new JLabel("Gender");
     JLabel newPasswordLabel = new JLabel("New Password");
     JLabel confirmNewPasswordLabel = new JLabel("Confirm New Password");
-    JLabel cityLabel = new JLabel("City");
-    JLabel contactLabel = new JLabel("Contact");
-    JLabel emailLabel = new JLabel("Email");
+    JLabel cityLabel = new JLabel("New City");
+    JLabel contactLabel = new JLabel("New Contact");
+    JLabel emailLabel = new JLabel("New Email");
 
     JTextField nameTextField = new JTextField();
     JComboBox genderComboBox = new JComboBox(gender);
@@ -34,7 +34,7 @@ public class TenantManageProfile extends JFrame implements ActionListener {
     JCheckBox showNewPassword = new JCheckBox("Show Password");
     JCheckBox showConfirmPassword = new JCheckBox("Show Password");
 
-
+    //Constructor
     TenantManageProfile(){
         createWindow();
         setLocationAndSize();
@@ -46,14 +46,14 @@ public class TenantManageProfile extends JFrame implements ActionListener {
         frame = new JFrame();
         frame.setTitle("Tenant Profile Manager");
         frame.setBounds(40,40,400,600);
-        frame.getContentPane().setBackground(Color.lightGray);
+        frame.getContentPane().setBackground(Color.cyan);
         frame.getContentPane().setLayout(null);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
     }
     private void setLocationAndSize() {
-        nameLabel.setBounds(20,20,40,70);
+        nameLabel.setBounds(20,20,100,70);
         genderLabel.setBounds(20,70,80,70);
         newPasswordLabel.setBounds(20,120,100,70);
         confirmNewPasswordLabel.setBounds(20,170,140,70);
