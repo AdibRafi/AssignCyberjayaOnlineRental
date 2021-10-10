@@ -14,17 +14,13 @@ public class TenantManageProfile extends JFrame implements ActionListener {
     JLabel genderLabel = new JLabel("Gender");
     JLabel newPasswordLabel = new JLabel("New Password");
     JLabel confirmNewPasswordLabel = new JLabel("Confirm New Password");
-    JLabel cityLabel = new JLabel("New City");
     JLabel contactLabel = new JLabel("New Contact");
-    JLabel emailLabel = new JLabel("New Email");
 
     JTextField nameTextField = new JTextField();
     JComboBox genderComboBox = new JComboBox(gender);
     JPasswordField newPasswordField = new JPasswordField();
     JPasswordField confirmNewPasswordField = new JPasswordField();
-    JTextField cityTextField = new JTextField();
     JTextField contactTextField = new JTextField();
-    JTextField emailTextField = new JTextField();
 
     JButton saveBtn = new JButton("Save");
     JButton resetBtn = new JButton("Reset");
@@ -57,9 +53,8 @@ public class TenantManageProfile extends JFrame implements ActionListener {
         genderLabel.setBounds(20,70,80,70);
         newPasswordLabel.setBounds(20,120,100,70);
         confirmNewPasswordLabel.setBounds(20,170,140,70);
-        cityLabel.setBounds(20,220,100,70);
-        contactLabel.setBounds(20,270,100,70);
-        emailLabel.setBounds(20,320,100,70);
+        contactLabel.setBounds(20,220,100,70);
+
 
         nameTextField.setBounds(180,43,165,23);
         genderComboBox.setBounds(180,93,165,23);
@@ -67,9 +62,7 @@ public class TenantManageProfile extends JFrame implements ActionListener {
         showNewPassword.setBounds(180,163,165,23);
         confirmNewPasswordField.setBounds(180,193,165,23);
         showConfirmPassword.setBounds(180,213,165,23);
-        cityTextField.setBounds(180,243,165,23);
-        contactTextField.setBounds(180,293,165,23);
-        emailTextField.setBounds(180,343,165,23);
+        contactTextField.setBounds(180,243,165,23);
 
         saveBtn.setBounds(70,400,100,35);
         resetBtn.setBounds(220,400,100,35);
@@ -82,9 +75,7 @@ public class TenantManageProfile extends JFrame implements ActionListener {
         frame.add(genderLabel);
         frame.add(newPasswordLabel);
         frame.add(confirmNewPasswordLabel);
-        frame.add(cityLabel);
         frame.add(contactLabel);
-        frame.add(emailLabel);
 
         frame.add(nameTextField);
         frame.add(genderComboBox);
@@ -92,9 +83,7 @@ public class TenantManageProfile extends JFrame implements ActionListener {
         frame.add(showNewPassword);
         frame.add(confirmNewPasswordField);
         frame.add(showConfirmPassword);
-        frame.add(cityTextField);
         frame.add(contactTextField);
-        frame.add(emailTextField);
 
         frame.add(saveBtn);
         frame.add(resetBtn);
@@ -133,9 +122,7 @@ public class TenantManageProfile extends JFrame implements ActionListener {
                 genderComboBox.setSelectedItem("Male");
                 newPasswordField.setText("");
                 confirmNewPasswordField.setText("");
-                cityTextField.setText("");
                 contactTextField.setText("");
-                emailTextField.setText("");
         }
         if(ae.getSource() == cancelBtn){//todo: press cancel button and will bring back to tenant profile//
              }
