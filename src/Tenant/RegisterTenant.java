@@ -74,7 +74,7 @@ public class RegisterTenant implements ActionListener {
         genderLabel.setBounds(20,150,80,70);//100
         passwordLabel.setBounds(20,200,100,70);//150
         confirmPasswordLabel.setBounds(20,250,140,70);//200
-        contactLabel.setBounds(20,350,100,70);//250
+        contactLabel.setBounds(20,320,100,70);//250
 
         accountIDTextField.setBounds(180,73,165,23);//43
         accComboBox.setBounds(180,93,165,23);//63
@@ -84,7 +84,7 @@ public class RegisterTenant implements ActionListener {
         showPassword.setBounds(180,243,165,23);//193
         confirmPasswordField.setBounds(180,273,165,23);//223
         showConfirmPassword.setBounds(180,293,165,23);//243
-        contactTextField.setBounds(180,373,165,23);//273
+        contactTextField.setBounds(180,343,165,23);//273
 
 
         registerBtn.setBounds(60,450,100,35);
