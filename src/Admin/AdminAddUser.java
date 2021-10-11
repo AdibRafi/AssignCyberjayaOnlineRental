@@ -1,16 +1,18 @@
 package Admin;
 
 import DataSystem.AdminData;
+import DataSystem.Data;
 import FileSystem.FileConverter;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Objects;
 
 public class AdminAddUser extends JFrame implements ActionListener {
-    AdminData data = new AdminData("mu123");
+    Data data = new Data();
 
     String[] userType = {"Select", "Admin", "Agent", "Tenant"};
     JComboBox<String> userTypeCB = new JComboBox<>(userType);
@@ -38,7 +40,8 @@ public class AdminAddUser extends JFrame implements ActionListener {
 
 
 
-    AdminAddUser(){
+    AdminAddUser() throws FileNotFoundException {
+
         JPanel panel = new JPanel();
         panel.setLayout(null);
 
@@ -94,7 +97,7 @@ public class AdminAddUser extends JFrame implements ActionListener {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         new AdminAddUser();
     }
 
@@ -124,8 +127,9 @@ public class AdminAddUser extends JFrame implements ActionListener {
                 String[] result = {accountID,addUser,addPass,addPhone,genderType};
                 String[][] check;
                 try {
+                    data.setMainInfo(FileConverter.getSingleLineInfo("account.txt", "AD1234"));
                     check = FileConverter.readAllLines("account.txt");
-                    if (adminPass.equals(data.getAdminPassword())) {
+                    if (adminPass.equals(data.getPassword())) {
                         int checkNum = 0;
                         for (String[] strings : check) {
                             if (Objects.equals(strings[0], accountID)) {
