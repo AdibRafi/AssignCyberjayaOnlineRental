@@ -13,8 +13,6 @@ import java.io.FileNotFoundException;
 public class AdminMainPage extends JFrame {
     AdminMainPage(String pictureName,String accountID) throws FileNotFoundException {
         // TODO: 08/10/2021 make is reusable for 3 users
-        String[] user = FileConverter.getSingleLineInfo("account.txt", accountID);
-        int x = Data.checkTypeUser(accountID);
 
         AdminData data = new AdminData("Adib",3);
 
@@ -48,8 +46,7 @@ public class AdminMainPage extends JFrame {
 
         //Button panel
         //todo: letak each button functionality
-        JButton requestBtn = new JButton("Notification");
-        JButton systemReportBtn = new JButton("System report");
+        JButton systemReportBtn = new JButton("Manage Property");
         JButton manageUserBtn = new JButton("Manage User");
         JButton backToMainBtn = new JButton("Back to Main");
 
@@ -64,7 +61,6 @@ public class AdminMainPage extends JFrame {
         welcomePanel.add(profileBtn);
 
         btnPanel.setBackground(new Color(0x3957B7));
-        btnPanel.add(requestBtn);
         btnPanel.add(systemReportBtn);
         btnPanel.add(manageUserBtn);
         btnPanel.add(backToMainBtn);
