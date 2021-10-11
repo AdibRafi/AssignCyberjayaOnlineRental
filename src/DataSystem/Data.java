@@ -1,6 +1,10 @@
 package DataSystem;
 
-public abstract class Data {
+import java.util.Arrays;
+import java.util.Comparator;
+
+public class Data {
+
     private String accountID;
     private String name;
     private String password;
@@ -37,6 +41,69 @@ public abstract class Data {
         result[2] = this.getPassword();
         result[3] = this.getPhoneNumber();
         result[4] = this.getGender();
+        return result;
+    }
+
+    public static String[][] sortData(String [][] arr){
+        String[][] acc = new String[arr.length][arr[0].length+2];
+
+        for (int j = 0; j < arr.length; j++) {
+            if (String.valueOf(Data.checkTypeUser(arr[j][0])).equals("2")) {
+                acc[j][0] = "0";
+            }
+            if (String.valueOf(Data.checkTypeUser(arr[j][0])).equals("0")) {
+                acc[j][0] = "1";
+            }
+            if (String.valueOf(Data.checkTypeUser(arr[j][0])).equals("1")) {
+                acc[j][0] = "2";
+            }
+        }
+
+        for (int j = 0; j < arr.length; j++) {
+            for (int k = 1; k < arr[0].length+1; k++) {
+                acc[j][k] = arr[j][k - 1];
+            }
+        }
+
+        //sort accId(admin > user > tenant)
+        Arrays.sort(acc, new Comparator<String[]>(){
+            @Override
+            public int compare(final String[] first, final String[] second){
+                String indicator2 = first[0];
+                String indicator1 = second[0];
+                return indicator2.compareTo(indicator1);
+
+            }
+        });
+
+        for (int j = 0; j < arr.length; j++) {
+            for (int k = 0; k < arr[j].length+1; k++) {
+                if(k == 5){
+                    acc[j][k] = null;
+                }
+                else {
+                    acc[j][k] = acc[j][k + 1];
+                }
+            }
+        }
+        return acc;
+    }
+
+    public static String[][] removeColumnFromData(String[][] data,int columnNum) {
+        int rows = data.length;
+        int column = data[0].length;
+        String[][] result = new String[rows][column-1];
+        int p=0;
+        for (int i = 0; i < rows; i++) {
+            int q = 0;
+            for (int j = 0; j < column; j++) {
+                if (j == columnNum)
+                    continue;
+                result[p][q] = data[i][j];
+                ++q;
+            }
+            ++p;
+        }
         return result;
     }
 
