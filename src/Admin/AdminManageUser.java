@@ -18,8 +18,7 @@ public class AdminManageUser extends JFrame {
 
         JLabel txtLabel = new JLabel("Double Click to Approve/Reject");
         JButton addBtn = new JButton("Add User");
-        //check: either nak letak or not remove btn ni
-        JButton removeBtn = new JButton("Remove");
+        JButton removeBtn = new JButton("Remove User");
         JButton backBtn = new JButton("Back");
 
         btnPanel.add(txtLabel);
@@ -62,7 +61,7 @@ public class AdminManageUser extends JFrame {
         this.add(btnPanel, BorderLayout.NORTH);
         this.add(mainPanel,BorderLayout.CENTER);
         this.setTitle("Manage Admin");
-        this.setSize(500, 500);
+        this.setSize(600, 300);
         this.setVisible(true);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
