@@ -45,6 +45,7 @@ public class FileConverter {
                 for (int i = 1; i < 5; i++) {
                     result[i] = reader.next();
                 }
+                break;
             }
         }
         reader.close();
@@ -59,7 +60,6 @@ public class FileConverter {
         for (int i = 0; i < file.size(); i++) {
             row[i]= file.get(i);
         }
-        System.out.println(Arrays.toString(row));
         String[][] lineSplit = new String[row.length][lineSplitter(row[0]).length];
         for (int i = 0; i < row.length; i++) {
             String[] k = lineSplitter(row[i]);
@@ -94,28 +94,29 @@ public class FileConverter {
         System.out.println(fileContent);
     }
     public static void main(String[] args) throws IOException {
-        AdminData data = new AdminData();
+        Data data = new Data();
 //        System.out.println(Arrays.toString(getSingleLineInfo("account.txt","TN2345")));
-        data.setMainInfo(getSingleLineInfo("account.txt","TN2345"));
+        data.setMainInfo(getSingleLineInfo("account.txt","AD1234"));
+        System.out.println(data.getPassword());
 
 
 //        String[] oldInfo = data.getMainInfo();
 //        data.setGender("female");
 //        String[] newInfo = data.getMainInfo();
 //        updateFile("testWrite.txt",oldInfo,newInfo);
-        String[][] n = readAllLines("account.txt");
-        AdminData[] data1 = new AdminData[n.length];
-        for (int i = 0; i < 3; i++) {
-            data1[i] = new AdminData();
-            data1[i].setMainInfo(getSingleLineInfo("account.txt",n[i][0]));
-        }
-        System.out.println(Arrays.toString(data1[0].getMainInfo()));
-        System.out.println(Arrays.toString(data1[1].getMainInfo()));
-        System.out.println(Arrays.toString(data1[2].getMainInfo()));
-
-        data1[0].setPhoneNumber("test");
-        System.out.println(data1[0].getPhoneNumber());
-        System.out.println(data1[0].getAccountID());
+//        String[][] n = readAllLines("account.txt");
+//        AdminData[] data1 = new AdminData[n.length];
+//        for (int i = 0; i < 3; i++) {
+//            data1[i] = new AdminData();
+//            data1[i].setMainInfo(getSingleLineInfo("account.txt",n[i][0]));
+//        }
+//        System.out.println(Arrays.toString(data1[0].getMainInfo()));
+//        System.out.println(Arrays.toString(data1[1].getMainInfo()));
+//        System.out.println(Arrays.toString(data1[2].getMainInfo()));
+//
+//        data1[0].setPhoneNumber("test");
+//        System.out.println(data1[0].getPhoneNumber());
+//        System.out.println(data1[0].getAccountID());
 
 //        String[][] arr = new String[6][5];
 //        for (int i = 0; i < arr.length; i++) {
