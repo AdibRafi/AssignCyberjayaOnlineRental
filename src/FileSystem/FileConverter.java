@@ -51,7 +51,6 @@ public class FileConverter {
         reader.close();
         return result;
     }
-    //todo: make read the WHOLE FILE (especially utk location)
     public static String[][] readAllLines(String filePath) throws IOException {
         List<String> file = new ArrayList<>(
                 Files.readAllLines(Path.of("src/FileSystem/" + filePath), StandardCharsets.UTF_8)
@@ -78,6 +77,25 @@ public class FileConverter {
         Files.write(Paths.get("src/FileSystem/" + filePath), fileContent,
                 StandardOpenOption.APPEND);
     }
+
+    //remove file
+    public static void removeSingleLine(String filePath, String ID) throws IOException {
+        List<String> file = new ArrayList<>(
+                Files.readAllLines(Path.of("src/FileSystem/" + filePath), StandardCharsets.UTF_8)
+        );
+        String[] row = new String[file.size() - 1];
+        ID = addDashIntoString(getSingleLineInfo(filePath, ID));
+        int q = 0;
+        for (int i = 0; i < row.length; i++) {
+            if (file.get(i).equals(ID))
+                continue;
+            row[q] = file.get(i);
+            ++q;
+        }
+        List<String> result = new ArrayList<>(List.of(row));
+
+        Files.write(Paths.get("src/FileSystem/"+filePath),result);
+    }
     // update file
     private static void updateFile(String filePath, String[] oldInfo, String[] newInfo) throws IOException {
         String old = addDashIntoString(oldInfo);
@@ -98,6 +116,7 @@ public class FileConverter {
 //        System.out.println(Arrays.toString(getSingleLineInfo("account.txt","TN2345")));
         data.setMainInfo(getSingleLineInfo("account.txt","AD1234"));
         System.out.println(data.getPassword());
+//        TN2293-Zaki-button-2421996685-female
 
 
 //        String[] oldInfo = data.getMainInfo();
