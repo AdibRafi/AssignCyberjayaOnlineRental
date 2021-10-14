@@ -1,10 +1,16 @@
 package Tenant;
 
+import FileSystem.FileConverter;
+
 import javax.swing.*;
 import javax.swing.JComboBox;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.Arrays;
 
 public class TenantManageProfile extends JFrame implements ActionListener {
     JFrame frame;
@@ -115,7 +121,22 @@ public class TenantManageProfile extends JFrame implements ActionListener {
             }
         }
         if(ae.getSource() == saveBtn){//todo: make save button//
-             }
+            try {
+                //bug: oldInfo cannot retrieve info
+                System.out.println("START");
+                String[] oldInfo = FileConverter.getSingleLineInfo("account.txt","AG2345");
+                String[] newInfo = {"AG2345",nameTextField.getText(),newPasswordField.getText(),contactTextField.getText(), (String) genderComboBox.getSelectedItem()};
+                System.out.println(Arrays.toString(oldInfo));
+                System.out.println(Arrays.toString(newInfo));
+                FileConverter.updateFile("account.txt",oldInfo,newInfo);
+                JOptionPane.showMessageDialog(frame,"New info has been saved");
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
         if(ae.getSource() == resetBtn){
                 //Clearing Fields
                 nameTextField.setText("");
@@ -125,8 +146,10 @@ public class TenantManageProfile extends JFrame implements ActionListener {
                 contactTextField.setText("");
         }
         if(ae.getSource() == cancelBtn){//todo: press cancel button and will bring back to tenant profile//
+            new ProfileTenant();
              }
         if(ae.getSource() == deleteBtn){//todo: to delete account//
+            JOptionPane.showMessageDialog(frame,"Are you sure to delete your account?");
              }
 
     }

@@ -91,6 +91,9 @@ public class ProfileTenant implements ActionListener {
                 passwordField.setEchoChar('*');
             }
         }*/
+        if(e.getSource() == manageBtn){
+            new TenantManageProfile();
+        }
     }
 }
 class Profile{

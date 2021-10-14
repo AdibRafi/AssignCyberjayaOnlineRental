@@ -97,7 +97,7 @@ public class FileConverter {
         Files.write(Paths.get("src/FileSystem/"+filePath),result);
     }
     // update file
-    private static void updateFile(String filePath, String[] oldInfo, String[] newInfo) throws IOException {
+    public static void updateFile(String filePath, String[] oldInfo, String[] newInfo) throws IOException {
         String old = addDashIntoString(oldInfo);
         String newOne = addDashIntoString(newInfo);
         List<String> fileContent = new ArrayList<>(

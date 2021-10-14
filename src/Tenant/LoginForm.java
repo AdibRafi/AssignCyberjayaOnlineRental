@@ -1,9 +1,12 @@
 package Tenant;
 
+import FileSystem.FileConverter;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 
 public class LoginForm extends JFrame implements ActionListener {
 
@@ -46,13 +49,13 @@ public class LoginForm extends JFrame implements ActionListener {
         titlePanel.setBounds(0,0,370,60);
         titleLabel.setBounds(80,0,200,60);
         title2Label.setBounds(80,30,200,60);
-        userLabel.setBounds(50,100,100,30); //150
-        passwordLabel.setBounds(50,170,100,30); //220
-        userTextField.setBounds(150,100,150,30); //150
-        passwordField.setBounds(150,170,150,30); // 220
-        showPassword.setBounds(150,200,150,30); //250
-        loginBtn.setBounds(50,270,100,30); //300
-        resetBtn.setBounds(200,270,100,30); //300
+        userLabel.setBounds(50,100,100,30);
+        passwordLabel.setBounds(50,170,100,30);
+        userTextField.setBounds(150,100,150,30);
+        passwordField.setBounds(150,170,150,30);
+        showPassword.setBounds(150,200,150,30);
+        loginBtn.setBounds(50,270,100,30);
+        resetBtn.setBounds(200,270,100,30);
     }
     public void addComponentsToContainer(){
         frame.add(titlePanel);
@@ -88,6 +91,11 @@ public class LoginForm extends JFrame implements ActionListener {
             String pswrdText;
             userText = userTextField.getText();
             pswrdText = passwordField.getText();
+            try {
+                String[] oldInfo = FileConverter.getSingleLineInfo("account.txt","AG2345");
+            } catch (FileNotFoundException ex) {
+                ex.printStackTrace();
+            }
             if(userText.equalsIgnoreCase("Darwisy")&& pswrdText.equalsIgnoreCase("tenant123")){
                 JOptionPane.showMessageDialog(this,"Login Successful");
             }else{

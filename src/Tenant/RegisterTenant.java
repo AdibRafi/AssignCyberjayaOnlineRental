@@ -178,7 +178,7 @@ public class RegisterTenant implements ActionListener {
                         // TODO: 10/10/2021 need to buat file baru UTK APPROVE -adib
                         FileConverter.appendFile("account.txt",result);
                         frame.dispose();
-
+                        new LoginForm();
                     }
                 }else JOptionPane.showMessageDialog(frame,"Password Confirmation Does Not Match");
             }catch(IOException ex){
