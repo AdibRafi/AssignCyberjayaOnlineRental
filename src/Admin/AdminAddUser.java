@@ -1,6 +1,5 @@
 package Admin;
 
-import DataSystem.AdminData;
 import DataSystem.Data;
 import FileSystem.FileConverter;
 
@@ -13,13 +12,14 @@ import java.util.Objects;
 
 public class AdminAddUser extends JFrame implements ActionListener {
     Data data = new Data();
+    JFrame frame = new JFrame();
 
     String[] userType = {"Select", "Admin", "Agent", "Tenant"};
     JComboBox<String> userTypeCB = new JComboBox<>(userType);
     JLabel userTypeLabel = new JLabel("User Type");
 
     JButton addBtn = new JButton("Add");
-    JButton BackBtn = new JButton("Back to Main Menu");
+    JButton backBtn = new JButton("Back to Main Menu");
 
     JLabel accountIDLabel = new JLabel("ID Number");
     JLabel userLabel = new JLabel("Username");
@@ -46,7 +46,7 @@ public class AdminAddUser extends JFrame implements ActionListener {
         panel.setLayout(null);
 
         addBtn.addActionListener(this);
-        BackBtn.addActionListener(this);
+        backBtn.addActionListener(this);
 
         //main info
         userTypeLabel.setBounds(25,30,100,30);
@@ -68,7 +68,7 @@ public class AdminAddUser extends JFrame implements ActionListener {
 
 
         addBtn.setBounds(20,300,100,40);
-        BackBtn.setBounds(150,300,150,40);
+        backBtn.setBounds(150,300,150,40);
 
         //additional info
 
@@ -88,13 +88,13 @@ public class AdminAddUser extends JFrame implements ActionListener {
         panel.add(genderTypeCB);
         panel.add(adminPasswordField);
         panel.add(addBtn);
-        panel.add(BackBtn);
+        panel.add(backBtn);
 
-        this.add(panel);
-        this.setTitle("Manage Admin");
-        this.setSize(350, 400);
-        this.setVisible(true);
-        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        frame.add(panel);
+        frame.setTitle("Add User");
+        frame.setSize(350, 400);
+        frame.setVisible(true);
+        frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
     public static void main(String[] args) throws FileNotFoundException {
@@ -143,7 +143,7 @@ public class AdminAddUser extends JFrame implements ActionListener {
                             JOptionPane.showMessageDialog(this, "Added Successful");
                             FileConverter.appendFile("account.txt", result);
                             this.dispose();
-                            new AdminMainPage("Myvi","AD1234");
+                            new AdminMainPage("Myvi", "AD1234");
                         }
                     }else {
                         JOptionPane.showMessageDialog(this, "Incorrect Password");
@@ -151,6 +151,14 @@ public class AdminAddUser extends JFrame implements ActionListener {
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
+            }
+        }
+        if (e.getSource() == backBtn){
+            frame.dispose();
+            try {
+                new AdminManageUser();
+            } catch (IOException ex) {
+                ex.printStackTrace();
             }
         }
     }

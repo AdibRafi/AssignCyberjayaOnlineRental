@@ -1,5 +1,6 @@
 package Admin;
 
+import Agent.agentAddPropety;
 import DataSystem.AdminData;
 import DataSystem.Data;
 import DataSystem.TenantData;
@@ -7,17 +8,21 @@ import FileSystem.FileConverter;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 
 public class AdminMainPage extends JFrame {
-    AdminMainPage(String pictureName,String accountID) throws FileNotFoundException {
+    AdminMainPage(String pictureName, String accountID) throws FileNotFoundException {
         // TODO: 08/10/2021 make is reusable for 3 users
 
-        AdminData data = new AdminData("Adib",3);
-
+        Data data = new Data();
+        data.setMainInfo(FileConverter.getSingleLineInfo("account.txt", accountID));
+        int userType = Data.checkTypeUser(accountID);
         JPanel welcomePanel = new JPanel();
-        JPanel btnPanel = new JPanel(new GridLayout(4,0));
+        JPanel btnPanel = new JPanel(new GridLayout(4, 0));
         JSplitPane finalPanel = new JSplitPane();
 
         // welcomePanel
@@ -31,38 +36,65 @@ public class AdminMainPage extends JFrame {
         JLabel welcomeLabel = new JLabel("Welcome " + data.getName() + "!");
         welcomeLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 
-        JLabel notifLabel = new JLabel();
-        if (data.getUserRequestNotification()==0)
-            notifLabel.setText("You don't have any notification");
-        else
-            notifLabel.setText("You have " + data.getUserRequestNotification()
-            + " Notification");
-        notifLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
-
-        //todo: profile button function
-        JButton profileBtn = new JButton("Profile");
-        profileBtn.setAlignmentX(JLabel.CENTER_ALIGNMENT);
-
-
         //Button panel
         //todo: letak each button functionality
-        JButton systemReportBtn = new JButton("Manage Property");
-        JButton manageUserBtn = new JButton("Manage User");
+        JButton profileBtn = new JButton("Manage Profile");
+        String firstBtnName = "";
+        String secondBtnName = "";
+        if (userType == 1) {
+            firstBtnName = "Manage Property";
+            secondBtnName = "Add Property";
+        } else if (userType == 2) {
+            firstBtnName = "Manage User";
+            secondBtnName = "Manage Property";
+        }
+
+        JButton firstBtn = new JButton(firstBtnName);
+        JButton secondBtn = new JButton(secondBtnName);
         JButton backToMainBtn = new JButton("Back to Main");
 
+        // tenant = 0, agent = 1, admin = 2
+        firstBtn.addActionListener(e ->{
+            if (userType == 1) {
+                //Manage Property
+            }
+            if (userType == 2) {
+                try {
+                    this.dispose();
+                    new AdminManageUser();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
 
-        welcomePanel.setLayout(new BoxLayout(welcomePanel,BoxLayout.Y_AXIS));
+        secondBtn.addActionListener(e -> {
+            if (userType == 1) {
+                this.dispose();
+                new agentAddPropety(userType);
+            }
+            if (userType == 2) {
+                this.dispose();
+                try {
+                    new AdminManageProperty();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+
+
+        welcomePanel.setLayout(new BoxLayout(welcomePanel, BoxLayout.Y_AXIS));
         welcomePanel.setBackground(new Color(0xD9533A));
         welcomePanel.add(pictureLabel);
         welcomePanel.add(Box.createRigidArea(new Dimension(0, 15)));
         welcomePanel.add(welcomeLabel);
-        welcomePanel.add(notifLabel);
         welcomePanel.add(Box.createRigidArea(new Dimension(0, 40)));
-        welcomePanel.add(profileBtn);
 
         btnPanel.setBackground(new Color(0x3957B7));
-        btnPanel.add(systemReportBtn);
-        btnPanel.add(manageUserBtn);
+        btnPanel.add(profileBtn);
+        btnPanel.add(firstBtn);
+        btnPanel.add(secondBtn);
         btnPanel.add(backToMainBtn);
 
         finalPanel.setDividerLocation(350);
@@ -70,8 +102,6 @@ public class AdminMainPage extends JFrame {
         finalPanel.setOrientation(JSplitPane.HORIZONTAL_SPLIT);
         finalPanel.setLeftComponent(welcomePanel);
         finalPanel.setRightComponent(btnPanel);
-
-
 
 
         this.add(finalPanel);
@@ -83,7 +113,7 @@ public class AdminMainPage extends JFrame {
     }
 
     public static void main(String[] args) throws FileNotFoundException {
-        new AdminMainPage("Myvi","AD1234");
+        new AdminMainPage("Myvi", "AD1234");
 
     }
 }

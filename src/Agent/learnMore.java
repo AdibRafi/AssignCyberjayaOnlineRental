@@ -87,7 +87,7 @@ public class learnMore extends JFrame  {
         // put data in array
         try {
             arrayLocation = FileConverter.readAllLines("location.txt");
-            arrayFacilities = FileConverter.readAllLines("locationFacilities.txt");
+//            arrayFacilities = FileConverter.readAllLines("locationFacilities.txt");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -160,13 +160,13 @@ public class learnMore extends JFrame  {
         facilities.setBounds(250,225,400,40);
         learnMorePanel.add(facilities); // text "Facilities"
 
-        for (int k = 0; k < 6; k++) {
-            dataFacilities = new JLabel[6];
-            dataFacilities[k] = new JLabel(arr1[k] +" : " + arrayFacilities[row][k+1]);
-            dataFacilities[k].setBounds(250,gap,200,30);
-            learnMorePanel.add(dataFacilities[k]);
-            gap +=30;
-        }
+//        for (int k = 0; k < 6; k++) {
+//            dataFacilities = new JLabel[6];
+//            dataFacilities[k] = new JLabel(arr1[k] +" : " + arrayFacilities[row][k+1]);
+//            dataFacilities[k].setBounds(250,gap,200,30);
+//            learnMorePanel.add(dataFacilities[k]);
+//            gap +=30;
+//        }
         ///////////////////////////////////////////////////////////////////////////////////////////////
         // set boundary for button & add to panel
         one.setBounds(75,480,100,30);

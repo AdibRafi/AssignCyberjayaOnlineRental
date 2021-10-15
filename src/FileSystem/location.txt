@@ -1,2 +1,2 @@
-AgentID,LocationID,houseNum,Street,City,PostCode,State
-TN2345,LO1234,
+AG2345-AP0001-950-true-Fully-450-studio-1-1-false-true-true-Jalan Teknokrat 6-Cyberjaya-63000-Selangor
+AG2345-AP0002-800-true-Fully-450-studio-1-1-false-false-true-Jalan Teknokrat 6-CyberJaya-63000-Selangor

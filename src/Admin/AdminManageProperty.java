@@ -1,5 +1,7 @@
 package Admin;
 
+import Agent.learnMore;
+import Agent.sort;
 import DataSystem.Data;
 import FileSystem.FileConverter;
 
@@ -12,18 +14,18 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Arrays;
 
-public class AdminRemoveUser extends JFrame {
-    AdminRemoveUser() throws IOException {
-        JFrame frame = new JFrame();
+public class AdminManageProperty extends JFrame {
+
+    JFrame frame = new JFrame();
+
+    AdminManageProperty() throws IOException {
         JPanel topPanel = new JPanel();
         topPanel.setBackground(new Color(0x313131));
-
-        JLabel titleLabel = new JLabel("Remove User");
-        titleLabel.setAlignmentX(JFrame.CENTER_ALIGNMENT);
-        titleLabel.setForeground(Color.white);
-        titleLabel.setFont(new Font("Times New Roman",Font.BOLD,20));
+        //fixme: Cari ways txtLabel kat tgh n btn kat kanan
+        JLabel txtLabel = new JLabel("Double Click for Options");
+        txtLabel.setForeground(Color.white);
+        txtLabel.setFont(new Font("Times New Roman", Font.BOLD, 20));
 
         JButton backBtn = new JButton("Back");
         backBtn.setAlignmentX(JFrame.RIGHT_ALIGNMENT);
@@ -34,21 +36,19 @@ public class AdminRemoveUser extends JFrame {
                 try {
                     frame.dispose();
                     //parameter: change pictureName n AccountID
-                    new AdminMainPage("Myvi", "AD1234");
+                    new AdminMainPage("Myvi","AD1234");
                 } catch (FileNotFoundException ex) {
                     ex.printStackTrace();
                 }
             }
         });
 
-
-        String[] column = {"ID", "Name", "Phone Number", "Gender"};
-        String[][] data = FileConverter.readAllLines("account.txt");
-        String[][] newData = Data.removeColumnFromData(data, 2);
-        String[][] newData1 = Data.sortData(newData);
-        System.out.println(Arrays.deepToString(newData1));
-
-        DefaultTableModel tableModel = new DefaultTableModel(newData, column){
+        String[] column = {"AgentID", "Price", "ActiveProperty", "Furnished", "Size",
+                "Bedroom", "Bathroom", "Parking Spots", "Wifi", "Swimming Pool",
+                "AirConditioner", "Street", "City", "PostCode", "State"};
+        String[][] data = FileConverter.readAllLines("location.txt");
+        data = Data.removeColumnFromData(data, 1);
+        DefaultTableModel tableModel = new DefaultTableModel(data, column){
             @Override
             public boolean isCellEditable(int row, int column) {
                 return false;
@@ -60,31 +60,27 @@ public class AdminRemoveUser extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2) {
-                    int input = JOptionPane.showConfirmDialog(null,
-                            "Are you sure to remove this user?","Select an Options...",
-                            JOptionPane.YES_NO_OPTION);
-                    //todo: letak FileConverter.RemoveData
-
+                    System.out.println("clicked");
+//                    new learnMore("Myvi");
                 }
             }
         });
-
         JScrollPane mainPanel = new JScrollPane(table);
 
-        topPanel.add(titleLabel);
+        topPanel.add(txtLabel);
         topPanel.add(backBtn);
+
         frame.add(topPanel, BorderLayout.NORTH);
         frame.add(mainPanel, BorderLayout.CENTER);
 
-        frame.setTitle("Remove User");
-        frame.setSize(500, 300);
+        frame.setTitle("Manage Property");
+        frame.setSize(1250, 400);
         frame.setVisible(true);
         frame.setResizable(false);
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
     public static void main(String[] args) throws IOException {
-        new AdminRemoveUser();
+        new AdminManageProperty();
     }
-
 }
