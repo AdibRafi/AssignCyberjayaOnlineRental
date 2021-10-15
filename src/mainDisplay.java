@@ -1,6 +1,5 @@
 
 import FileSystem.FileConverter;
-
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
@@ -18,9 +17,10 @@ public class mainDisplay implements ActionListener {
         createWindow();
         setSize();
         addComponent();
+        actionEvent();
     }
 
-    private void createWindow() {
+    public void createWindow() {
         frame = new JFrame();
         frame.setTitle("Main frame");
         frame.setBounds(40,40,700,580);
@@ -36,6 +36,10 @@ public class mainDisplay implements ActionListener {
     }
     public void addComponent(){
         frame.add(topPanel);
+
+    }
+    public void actionEvent(){
+
 
     }
 
