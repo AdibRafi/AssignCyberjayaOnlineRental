@@ -17,6 +17,7 @@ public class ProfileTenant implements ActionListener {
     JLabel contactLabel = new JLabel("Contact");
     JLabel emailLabel = new JLabel("Email");
 
+// help: how to make the display of the tenant's info
     JTextField usernameTextField = new JTextField("Darwisy");
     JTextField genderTextField = new JTextField("Male");
     JPasswordField passwordField = new JPasswordField("apple");
