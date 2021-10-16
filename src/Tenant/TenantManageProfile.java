@@ -15,7 +15,7 @@ import java.util.Arrays;
 public class TenantManageProfile extends JFrame implements ActionListener {
     JFrame frame;
 
-    String[] gender = {"Male", "Female"};
+    String[] gender = {"male", "female"};
     JLabel nameLabel = new JLabel("New UserName");
     JLabel genderLabel = new JLabel("Gender");
     JLabel newPasswordLabel = new JLabel("New Password");
@@ -122,16 +122,12 @@ public class TenantManageProfile extends JFrame implements ActionListener {
         }
         if(ae.getSource() == saveBtn){//todo: make save button//
             try {
-                //bug: oldInfo cannot retrieve info
+                //bug: oldInfo cannot retrieve info DONE
                 System.out.println("START");
                 String[] oldInfo = FileConverter.getSingleLineInfo("account.txt","AG2345");
                 String[] newInfo = {"AG2345",nameTextField.getText(),newPasswordField.getText(),contactTextField.getText(), (String) genderComboBox.getSelectedItem()};
-                System.out.println(Arrays.toString(oldInfo));
-                System.out.println(Arrays.toString(newInfo));
                 FileConverter.updateFile("account.txt",oldInfo,newInfo);
                 JOptionPane.showMessageDialog(frame,"New info has been saved");
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }
