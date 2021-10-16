@@ -1,2 +1,7 @@
-AgentID,LocationID,houseNum,Street,City,PostCode,State
-TN2345,LO1234,
+TN2345-LO1234-300-1-jhai 18-kajang-43000-selangor-active
+TN2345-LO1434-400-3-hsew 4-kajang-43000-selangor-active
+TN2345-LO1004-1000-22-iemk 23-kajang-43000-selangor-active
+TN2345-LO2222-100-30-nxhe 83-kajang-43000-selangor-active
+TN2345-LO4872-240-9-eyzd 1-kajang-43000-selangor-active
+TN2345-LO1902-567-20-qedx 19-kajang-43000-selangor-active
+
