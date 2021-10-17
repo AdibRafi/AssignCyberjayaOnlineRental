@@ -29,7 +29,7 @@ public class LoginForm extends JFrame implements ActionListener {
     JCheckBox showPassword = new JCheckBox("Show Password");
 
     //Constructor
-    LoginForm(){
+    public LoginForm(){
         createWindow();
         setLocationAndSize();
         addComponentsToContainer();
@@ -117,7 +117,6 @@ public class LoginForm extends JFrame implements ActionListener {
                 if (findAcc){
                     JOptionPane.showMessageDialog(this,"Login Successful");
                     frame.dispose();
-                    //todo: back to mainDisplay
                 }
                 else JOptionPane.showMessageDialog(this, "Invalid Username or Password");
             } catch (IOException ex) {
@@ -139,6 +138,7 @@ public class LoginForm extends JFrame implements ActionListener {
         }
         if(e.getSource() == registerBtn){
             new RegisterTenant();
+            frame.dispose();
 
         }
     }

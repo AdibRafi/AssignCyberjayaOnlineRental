@@ -13,6 +13,7 @@ public class RegisterTenant implements ActionListener {
 
     JFrame frame;
 
+
     String[] gender = {"Male", "Female"};
     String[] accID = {"Agent","Tenant"};
     JPanel titlePanel = new JPanel();
@@ -167,12 +168,12 @@ public class RegisterTenant implements ActionListener {
                     }
                     if(checkNum > 0)
                         JOptionPane.showMessageDialog(frame,"Account is already exist");
-                    else{
-                        JOptionPane.showMessageDialog(frame,"Register Successfully, wait for admin to approve");
-                        FileConverter.appendFile("accountApproval.txt",result);
+                    else {
+                        JOptionPane.showMessageDialog(frame, "Register Successfully, wait for admin to approve");
+                        FileConverter.appendFile("accountApproval.txt", result);
                         frame.dispose();
-                        //todo: go back to mainDisplay -adib (kerja kau wisy)
-//                        new LoginForm();
+
+                        new LoginForm();
                     }
                 }else JOptionPane.showMessageDialog(frame,"Password Confirmation Does Not Match");
             }catch(IOException ex){

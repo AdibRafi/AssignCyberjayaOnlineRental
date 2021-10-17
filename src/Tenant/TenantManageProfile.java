@@ -31,7 +31,6 @@ public class TenantManageProfile extends JFrame implements ActionListener {
     JButton saveBtn = new JButton("Save");
     JButton resetBtn = new JButton("Reset");
     JButton cancelBtn = new JButton("Cancel");
-    JButton deleteBtn = new JButton("Delete");
 
     JCheckBox showNewPassword = new JCheckBox("Show Password");
     JCheckBox showConfirmPassword = new JCheckBox("Show Password");
@@ -73,7 +72,6 @@ public class TenantManageProfile extends JFrame implements ActionListener {
         saveBtn.setBounds(70,400,100,35);
         resetBtn.setBounds(220,400,100,35);
         cancelBtn.setBounds(70,450,100,35);
-        deleteBtn.setBounds(220,450,100,35);
 
     }
     public void addComponentToFrame() {
@@ -94,13 +92,11 @@ public class TenantManageProfile extends JFrame implements ActionListener {
         frame.add(saveBtn);
         frame.add(resetBtn);
         frame.add(cancelBtn);
-        frame.add(deleteBtn);
     }
     public void actionEvent() {
         saveBtn.addActionListener(this);
         resetBtn.addActionListener(this);
         cancelBtn.addActionListener(this);
-        deleteBtn.addActionListener(this);
         showNewPassword.addActionListener(this);
         showConfirmPassword.addActionListener(this);
     }
@@ -145,10 +141,6 @@ public class TenantManageProfile extends JFrame implements ActionListener {
         if(ae.getSource() == cancelBtn){//todo: press cancel button and will bring back to tenant profile//
             new ProfileTenant();
              }
-        if(ae.getSource() == deleteBtn){//todo: to delete account//
-            JOptionPane.showMessageDialog(frame,"Are you sure to delete your account?");
-             }
-
     }
 
 }
