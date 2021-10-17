@@ -124,6 +124,7 @@ public class TenantManageProfile extends JFrame implements ActionListener {
             try {
                 //bug: oldInfo cannot retrieve info DONE
                 System.out.println("START");
+                //parameter: change accountID
                 String[] oldInfo = FileConverter.getSingleLineInfo("account.txt","AG2345");
                 String[] newInfo = {"AG2345",nameTextField.getText(),newPasswordField.getText(),contactTextField.getText(), (String) genderComboBox.getSelectedItem()};
                 FileConverter.updateFile("account.txt",oldInfo,newInfo);

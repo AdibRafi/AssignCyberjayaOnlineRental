@@ -7,6 +7,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class LoginForm extends JFrame implements ActionListener {
 
@@ -99,17 +100,28 @@ public class LoginForm extends JFrame implements ActionListener {
             String pswrdText;
             userText = userTextField.getText();
             pswrdText = passwordField.getText();
-            // help: to read the username and password from the txt file
-            //      then grant access them to login and back to main screen
+            System.out.println(userText);
+            System.out.println(pswrdText);
+            boolean findAcc = false;
             try {
-                String[] oldInfo = FileConverter.getSingleLineInfo("account.txt","AG2345");
-            } catch (FileNotFoundException ex) {
+                String[][] data = FileConverter.readAllLines("account.txt");
+                for (int i = 0; i < data.length; i++) {
+                    for (int j = 0; j < data[i].length; j++) {
+                        if (data[i][j].equals(userText)) {
+                            if (data[i][j+1].equals(pswrdText))
+                                findAcc = true;
+                        }
+                    }
+                }
+                System.out.println(findAcc);
+                if (findAcc){
+                    JOptionPane.showMessageDialog(this,"Login Successful");
+                    frame.dispose();
+                    //todo: back to mainDisplay
+                }
+                else JOptionPane.showMessageDialog(this, "Invalid Username or Password");
+            } catch (IOException ex) {
                 ex.printStackTrace();
-            }
-            if(userText.equalsIgnoreCase("Darwisy")&& pswrdText.equalsIgnoreCase("tenant123")){
-                JOptionPane.showMessageDialog(this,"Login Successful");
-            }else{
-                JOptionPane.showMessageDialog(this, "Invalid Username or Password");
             }
         }
         //Reset button

@@ -159,7 +159,7 @@ public class RegisterTenant implements ActionListener {
             String[][] check;
             try{
                 check = FileConverter.readAllLines("account.txt");
-                if(passwordResult.equals(confirmPasswordResult)){
+                if(passwordResult.equals(confirmPasswordField.getText())){
                     int checkNum = 0;
                     for (String[] strings : check) {
                         if (strings[0].equals(accountID))
@@ -168,11 +168,11 @@ public class RegisterTenant implements ActionListener {
                     if(checkNum > 0)
                         JOptionPane.showMessageDialog(frame,"Account is already exist");
                     else{
-                        JOptionPane.showMessageDialog(frame,"Register Succesfully, wait for admin to approve");
-                        // TODO: 10/10/2021 need to buat file baru UTK APPROVE -adib
-                        FileConverter.appendFile("account.txt",result);
+                        JOptionPane.showMessageDialog(frame,"Register Successfully, wait for admin to approve");
+                        FileConverter.appendFile("accountApproval.txt",result);
                         frame.dispose();
-                        new LoginForm();
+                        //todo: go back to mainDisplay -adib (kerja kau wisy)
+//                        new LoginForm();
                     }
                 }else JOptionPane.showMessageDialog(frame,"Password Confirmation Does Not Match");
             }catch(IOException ex){
