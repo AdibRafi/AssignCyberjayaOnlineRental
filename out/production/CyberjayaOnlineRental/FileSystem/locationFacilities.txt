@@ -1,2 +1,3 @@
-locationID, bath,bed,parking,haveWifi,haveSwimming,haveAircond
-LO1234,
+locationID, bed,bath,parking,haveWifi,haveSwimming,haveAircond
+AP0001-studio-1-1-false-true-true
+AP0002-studio-1-1-false-false-true

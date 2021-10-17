@@ -83,21 +83,20 @@ public class FileConverter {
         List<String> file = new ArrayList<>(
                 Files.readAllLines(Path.of("src/FileSystem/" + filePath), StandardCharsets.UTF_8)
         );
-        String[] row = new String[file.size() - 1];
+        List<String> row = new ArrayList<>();
         ID = addDashIntoString(getSingleLineInfo(filePath, ID));
         int q = 0;
-        for (int i = 0; i < row.length; i++) {
+        for (int i = 0; i < file.size(); i++) {
             if (file.get(i).equals(ID))
                 continue;
-            row[q] = file.get(i);
+            row.add(q,file.get(i));
             ++q;
         }
-        List<String> result = new ArrayList<>(List.of(row));
 
-        Files.write(Paths.get("src/FileSystem/"+filePath),result);
+        Files.write(Paths.get("src/FileSystem/"+filePath),row);
     }
     // update file
-    private static void updateFile(String filePath, String[] oldInfo, String[] newInfo) throws IOException {
+    public static void updateFile(String filePath, String[] oldInfo, String[] newInfo) throws IOException {
         String old = addDashIntoString(oldInfo);
         String newOne = addDashIntoString(newInfo);
         List<String> fileContent = new ArrayList<>(
@@ -113,10 +112,19 @@ public class FileConverter {
     }
     public static void main(String[] args) throws IOException {
         Data data = new Data();
+
+        removeSingleLine("account.txt","TN2875");
+//        TN2875-Chris-list-1141694755-female
 //        System.out.println(Arrays.toString(getSingleLineInfo("account.txt","TN2345")));
-        data.setMainInfo(getSingleLineInfo("account.txt","AD1234"));
-        System.out.println(data.getPassword());
+//        String[] old = FileConverter.getSingleLineInfo("account.txt", "AG2345");
+//        System.out.println(Arrays.toString(old));
+//        String[] newInfo = {"AG2345", "jg", "jg", "jg", "female"};
+//        updateFile("account.txt",old,newInfo);
+//        System.out.println(Arrays.deepToString(readAllLines("location.txt")));
+
 //        TN2293-Zaki-button-2421996685-female
+//        AG2345-Darwisy-apple-01293847564-male
+
 
 
 //        String[] oldInfo = data.getMainInfo();

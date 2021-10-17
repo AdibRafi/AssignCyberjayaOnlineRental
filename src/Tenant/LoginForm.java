@@ -1,9 +1,13 @@
 package Tenant;
 
+import FileSystem.FileConverter;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class LoginForm extends JFrame implements ActionListener {
 
@@ -16,14 +20,16 @@ public class LoginForm extends JFrame implements ActionListener {
 
     JLabel userLabel = new JLabel("Username");
     JLabel passwordLabel = new JLabel("Password");
+    JLabel question1 = new JLabel("Do you have an account yet?");
     JTextField userTextField = new JTextField();
     JPasswordField passwordField = new JPasswordField();
     JButton loginBtn = new JButton("Login");
     JButton resetBtn = new JButton("Reset");
+    JButton registerBtn = new JButton("Register");
     JCheckBox showPassword = new JCheckBox("Show Password");
 
     //Constructor
-    LoginForm(){
+    public LoginForm(){
         createWindow();
         setLocationAndSize();
         addComponentsToContainer();
@@ -34,7 +40,7 @@ public class LoginForm extends JFrame implements ActionListener {
         frame.setTitle("Login Form");
         frame.setLayout(new BorderLayout());
         titlePanel.setBackground(Color.darkGray);
-        frame.setBounds(10,10,370,450);
+        frame.setBounds(10,10,370,500);
         frame.getContentPane().setBackground(Color.cyan);
         frame.getContentPane().setLayout(null);
         frame.setVisible(true);
@@ -46,13 +52,16 @@ public class LoginForm extends JFrame implements ActionListener {
         titlePanel.setBounds(0,0,370,60);
         titleLabel.setBounds(80,0,200,60);
         title2Label.setBounds(80,30,200,60);
-        userLabel.setBounds(50,100,100,30); //150
-        passwordLabel.setBounds(50,170,100,30); //220
-        userTextField.setBounds(150,100,150,30); //150
-        passwordField.setBounds(150,170,150,30); // 220
-        showPassword.setBounds(150,200,150,30); //250
-        loginBtn.setBounds(50,270,100,30); //300
-        resetBtn.setBounds(200,270,100,30); //300
+        userLabel.setBounds(50,100,100,30);
+        passwordLabel.setBounds(50,170,100,30);
+        userTextField.setBounds(150,100,150,30);
+        passwordField.setBounds(150,170,150,30);
+        showPassword.setBounds(150,200,150,30);
+
+        loginBtn.setBounds(50,270,100,30);
+        resetBtn.setBounds(200,270,100,30);
+        question1.setBounds(90,340,180,30);
+        registerBtn.setBounds(120,370,100,30);
     }
     public void addComponentsToContainer(){
         frame.add(titlePanel);
@@ -71,12 +80,15 @@ public class LoginForm extends JFrame implements ActionListener {
         frame.add(showPassword);
         frame.add(loginBtn);
         frame.add(resetBtn);
+        frame.add(question1);
+        frame.add(registerBtn);
     }
     public void addActionEvent() {
         //adding Action listener to components
         loginBtn.addActionListener(this);
         resetBtn.addActionListener(this);
         showPassword.addActionListener(this);
+        registerBtn.addActionListener(this);
 
     }
 
@@ -88,10 +100,27 @@ public class LoginForm extends JFrame implements ActionListener {
             String pswrdText;
             userText = userTextField.getText();
             pswrdText = passwordField.getText();
-            if(userText.equalsIgnoreCase("Darwisy")&& pswrdText.equalsIgnoreCase("tenant123")){
-                JOptionPane.showMessageDialog(this,"Login Successful");
-            }else{
-                JOptionPane.showMessageDialog(this, "Invalid Username or Password");
+            System.out.println(userText);
+            System.out.println(pswrdText);
+            boolean findAcc = false;
+            try {
+                String[][] data = FileConverter.readAllLines("account.txt");
+                for (int i = 0; i < data.length; i++) {
+                    for (int j = 0; j < data[i].length; j++) {
+                        if (data[i][j].equals(userText)) {
+                            if (data[i][j+1].equals(pswrdText))
+                                findAcc = true;
+                        }
+                    }
+                }
+                System.out.println(findAcc);
+                if (findAcc){
+                    JOptionPane.showMessageDialog(this,"Login Successful");
+                    frame.dispose();
+                }
+                else JOptionPane.showMessageDialog(this, "Invalid Username or Password");
+            } catch (IOException ex) {
+                ex.printStackTrace();
             }
         }
         //Reset button
@@ -106,6 +135,11 @@ public class LoginForm extends JFrame implements ActionListener {
             }else{
                 passwordField.setEchoChar('*');
             }
+        }
+        if(e.getSource() == registerBtn){
+            new RegisterTenant();
+            frame.dispose();
+
         }
     }
 

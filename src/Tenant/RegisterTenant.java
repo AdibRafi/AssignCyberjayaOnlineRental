@@ -13,6 +13,7 @@ public class RegisterTenant implements ActionListener {
 
     JFrame frame;
 
+
     String[] gender = {"Male", "Female"};
     String[] accID = {"Agent","Tenant"};
     JPanel titlePanel = new JPanel();
@@ -26,8 +27,6 @@ public class RegisterTenant implements ActionListener {
     JLabel confirmPasswordLabel = new JLabel("Confirm Password");
     JLabel contactLabel = new JLabel("Contact");
 
-
-
     JTextField accountIDTextField = new JTextField();
     JComboBox accComboBox = new JComboBox(accID);
     JTextField nameTextField = new JTextField();
@@ -38,7 +37,6 @@ public class RegisterTenant implements ActionListener {
 
 
     JButton registerBtn = new JButton("Register");
-    JButton cancelBtn = new JButton("Cancel");
 
     JCheckBox showPassword = new JCheckBox("Show Password");
     JCheckBox showConfirmPassword = new JCheckBox("Show Password");
@@ -56,7 +54,7 @@ public class RegisterTenant implements ActionListener {
         frame.setTitle("Register Form");
         frame.setLayout(new BorderLayout());
         titlePanel.setBackground(Color.darkGray);
-        frame.setBounds(40,40,400,600);
+        frame.setBounds(40,40,400,540);
         frame.getContentPane().setBackground(Color.cyan);
         frame.getContentPane().setLayout(null);
         frame.setVisible(true);
@@ -87,8 +85,7 @@ public class RegisterTenant implements ActionListener {
         contactTextField.setBounds(180,343,165,23);//273
 
 
-        registerBtn.setBounds(60,450,100,35);
-        cancelBtn.setBounds(210,450,100,35);
+        registerBtn.setBounds(150,410,100,35);
     }
     public void addComponentToFrame(){
         frame.add(titlePanel);
@@ -121,11 +118,9 @@ public class RegisterTenant implements ActionListener {
 
 
         frame.add(registerBtn);
-        frame.add(cancelBtn);
     }
     public void actionEvent(){
         registerBtn.addActionListener(this);
-        cancelBtn.addActionListener(this);
         showPassword.addActionListener(this);
         showConfirmPassword.addActionListener(this);
     }
@@ -165,7 +160,7 @@ public class RegisterTenant implements ActionListener {
             String[][] check;
             try{
                 check = FileConverter.readAllLines("account.txt");
-                if(passwordResult.equals(confirmPasswordResult)){
+                if(passwordResult.equals(confirmPasswordField.getText())){
                     int checkNum = 0;
                     for (String[] strings : check) {
                         if (strings[0].equals(accountID))
@@ -173,22 +168,18 @@ public class RegisterTenant implements ActionListener {
                     }
                     if(checkNum > 0)
                         JOptionPane.showMessageDialog(frame,"Account is already exist");
-                    else{
-                        JOptionPane.showMessageDialog(frame,"Register Succesfully, wait for admin to approve");
-                        // TODO: 10/10/2021 need to buat file baru UTK APPROVE -adib
-                        FileConverter.appendFile("account.txt",result);
+                    else {
+                        JOptionPane.showMessageDialog(frame, "Register Successfully, wait for admin to approve");
+                        FileConverter.appendFile("accountApproval.txt", result);
                         frame.dispose();
 
+                        new LoginForm();
                     }
                 }else JOptionPane.showMessageDialog(frame,"Password Confirmation Does Not Match");
             }catch(IOException ex){
                 ex.printStackTrace();
             }
         }
-        if(e.getSource() == cancelBtn){//todo: goes back to main page(display properties page)//
-
-        }
-
     }
 }
 class Register {

@@ -77,7 +77,7 @@ public class agentAddPropety extends JFrame implements ActionListener {
 
 
 
-    agentAddPropety(int account){
+    public agentAddPropety(int account){
         acc = account;
         JPanel panel = new JPanel();
         panel.setLayout(null);

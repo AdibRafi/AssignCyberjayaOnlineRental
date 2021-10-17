@@ -1,15 +1,21 @@
 package Tenant;
 
+import FileSystem.FileConverter;
+
 import javax.swing.*;
 import javax.swing.JComboBox;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.Arrays;
 
 public class TenantManageProfile extends JFrame implements ActionListener {
     JFrame frame;
 
-    String[] gender = {"Male", "Female"};
+    String[] gender = {"male", "female"};
     JLabel nameLabel = new JLabel("New UserName");
     JLabel genderLabel = new JLabel("Gender");
     JLabel newPasswordLabel = new JLabel("New Password");
@@ -25,7 +31,6 @@ public class TenantManageProfile extends JFrame implements ActionListener {
     JButton saveBtn = new JButton("Save");
     JButton resetBtn = new JButton("Reset");
     JButton cancelBtn = new JButton("Cancel");
-    JButton deleteBtn = new JButton("Delete");
 
     JCheckBox showNewPassword = new JCheckBox("Show Password");
     JCheckBox showConfirmPassword = new JCheckBox("Show Password");
@@ -67,7 +72,6 @@ public class TenantManageProfile extends JFrame implements ActionListener {
         saveBtn.setBounds(70,400,100,35);
         resetBtn.setBounds(220,400,100,35);
         cancelBtn.setBounds(70,450,100,35);
-        deleteBtn.setBounds(220,450,100,35);
 
     }
     public void addComponentToFrame() {
@@ -88,13 +92,11 @@ public class TenantManageProfile extends JFrame implements ActionListener {
         frame.add(saveBtn);
         frame.add(resetBtn);
         frame.add(cancelBtn);
-        frame.add(deleteBtn);
     }
     public void actionEvent() {
         saveBtn.addActionListener(this);
         resetBtn.addActionListener(this);
         cancelBtn.addActionListener(this);
-        deleteBtn.addActionListener(this);
         showNewPassword.addActionListener(this);
         showConfirmPassword.addActionListener(this);
     }
@@ -115,7 +117,19 @@ public class TenantManageProfile extends JFrame implements ActionListener {
             }
         }
         if(ae.getSource() == saveBtn){//todo: make save button//
-             }
+            try {
+                //bug: oldInfo cannot retrieve info DONE
+                System.out.println("START");
+                //parameter: change accountID
+                String[] oldInfo = FileConverter.getSingleLineInfo("account.txt","AG2345");
+                String[] newInfo = {"AG2345",nameTextField.getText(),newPasswordField.getText(),contactTextField.getText(), (String) genderComboBox.getSelectedItem()};
+                FileConverter.updateFile("account.txt",oldInfo,newInfo);
+                JOptionPane.showMessageDialog(frame,"New info has been saved");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
         if(ae.getSource() == resetBtn){
                 //Clearing Fields
                 nameTextField.setText("");
@@ -125,10 +139,8 @@ public class TenantManageProfile extends JFrame implements ActionListener {
                 contactTextField.setText("");
         }
         if(ae.getSource() == cancelBtn){//todo: press cancel button and will bring back to tenant profile//
+            new ProfileTenant();
              }
-        if(ae.getSource() == deleteBtn){//todo: to delete account//
-             }
-
     }
 
 }
