@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Arrays;
@@ -45,6 +46,7 @@ public class AdminRemoveUser extends JFrame {
         String[] column = {"ID", "Name", "Phone Number", "Gender"};
         String[][] data = FileConverter.readAllLines("account.txt");
         String[][] newData = Data.removeColumnFromData(data, 2);
+        //fixme: change it the sorted data
         String[][] newData1 = Data.sortData(newData);
         System.out.println(Arrays.deepToString(newData1));
 
@@ -63,8 +65,19 @@ public class AdminRemoveUser extends JFrame {
                     int input = JOptionPane.showConfirmDialog(null,
                             "Are you sure to remove this user?","Select an Options...",
                             JOptionPane.YES_NO_OPTION);
-                    //todo: letak FileConverter.RemoveData
-
+                    if (input == 0) {
+                        //fixme: change it the sorted data
+                        System.out.println(newData[table.getSelectedRow()][0]);
+                        frame.dispose();
+                        try {
+                            //fixme: change it the sorted data
+                            FileConverter.removeSingleLine("account.txt",newData[table.getSelectedRow()][0]);
+                            //parameter: change picture name and ID
+                            new AdminMainPage("Myvi", "AD1234");
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
                 }
             }
         });

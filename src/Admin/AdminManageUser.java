@@ -1,5 +1,6 @@
 package Admin;
 
+import DataSystem.Data;
 import FileSystem.FileConverter;
 
 import javax.swing.*;
@@ -28,7 +29,6 @@ public class AdminManageUser extends JFrame {
         JButton removeBtn = new JButton("Remove User");
         JButton backBtn = new JButton("Back");
 
-        //Todo: letak each function accordingly
         addBtn.addActionListener(e -> {
             System.out.println("add");
             frame.dispose();
@@ -61,9 +61,9 @@ public class AdminManageUser extends JFrame {
 
 
 
-        // TODO: 07/10/2021 kena buat file baru utk approval only and only use that for this class
-        String[] column = {"ID", "Name", "Password", "Phone Number", "Gender"};
-        String[][] data = FileConverter.readAllLines("account.txt");
+        String[] column = {"ID", "Name", "Phone Number", "Gender"};
+        String[][] data = FileConverter.readAllLines("accountApproval.txt");
+        data = Data.removeColumnFromData(data, 2);
         DefaultTableModel tableModel = new DefaultTableModel(data,column){
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -72,21 +72,36 @@ public class AdminManageUser extends JFrame {
         };
 
         JTable table = new JTable(tableModel);
+        String[][] finalData = data;
         table.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2) {
-                    String[] options = {"Add", "Remove"};
+                    String[] options = {"Add", "Remove", "Cancel"};
                     int x = JOptionPane.showOptionDialog(null,
                             "What do you want to do with this user?",
                             "Options",
                             JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
                             null, options, options[0]);
-                    // TODO: 07/10/2021 letak showMsg utk CONFIRMATION
-                    if (x == 0)
-                        System.out.println("add");
-                    if (x == 1)
-                        System.out.println("remove");
+                    if (x == 0){
+                        try {
+                            String[] info = FileConverter.getSingleLineInfo
+                                    ("accountApproval.txt", finalData[table.getSelectedRow()][0]);
+                            FileConverter.removeSingleLine
+                                    ("accountApproval.txt",finalData[table.getSelectedRow()][0]);
+                            FileConverter.appendFile("account.txt",info);
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                    if (x == 1){
+                        try {
+                            FileConverter.removeSingleLine
+                                    ("accountApproval.txt", finalData[table.getSelectedRow()][0]);
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
                 }
             }
         });

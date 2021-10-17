@@ -16,7 +16,6 @@ import java.io.IOException;
 
 public class AdminMainPage extends JFrame {
     AdminMainPage(String pictureName, String accountID) throws FileNotFoundException {
-        // TODO: 08/10/2021 make is reusable for 3 users
 
         Data data = new Data();
         data.setMainInfo(FileConverter.getSingleLineInfo("account.txt", accountID));
@@ -26,6 +25,7 @@ public class AdminMainPage extends JFrame {
         JSplitPane finalPanel = new JSplitPane();
 
         // welcomePanel
+        //TODO: need to put more info about the profile, accountID, phoneNum, Gender
         ImageIcon img = new ImageIcon("src/Pictures/" + pictureName + ".jpg");
         Image scaledImg = img.getImage().getScaledInstance(75, 75, Image.SCALE_DEFAULT);
         Icon finalImg = new ImageIcon(scaledImg);

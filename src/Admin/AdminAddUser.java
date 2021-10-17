@@ -137,16 +137,16 @@ public class AdminAddUser extends JFrame implements ActionListener {
                             }
                         }
                         if (checkNum > 0) {
-                            JOptionPane.showMessageDialog(this, "Account Already Exist");
+                            JOptionPane.showMessageDialog(frame, "Account Already Exist");
                         } else {
-                            // TODO: 10/10/2021 ADD ADMIN PASSWORD FOR ADMIN
-                            JOptionPane.showMessageDialog(this, "Added Successful");
+                            JOptionPane.showMessageDialog(frame, "Added Successful");
                             FileConverter.appendFile("account.txt", result);
-                            this.dispose();
+                            frame.dispose();
+                            //parameter: change pictureName
                             new AdminMainPage("Myvi", "AD1234");
                         }
                     }else {
-                        JOptionPane.showMessageDialog(this, "Incorrect Password");
+                        JOptionPane.showMessageDialog(frame, "Incorrect Password");
                     }
                 } catch (IOException ex) {
                     ex.printStackTrace();
