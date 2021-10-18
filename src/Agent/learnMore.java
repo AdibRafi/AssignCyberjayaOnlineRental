@@ -4,7 +4,6 @@ import FileSystem.FileConverter;
 
 import java.io.*;
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 
 public class learnMore extends JFrame  {
@@ -19,35 +18,42 @@ public class learnMore extends JFrame  {
     JButton two;
     JButton three;
     JButton[] buttonArray;
+    JLabel[] dataDetail;
     JLabel[] dataLocation;
-    JLabel[] dataFacilities;
     String[][] arrayLocation;
-    String[][] arrayFacilities;
 
 
-    public learnMore(String image, int account, int row) {
-        //////////////////////////////////////////////////////////////////////////////////////////////////////
-        // different button for each account
-        //todo : assign function dekat button (user)
-        if (account == 1) { // if account user
-            one = new JButton("Apply");
-            one.addActionListener(event -> JOptionPane.showMessageDialog(null, "Apply button was pushed!"));
-
-            two = new JButton("Contact");
-            two.addActionListener(event -> JOptionPane.showMessageDialog(null, "Contact button was pushed!"));
+    public learnMore(String image, String account, int row) {
+        // put data in array
+        try {
+            arrayLocation = FileConverter.readAllLines("location.txt");
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
-        //todo : assign function dekat button (agent)
-        if (account == 2) { // if account agent
-            one = new JButton("Manage Property");
-            one.addActionListener(event -> JOptionPane.showMessageDialog(null, "Manage Property button was pushed!"));
+        //////////////////////////////////////////////////////////////////////////////////////////////////////
+        // different button for each account
 
-            two = new JButton("Delete");
-            two.addActionListener(event -> JOptionPane.showMessageDialog(null, "Delete button was pushed!"));
+        if (account.contains("TN") || account.contains("AG")) { // if account user
+            //todo : assign function dekat button (agent)
+            if(account.equals(arrayLocation[row][0])){// if account agent (tekan dia punya property)
+                one = new JButton("Manage Property");
+                one.addActionListener(event -> JOptionPane.showMessageDialog(null, "Manage Property button was pushed!"));
+
+                two = new JButton("Delete");
+                two.addActionListener(event -> JOptionPane.showMessageDialog(null, "Delete button was pushed!"));
+
+            }else {//todo : assign function dekat button (user)
+                one = new JButton("Apply");
+                one.addActionListener(event -> JOptionPane.showMessageDialog(null, "Apply button was pushed!"));
+
+                two = new JButton("Contact");
+                two.addActionListener(event -> JOptionPane.showMessageDialog(null, "Contact button was pushed!"));
+            }
         }
 
         //todo : assign function dekat button (admin)
-        if (account == 3) { // if account admin
+        if (account.contains("AD")) { // if account admin
             one = new JButton("Leave Comment");
             one.addActionListener(event -> JOptionPane.showMessageDialog(null, "Leave Comment button was pushed!"));
 
@@ -59,13 +65,6 @@ public class learnMore extends JFrame  {
 
         }
         //////////////////////////////////////////////////////////////////////////////////////////////////////
-        // put data in array
-        try {
-            arrayLocation = FileConverter.readAllLines("location.txt");
-            arrayFacilities = FileConverter.readAllLines("locationFacilities.txt");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
         cl = new CardLayout(10, 10); // create cardlayout
         homePanel = new JPanel(); // panel for main menu
@@ -98,15 +97,16 @@ public class learnMore extends JFrame  {
             homePanel.add(buttonArray[j]);
         }
         JLabel price = new JLabel("Price");
+        JLabel houseDetail = new JLabel("House Detail");
         JLabel location = new JLabel("Location");
-        JLabel facilities = new JLabel("Facilities");
-        String[] arr1 ={"Size                     ", "Bathroom           ", "Bedroom            ", "Parking               ", "Furnished           ", "Wifi                      ", "Swimming Pool  ", "Air Cond              "};
-        String[] arr2 ={"House Number ", "Street                 ", "City                     ", "Postcode           ", "State                   ", "Status                 "};
+        String[] arr1 ={ "Status                 ", "Furnished           ", "Size (sq.ft.)         ", "Bedroom            "
+                , "Bathroom           ", "Parking               ", "Wifi                      ", "Swimming Pool  ", "Air Cond              "};
+        String[] arr2 ={"Street                 ", "City                     ", "Postcode           ", "State                   "};
 
-        //set boundary for text "Location" & add to panel
-        location.setFont(new Font("Serif", Font.PLAIN, 40));
-        location.setBounds(250,5,400,40);
-        learnMorePanel.add(location); // text "Location"
+        //set boundary for text "House Detail" & add to panel
+        houseDetail.setFont(new Font("Serif", Font.PLAIN, 40));
+        houseDetail.setBounds(250,5,400,40);
+        learnMorePanel.add(houseDetail); // text "Location"
 
         //set boundary for text "Price" & add to panel
         price.setFont(new Font("Serif", Font.PLAIN, 25));
@@ -114,41 +114,36 @@ public class learnMore extends JFrame  {
         learnMorePanel.add(price); // text "Price"
 
         int gap = 25;
-        for (int k = 0; k < 7; k++) {
-            dataLocation = new JLabel[7];
+        for (int k = 0; k < 10; k++) {
+            dataDetail = new JLabel[10];
             if (k == 0) {
-                dataLocation[k] = new JLabel("RM " + arrayLocation[row][k + 2]);
-                dataLocation[k].setFont(new Font("Serif", Font.PLAIN, 25));
-                dataLocation[k].setBounds(455,260,200,30);
-                learnMorePanel.add(dataLocation[k]);
+                dataDetail[k] = new JLabel("RM " + arrayLocation[row][k + 2]);
+                dataDetail[k].setFont(new Font("Serif", Font.PLAIN, 25));
+                dataDetail[k].setBounds(455,260,200,30);
+                learnMorePanel.add(dataDetail[k]);
             } if(k > 0 ) {
-                dataLocation[k] = new JLabel(arr2[k-1] +" : " + arrayLocation[row][k + 2]);
-                dataLocation[k].setBounds(250,gap,200,30);
-                learnMorePanel.add(dataLocation[k]);
+                dataDetail[k] = new JLabel(arr1[k-1] +" : " + arrayLocation[row][k + 2]);
+                dataDetail[k].setBounds(250,gap,200,30);
+                learnMorePanel.add(dataDetail[k]);
             }gap +=30 ;
         }
         gap +=70;
 
-        //set boundary for text "Facilities" & add to panel
-        facilities.setFont(new Font("Serif", Font.PLAIN, 40));
-        facilities.setVerticalAlignment(JLabel.CENTER);
-        facilities.setBounds(250,250,400,40);
-        learnMorePanel.add(facilities); // text "Facilities"
+        //set boundary for text "Location" & add to panel
+        location.setFont(new Font("Serif", Font.PLAIN, 40));
+        location.setVerticalAlignment(JLabel.CENTER);
+        location.setBounds(250,340,400,40);
+        learnMorePanel.add(location); // text "Facilities"
 
-        for (int k = 0; k < 8; k++) {
-            dataFacilities = new JLabel[8];
-            if (k == 0) {
-                dataFacilities[k] = new JLabel(arr1[k] + " : " + arrayFacilities[row][k+1] + " sq. ft");
-                dataFacilities[k].setBounds(250,gap,200,30);
-                learnMorePanel.add(dataFacilities[k]);
-            }if (k > 0){
-                dataFacilities[k] = new JLabel(arr1[k] + " : " + arrayFacilities[row][k + 1]);
-                dataFacilities[k].setBounds(250, gap, 200, 30);
-                learnMorePanel.add(dataFacilities[k]);
-            }gap += 30;
-        }
+        for (int k = 0; k < 4; k++) {
+            dataLocation = new JLabel[4];
+                dataLocation[k] = new JLabel(arr2[k] + " : " + arrayLocation[row][k + 12]);
+                dataLocation[k].setBounds(250, gap, 200, 30);
+                learnMorePanel.add(dataLocation[k]);
+            gap +=30;
+            }
         ///////////////////////////////////////////////////////////////////////////////////////////////
-        if(account == 3) {
+        if(account.contains("AD")) {
             // set boundary for button & add to panel (admin - four button)
             one.setBounds(15, 570, 140, 30);
             two.setBounds(150, 570, 140, 30);
@@ -190,6 +185,11 @@ public class learnMore extends JFrame  {
     }
 
     public static void main(String[] args) {
-        new learnMore("Myvi",3, 0); //row ikut button yang tekan
+        String admin = "AD0001";
+        String agent = "AG0001";
+        String agent2 = "AG2345";
+        String user = "TN0001";
+
+        new learnMore("Myvi",agent2, 2); //row ikut button yang tekan
     }
 }
