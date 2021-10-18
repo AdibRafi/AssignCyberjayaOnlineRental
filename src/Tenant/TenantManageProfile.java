@@ -118,7 +118,6 @@ public class TenantManageProfile extends JFrame implements ActionListener {
         }
         if(ae.getSource() == saveBtn){//todo: make save button//
             try {
-                //bug: oldInfo cannot retrieve info DONE
                 System.out.println("START");
                 //parameter: change accountID
                 String[] oldInfo = FileConverter.getSingleLineInfo("account.txt","AG2345");
