@@ -7,4 +7,5 @@ AG2345-RM006-500-true-Fully-125-1-1-1-true-true-true-The Arc, Persiaran Bestari,
 AG2345-CD007-1500-true-Fully-602-1-1-1-false-true-true-Tamarind Suites, Persiaran Sepang-Cyberjaya-63000-Selangor
 AG2345-AP008-1300-true-Fully-741-1-1-2-false-true-true-Paragon @ Pan'gaea, Persiaran Bestari-Cyberjaya-63000-Selangor
 AG2345-HO009-3800-true-Fully-3,132-5+1-5-2-false-true-true-Shumann, Symphony Hills, Cyber 9 -Cyberjaya-63000-Selangor
+AG2345-RM010-500-true-Fully-100-1-1-1-true-false-true,The Arc, Persiaran Bestari, Cyber 11 -Cyberjaya-63000-Selangor
 AgentID,LocationID,price,ActiveProperty,Furnished,Size(sq.ft.),bed,bath,parking,haveWifi,haveSwimming,haveAircond,Street,City,PostCode,State
