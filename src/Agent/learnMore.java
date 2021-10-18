@@ -99,7 +99,7 @@ public class learnMore extends JFrame  {
         JLabel price = new JLabel("Price");
         JLabel houseDetail = new JLabel("House Detail");
         JLabel location = new JLabel("Location");
-        String[] arr1 ={ "Status                 ", "Furnished           ", "Size (sq.ft.)         ", "Bedroom            "
+        String[] arr1 ={ "Status                 ", "Furnished          ", "Size (sq.ft.)        ", "Bedroom            "
                 , "Bathroom           ", "Parking               ", "Wifi                      ", "Swimming Pool  ", "Air Cond              "};
         String[] arr2 ={"Street                 ", "City                     ", "Postcode           ", "State                   "};
 
@@ -138,7 +138,7 @@ public class learnMore extends JFrame  {
         for (int k = 0; k < 4; k++) {
             dataLocation = new JLabel[4];
                 dataLocation[k] = new JLabel(arr2[k] + " : " + arrayLocation[row][k + 12]);
-                dataLocation[k].setBounds(250, gap, 200, 30);
+                dataLocation[k].setBounds(250, gap, 400, 30);
                 learnMorePanel.add(dataLocation[k]);
             gap +=30;
             }
