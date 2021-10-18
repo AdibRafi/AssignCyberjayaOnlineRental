@@ -22,12 +22,12 @@ public class AdminRemoveUser extends JFrame {
         topPanel.setBackground(new Color(0x313131));
 
         JLabel titleLabel = new JLabel("Remove User");
-        titleLabel.setAlignmentX(JFrame.CENTER_ALIGNMENT);
         titleLabel.setForeground(Color.white);
+        titleLabel.setAlignmentX(JFrame.CENTER_ALIGNMENT);
         titleLabel.setFont(new Font("Times New Roman",Font.BOLD,20));
 
         JButton backBtn = new JButton("Back");
-        backBtn.setAlignmentX(JFrame.RIGHT_ALIGNMENT);
+
 
         backBtn.addActionListener(new ActionListener() {
             @Override
@@ -85,6 +85,7 @@ public class AdminRemoveUser extends JFrame {
         JScrollPane mainPanel = new JScrollPane(table);
 
         topPanel.add(titleLabel);
+        //fixme: cari ways utk letak backBtn belah kanan
         topPanel.add(backBtn);
         frame.add(topPanel, BorderLayout.NORTH);
         frame.add(mainPanel, BorderLayout.CENTER);
