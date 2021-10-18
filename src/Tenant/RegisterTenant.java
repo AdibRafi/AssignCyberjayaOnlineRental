@@ -172,8 +172,8 @@ public class RegisterTenant implements ActionListener {
                         JOptionPane.showMessageDialog(frame, "Register Successfully, wait for admin to approve");
                         FileConverter.appendFile("accountApproval.txt", result);
                         frame.dispose();
-
-                        new LoginForm();
+                        //fixme: make it go to mainDisplay
+//                        new mainDisplay();
                     }
                 }else JOptionPane.showMessageDialog(frame,"Password Confirmation Does Not Match");
             }catch(IOException ex){

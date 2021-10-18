@@ -69,6 +69,7 @@ public class AdminManageUser extends JFrame {
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
+
         };
 
         JTable table = new JTable(tableModel);
