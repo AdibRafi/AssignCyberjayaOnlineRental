@@ -9,6 +9,7 @@ import java.awt.*;
 public class learnMore extends JFrame  {
     static JPanel mainContainer;
     static CardLayout cl;
+    private static int row;
 
     JPanel homePanel;
     JPanel learnMorePanel;
@@ -23,13 +24,21 @@ public class learnMore extends JFrame  {
     String[][] arrayLocation;
 
 
-    public learnMore(String image, String account, int row) {
+    public learnMore(String image, String account, String propertyID) {
+
         // put data in array
         try {
             arrayLocation = FileConverter.readAllLines("location.txt");
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        for(int i = 0; i < arrayLocation.length; i++){
+            if(arrayLocation[i][1].equals(propertyID)){
+                row = i;
+            }
+        }
+
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////
         // different button for each account
@@ -70,6 +79,7 @@ public class learnMore extends JFrame  {
         homePanel = new JPanel(); // panel for main menu
         buttonArray = new JButton[arrayLocation.length]; // create button in array
 
+        //todo: back button function
         back = new JButton("Back"); // create back button (return to menu)
         back.addActionListener(event -> {
             cl.show(mainContainer, "Back");
@@ -81,7 +91,7 @@ public class learnMore extends JFrame  {
         learnMorePanel = new JPanel();
         learnMorePanel.setLayout(null);
 
-        // test back button (follow button yang ditekan)
+        /*// test back button (follow button yang ditekan)
         for (int j = 0; j < arrayLocation.length; j++) {
             buttonArray[j] = new JButton("Learn More");
             buttonArray[j].addActionListener(event -> {
@@ -96,6 +106,7 @@ public class learnMore extends JFrame  {
             });
             homePanel.add(buttonArray[j]);
         }
+        */
         JLabel price = new JLabel("Price");
         JLabel houseDetail = new JLabel("House Detail");
         JLabel location = new JLabel("Location");
@@ -169,7 +180,6 @@ public class learnMore extends JFrame  {
         JLabel pictureLabel = new JLabel();
         pictureLabel.setIcon(finalImg);
         pictureLabel.setBounds(25,70,200,200);
-        //pictureLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 
         learnMorePanel.add(pictureLabel);
         mainContainer.add(learnMorePanel, "Other Panel");
@@ -178,18 +188,21 @@ public class learnMore extends JFrame  {
         mFrame.add(mainContainer);
         cl.show(mainContainer, "Home");
         mFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-//        mFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        mFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         mFrame.pack();
         mFrame.setVisible(true);
         mFrame.setSize(610, 670);
     }
 
     public static void main(String[] args) {
-        String admin = "AD1234";
+        String admin = "AD0001";
         String agent = "AG0001";
         String agent2 = "AG2345";
         String user = "TN0001";
 
-        new learnMore("Myvi",admin, 4); //row ikut button yang tekan
+        String property = "AP008";
+        String property2 ="AP0001";
+
+        new learnMore("Myvi",agent2, property); //row ikut property ID yang tekan
     }
 }
