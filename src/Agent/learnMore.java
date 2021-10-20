@@ -174,7 +174,7 @@ public class learnMore extends JFrame  {
             learnMorePanel.add(two); // letak second button(base on account) at learn more punya panel
             learnMorePanel.add(back); // letak back button at learn more punya panel
         }
-        ImageIcon img = new ImageIcon("src/Pictures/" + image + ".jpg");
+        ImageIcon img = new ImageIcon("src/Pictures/" + image + ".png");
         Image scaledImg = img.getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT);
         Icon finalImg = new ImageIcon(scaledImg);
         JLabel pictureLabel = new JLabel();
@@ -188,7 +188,7 @@ public class learnMore extends JFrame  {
         mFrame.add(mainContainer);
         cl.show(mainContainer, "Home");
         mFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        mFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+//        mFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         mFrame.pack();
         mFrame.setVisible(true);
         mFrame.setSize(610, 670);
@@ -203,6 +203,6 @@ public class learnMore extends JFrame  {
         String property = "AP008";
         String property2 ="AP0001";
 
-        new learnMore("Myvi",agent2, property); //row ikut property ID yang tekan
+        new learnMore(property2,agent2, property); //row ikut property ID yang tekan
     }
 }

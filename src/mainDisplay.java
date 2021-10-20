@@ -1,6 +1,5 @@
 
 import FileSystem.FileConverter;
-import Tenant.*;
 import Tenant.LoginForm;
 
 import javax.swing.*;
@@ -10,9 +9,7 @@ import java.awt.event.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 import java.io.IOException;
-import java.net.http.HttpResponse;
 import java.util.Arrays;
 
 public class mainDisplay implements ActionListener {
@@ -95,11 +92,11 @@ public class mainDisplay implements ActionListener {
             new LoginForm();
         }
     }
-}
 
-class Main {
     public static void main(String[] args) throws IOException {
         new mainDisplay();
     }
 }
+
+
 

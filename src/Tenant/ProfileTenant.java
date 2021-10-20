@@ -6,6 +6,7 @@ import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 
 public class ProfileTenant implements ActionListener {
     JFrame frame;
@@ -92,9 +93,7 @@ public class ProfileTenant implements ActionListener {
                 passwordField.setEchoChar('*');
             }
         }*/
-        if(e.getSource() == manageBtn){
-            new TenantManageProfile();
-        }
+
     }
 }
 class Profile{

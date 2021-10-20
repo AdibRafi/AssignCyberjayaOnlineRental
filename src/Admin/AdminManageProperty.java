@@ -44,7 +44,7 @@ public class AdminManageProperty extends JFrame {
         });
 
         String[] column = {"AgentID", "Price", "ActiveProperty", "Furnished", "Size",
-                "Bedroom", "Bathroom", "Parking Spots", "Wifi", "Swimming Pool",
+                "Rental Rate", "Bedroom", "Bathroom", "Parking Spots", "Wifi", "Swimming Pool",
                 "AirConditioner", "Street", "City", "PostCode", "State"};
         String[][] data = FileConverter.readAllLines("location.txt");
         data = Data.removeColumnFromData(data, 1);
@@ -74,7 +74,7 @@ public class AdminManageProperty extends JFrame {
         frame.add(mainPanel, BorderLayout.CENTER);
 
         frame.setTitle("Manage Property");
-        frame.setSize(1250, 400);
+        frame.setSize(1350, 400);
         frame.setVisible(true);
         frame.setResizable(false);
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);

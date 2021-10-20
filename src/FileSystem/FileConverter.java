@@ -37,12 +37,17 @@ public class FileConverter {
     public static String[] getSingleLineInfo(String filePath, String accountID) throws FileNotFoundException {
         Scanner reader = new Scanner(new File("src/FileSystem/" + filePath));
         reader.useDelimiter("-|\n");
-        String[] result = new String[5];
+        int q = 0;
+        if (filePath.equals("account.txt"))
+            q = 5;
+        else if (filePath.equals("location.txt"))
+            q = 17;
+        String[] result = new String[q];
         while (reader.hasNextLine()) {
             String data = reader.next();
             if (data.equals(accountID)) {
                 result[0] = data;
-                for (int i = 1; i < 5; i++) {
+                for (int i = 1; i < q; i++) {
                     result[i] = reader.next();
                 }
                 break;
@@ -112,8 +117,9 @@ public class FileConverter {
     }
     public static void main(String[] args) throws IOException {
         Data data = new Data();
+        System.out.println(Arrays.toString(getSingleLineInfo("location.txt", "AG5372")));
 
-        removeSingleLine("account.txt","TN2875");
+
 //        TN2875-Chris-list-1141694755-female
 //        System.out.println(Arrays.toString(getSingleLineInfo("account.txt","TN2345")));
 //        String[] old = FileConverter.getSingleLineInfo("account.txt", "AG2345");
