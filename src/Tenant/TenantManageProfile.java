@@ -1,5 +1,6 @@
 package Tenant;
 
+import DataSystem.Data;
 import FileSystem.FileConverter;
 
 import javax.swing.*;
@@ -35,8 +36,11 @@ public class TenantManageProfile extends JFrame implements ActionListener {
     JCheckBox showNewPassword = new JCheckBox("Show Password");
     JCheckBox showConfirmPassword = new JCheckBox("Show Password");
 
+    Data data = new Data();
+
     //Constructor
-    TenantManageProfile(){
+    public TenantManageProfile(String accountID) throws FileNotFoundException {
+        data.setMainInfo(FileConverter.getSingleLineInfo("account.txt",accountID));
         createWindow();
         setLocationAndSize();
         addComponentToFrame();
@@ -120,9 +124,10 @@ public class TenantManageProfile extends JFrame implements ActionListener {
             try {
                 System.out.println("START");
                 //parameter: change accountID
-                String[] oldInfo = FileConverter.getSingleLineInfo("account.txt","AG2345");
-                String[] newInfo = {"AG2345",nameTextField.getText(),newPasswordField.getText(),contactTextField.getText(), (String) genderComboBox.getSelectedItem()};
-                FileConverter.updateFile("account.txt",oldInfo,newInfo);
+                String[] oldInfoFromData = data.getMainInfo();
+                String[] newInfo = {data.getAccountID(),nameTextField.getText(),newPasswordField.getText(),contactTextField.getText(), (String) genderComboBox.getSelectedItem()};
+                data.setMainInfo(newInfo);
+                FileConverter.updateFile("account.txt",oldInfoFromData,data.getMainInfo());
                 JOptionPane.showMessageDialog(frame,"New info has been saved");
             } catch (IOException e) {
                 e.printStackTrace();
@@ -145,7 +150,7 @@ public class TenantManageProfile extends JFrame implements ActionListener {
 }
 
 class Tenant{
-    public static void main(String[] args) {
-        new TenantManageProfile();
+    public static void main(String[] args) throws FileNotFoundException {
+        new TenantManageProfile("AG2345");
     }
 }

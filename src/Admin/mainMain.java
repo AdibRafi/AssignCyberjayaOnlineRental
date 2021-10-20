@@ -1,53 +1,113 @@
 package Admin;
 
+import DataSystem.Data;
+import DataSystem.Property;
+import FileSystem.FileConverter;
+import Tenant.LoginForm;
+
 import javax.swing.*;
+import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableModel;
+import java.awt.event.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.Arrays;
 
-public class mainMain
-{
-    static JPanel homeContainer;
-    static CardLayout cl;
+public class mainMain implements ActionListener {
+    JFrame frame;
 
-    JPanel homePanel;
-    JPanel otherPanel;
+    JPanel topPanel = new JPanel();
+    JLabel titleLabel = new JLabel("myProperty House Rental");
+    JButton panelBtn = new JButton("Login/Register");
 
-
-    public mainMain()
-    {
-        JFrame mFrame = new JFrame("CardLayout Example");
-        JButton showOtherPanelBtn = new JButton("Show Other Panel");
-        JButton backToHomeBtn = new JButton("Show Home Panel");
-
-        cl = new CardLayout(5, 5);
-        homeContainer = new JPanel(cl);
-        homeContainer.setBackground(Color.black);
-
-        homePanel = new JPanel();
-        homePanel.setBackground(Color.blue);
-        homePanel.add(showOtherPanelBtn);
-
-        homeContainer.add(homePanel, "Home");
-
-        otherPanel = new JPanel();
-        otherPanel.setBackground(Color.green);
-        otherPanel.add(backToHomeBtn);
-
-        homeContainer.add(otherPanel, "Other Panel");
-
-        showOtherPanelBtn.addActionListener(e -> cl.show(homeContainer, "Other Panel"));
-        backToHomeBtn.addActionListener(e -> cl.show(homeContainer, "Home"));
-
-        mFrame.add(homeContainer);
-        cl.show(homeContainer, "Home");
-        mFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        mFrame.setLocationRelativeTo(null);
-        mFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        mFrame.pack();
-        mFrame.setVisible(true);
+    mainMain() throws IOException {
+        createWindow();
+        setSize();
+        addComponent();
+        actionEvent();
     }
 
-    public static void main(String[] args)
-    {
-        SwingUtilities.invokeLater(mainMain::new);
+    public void createWindow() throws IOException {
+        frame = new JFrame();
+        frame.setTitle("Main frame");
+        frame.setBounds(40,40,1000,680);
+        topPanel.setBackground(Color.darkGray);
+        topPanel.setLayout(new BorderLayout());
+        topPanel.setBorder(new LineBorder(Color.darkGray,3));
+
+        //table part - adib
+        String[] column = {"Agent", "Type", "price", "Status", "Furnished",
+                "Size (sq.ft.)", "bed", "bath", "parking", "Address"
+                , "City", "State"};
+        String[][] data = FileConverter.readAllLines("location.txt");
+        data = Data.removeColumnFromData(data,false,true,true);
+        data = Data.removeColumnFromData(data, 9);
+        data = Data.removeColumnFromData(data, 9);
+        data = Data.removeColumnFromData(data, 9);
+
+        data = Data.removeColumnFromData(data, 11);
+        for (int i = 0; i < data.length; i++) {
+            data[i] = Data.changeValue(data[i],data[i][1]);
+        }
+
+        DefaultTableModel tableModel = new DefaultTableModel(data,column){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+
+        JTable table = new JTable(tableModel);
+        table.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 2) {
+                    //todo: go to learn more display -adib
+                    System.out.println("Clicked");
+                }
+            }
+        });
+
+        JScrollPane mainPanel = new JScrollPane(table);
+        frame.add(topPanel, BorderLayout.NORTH);
+        frame.add(mainPanel, BorderLayout.CENTER);
+
+        frame.getContentPane().setBackground(Color.cyan);
+//        frame.getContentPane().setLayout(null);
+        frame.setVisible(true);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(false);
+    }
+    public void setSize(){
+        topPanel.setBounds(0,0,780,60);
+    }
+    public void addComponent(){
+        frame.add(topPanel, BorderLayout.NORTH);
+        topPanel.add(titleLabel);
+        topPanel.add(panelBtn, BorderLayout.LINE_END);
+        titleLabel.setForeground(Color.white);
+        titleLabel.setFont(new Font("Papyrus", Font.BOLD,20));
+
+
+    }
+    public void actionEvent(){
+        panelBtn.addActionListener(this);
+
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == panelBtn){
+            new LoginForm();
+        }
     }
 }
+
+class Main {
+    public static void main(String[] args) throws IOException {
+        new mainMain();
+    }
+}
+

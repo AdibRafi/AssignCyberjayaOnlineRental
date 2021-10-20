@@ -5,6 +5,7 @@ import DataSystem.AdminData;
 import DataSystem.Data;
 import DataSystem.TenantData;
 import FileSystem.FileConverter;
+import Tenant.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -36,6 +37,16 @@ public class AdminMainPage extends JFrame {
         JLabel welcomeLabel = new JLabel("Welcome " + data.getName() + "!");
         welcomeLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
 
+        JLabel accountIDLabel = new JLabel("Account ID: " + data.getAccountID());
+        accountIDLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
+
+        JLabel phoneNumberLabel = new JLabel("Phone Number: " + data.getPhoneNumber());
+        phoneNumberLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
+
+        JLabel genderLabel = new JLabel("Gender: " + data.getGender());
+        genderLabel.setAlignmentX(JLabel.CENTER_ALIGNMENT);
+
+
         //Button panel
         //todo: letak each button functionality
         JButton profileBtn = new JButton("Manage Profile");
@@ -56,7 +67,11 @@ public class AdminMainPage extends JFrame {
         // tenant = 0, agent = 1, admin = 2
         firstBtn.addActionListener(e ->{
             if (userType == 1) {
-                //Manage Property
+                try {
+                    new TenantManageProfile(data.getAccountID());
+                } catch (FileNotFoundException ex) {
+                    ex.printStackTrace();
+                }
             }
             if (userType == 2) {
                 try {
@@ -90,6 +105,9 @@ public class AdminMainPage extends JFrame {
         welcomePanel.add(Box.createRigidArea(new Dimension(0, 15)));
         welcomePanel.add(welcomeLabel);
         welcomePanel.add(Box.createRigidArea(new Dimension(0, 40)));
+        welcomePanel.add(accountIDLabel);
+        welcomePanel.add(phoneNumberLabel);
+        welcomePanel.add(genderLabel);
 
         btnPanel.setBackground(new Color(0x3957B7));
         btnPanel.add(profileBtn);

@@ -178,18 +178,18 @@ public class learnMore extends JFrame  {
         mFrame.add(mainContainer);
         cl.show(mainContainer, "Home");
         mFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        mFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+//        mFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         mFrame.pack();
         mFrame.setVisible(true);
         mFrame.setSize(610, 670);
     }
 
     public static void main(String[] args) {
-        String admin = "AD0001";
+        String admin = "AD1234";
         String agent = "AG0001";
         String agent2 = "AG2345";
         String user = "TN0001";
 
-        new learnMore("Myvi",agent2, 2); //row ikut button yang tekan
+        new learnMore("Myvi",admin, 4); //row ikut button yang tekan
     }
 }
