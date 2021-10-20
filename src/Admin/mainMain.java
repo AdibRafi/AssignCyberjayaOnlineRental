@@ -13,6 +13,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class mainMain implements ActionListener {
@@ -39,18 +41,18 @@ public class mainMain implements ActionListener {
 
         //table part - adib
         String[] column = {"Agent", "Type", "price", "Status", "Furnished",
-                "Size (sq.ft.)", "bed", "bath", "parking", "Address"
+                "Size (sq.ft.)","Rental Rate", "bed", "bath", "parking", "Address"
                 , "City", "State"};
         String[][] data = FileConverter.readAllLines("location.txt");
-        data = Data.removeColumnFromData(data,false,true,true);
-        data = Data.removeColumnFromData(data, 9);
-        data = Data.removeColumnFromData(data, 9);
-        data = Data.removeColumnFromData(data, 9);
-
-        data = Data.removeColumnFromData(data, 11);
-        for (int i = 0; i < data.length; i++) {
-            data[i] = Data.changeValue(data[i],data[i][1]);
-        }
+//        data = Data.removeColumnFromData(data,false,true,true);
+//        data = Data.removeColumnFromData(data, 9);
+//        data = Data.removeColumnFromData(data, 9);
+//        data = Data.removeColumnFromData(data, 9);
+//
+//        data = Data.removeColumnFromData(data, 11);
+//        for (int i = 0; i < data.length; i++) {
+//            data[i] = Data.changeValue(data[i],data[i][1]);
+//        }
 
         DefaultTableModel tableModel = new DefaultTableModel(data,column){
             @Override
@@ -103,11 +105,31 @@ public class mainMain implements ActionListener {
             new LoginForm();
         }
     }
-}
 
-class Main {
     public static void main(String[] args) throws IOException {
-        new mainMain();
+//        new mainMain();
+        String[] data = FileConverter.getSingleLineInfo("location.txt", "AG2345");
+        System.out.println(Arrays.toString(data));
+        float num = Float.parseFloat(data[2]) / Float.parseFloat(data[5]);
+        DecimalFormat format = new DecimalFormat();
+        format.setMaximumFractionDigits(2);
+        String result = format.format(num);
+        System.out.println(result);
+
+        ArrayList<String> eh = new ArrayList<>();
+        int q = 0;
+        for (int i = 0; i < data.length; i++) {
+            if (i==6){
+                eh.add(result);
+                q++;
+            }
+            else
+                eh.add(data[i-q]);
+        }
+        eh.add(data[data.length - 1]);
+        System.out.println(eh);
     }
 }
+
+
 

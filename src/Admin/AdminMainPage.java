@@ -27,7 +27,7 @@ public class AdminMainPage extends JFrame {
 
         // welcomePanel
         //TODO: need to put more info about the profile, accountID, phoneNum, Gender
-        ImageIcon img = new ImageIcon("src/Pictures/" + pictureName + ".jpg");
+        ImageIcon img = new ImageIcon("src/Pictures/" + pictureName + ".png");
         Image scaledImg = img.getImage().getScaledInstance(75, 75, Image.SCALE_DEFAULT);
         Icon finalImg = new ImageIcon(scaledImg);
         JLabel pictureLabel = new JLabel();
@@ -86,7 +86,7 @@ public class AdminMainPage extends JFrame {
         secondBtn.addActionListener(e -> {
             if (userType == 1) {
                 this.dispose();
-                new agentAddPropety(userType);
+//                new agentAddPropety(userType);
             }
             if (userType == 2) {
                 this.dispose();
