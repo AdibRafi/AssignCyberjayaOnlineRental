@@ -41,7 +41,7 @@ public class FileConverter {
         if (filePath.equals("account.txt"))
             q = 5;
         else if (filePath.equals("location.txt"))
-            q = 17;
+            q = 18;
         String[] result = new String[q];
         while (reader.hasNextLine()) {
             String data = reader.next();
