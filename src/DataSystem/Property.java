@@ -49,17 +49,17 @@ public class Property extends Data {
         setActiveProperty(dataFromFile[3]);
         setFurnishedStatus(dataFromFile[4]);
         setSquareFeet(dataFromFile[5]);
-        setRentalRate(getValueOfRentalRate(dataFromFile[2],dataFromFile[5]));
-        setNumOfBed(dataFromFile[6]);
-        setNumOfBath(dataFromFile[7]);
-        setNumOfParking(dataFromFile[8]);
-        setHaveWifi(dataFromFile[9]);
-        setHaveSwimmingPool(dataFromFile[10]);
-        setHaveAirCond(dataFromFile[11]);
-        setStreetName(dataFromFile[12]);
-        setCityName(dataFromFile[13]);
-        setPostcode(dataFromFile[14]);
-        setState(dataFromFile[15]);
+        setRentalRate(dataFromFile[6]);
+        setNumOfBed(dataFromFile[7]);
+        setNumOfBath(dataFromFile[8]);
+        setNumOfParking(dataFromFile[9]);
+        setHaveWifi(dataFromFile[10]);
+        setHaveSwimmingPool(dataFromFile[11]);
+        setHaveAirCond(dataFromFile[12]);
+        setStreetName(dataFromFile[13]);
+        setCityName(dataFromFile[14]);
+        setPostcode(dataFromFile[15]);
+        setState(dataFromFile[16]);
     }
     public String[] getPropertyInfoToDisplay(){
         String[] result = new String[17];
