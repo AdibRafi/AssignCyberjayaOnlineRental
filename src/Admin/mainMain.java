@@ -1,5 +1,6 @@
 package Admin;
 
+import Agent.learnMore;
 import DataSystem.Data;
 import DataSystem.Property;
 import FileSystem.FileConverter;
@@ -24,7 +25,10 @@ public class mainMain implements ActionListener {
     JLabel titleLabel = new JLabel("myProperty House Rental");
     JButton panelBtn = new JButton("Login/Register");
 
-    mainMain() throws IOException {
+    Property accountData = new Property();
+
+    mainMain(String accountID) throws IOException {
+        accountData.setPropertyInfo(FileConverter.getSingleLineInfo("location.txt",accountID));
         createWindow();
         setSize();
         addComponent();
@@ -67,7 +71,7 @@ public class mainMain implements ActionListener {
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2) {
                     //todo: go to learn more display -adib
-                    System.out.println("Clicked");
+//                    new learnMore();
                 }
             }
         });
@@ -108,26 +112,12 @@ public class mainMain implements ActionListener {
 
     public static void main(String[] args) throws IOException {
 //        new mainMain();
-        String[] data = FileConverter.getSingleLineInfo("location.txt", "AG2345");
-        System.out.println(Arrays.toString(data));
-        float num = Float.parseFloat(data[2]) / Float.parseFloat(data[5]);
-        DecimalFormat format = new DecimalFormat();
-        format.setMaximumFractionDigits(2);
-        String result = format.format(num);
-        System.out.println(result);
+        Property data = new Property();
+        data.setPropertyInfo(FileConverter.getSingleLineInfo("location.txt","AG2345"));
+        System.out.println(Arrays.toString(data.getPropertyInfoToDisplay()));
+        //todo: buat backend apa nak letak based on mark sheets
+        new mainMain(data.getAccountID());
 
-        ArrayList<String> eh = new ArrayList<>();
-        int q = 0;
-        for (int i = 0; i < data.length; i++) {
-            if (i==6){
-                eh.add(result);
-                q++;
-            }
-            else
-                eh.add(data[i-q]);
-        }
-        eh.add(data[data.length - 1]);
-        System.out.println(eh);
     }
 }
 

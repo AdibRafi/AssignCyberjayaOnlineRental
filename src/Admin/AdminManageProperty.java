@@ -1,8 +1,8 @@
 package Admin;
 
 import Agent.learnMore;
-import Agent.sort;
 import DataSystem.Data;
+import DataSystem.Property;
 import FileSystem.FileConverter;
 
 import javax.swing.*;
@@ -18,8 +18,9 @@ import java.io.IOException;
 public class AdminManageProperty extends JFrame {
 
     JFrame frame = new JFrame();
-
-    AdminManageProperty() throws IOException {
+    Property accountData = new Property();
+    AdminManageProperty(String accountID) throws IOException {
+        accountData.setMainInfo(FileConverter.getSingleLineInfo("account.txt", accountID));
         JPanel topPanel = new JPanel();
         topPanel.setBackground(new Color(0x313131));
         //fixme: Cari ways txtLabel kat tgh n btn kat kanan
@@ -36,18 +37,17 @@ public class AdminManageProperty extends JFrame {
                 try {
                     frame.dispose();
                     //parameter: change pictureName n AccountID
-                    new AdminMainPage("Myvi","AD1234");
+                    new AdminMainPage("Myvi", accountData.getAccountID());
                 } catch (FileNotFoundException ex) {
                     ex.printStackTrace();
                 }
             }
         });
 
-        String[] column = {"AgentID", "Price", "ActiveProperty", "Furnished", "Size",
+        String[] column = {"AgentID", "PropertyID", "Price", "ActiveProperty", "Furnished", "Size",
                 "Rental Rate", "Bedroom", "Bathroom", "Parking Spots", "Wifi", "Swimming Pool",
                 "AirConditioner", "Street", "City", "PostCode", "State"};
         String[][] data = FileConverter.readAllLines("location.txt");
-        data = Data.removeColumnFromData(data, 1);
         DefaultTableModel tableModel = new DefaultTableModel(data, column){
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -60,8 +60,10 @@ public class AdminManageProperty extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2) {
-                    System.out.println("clicked");
-//                    new learnMore("Myvi");
+                    int input = table.getSelectedRow();
+
+                    new learnMore(data[input][1], accountData.getAccountID()
+                            , data[input][1]);
                 }
             }
         });
@@ -81,6 +83,6 @@ public class AdminManageProperty extends JFrame {
     }
 
     public static void main(String[] args) throws IOException {
-        new AdminManageProperty();
+        new AdminManageProperty("AD1234");
     }
 }
