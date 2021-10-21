@@ -1,5 +1,6 @@
 package Agent;
 
+import DataSystem.Property;
 import FileSystem.FileConverter;
 
 import java.io.*;
@@ -9,7 +10,6 @@ import java.awt.*;
 public class learnMore extends JFrame  {
     static JPanel mainContainer;
     static CardLayout cl;
-    private static int row;
 
     JPanel homePanel;
     JPanel learnMorePanel;
@@ -21,31 +21,25 @@ public class learnMore extends JFrame  {
     JButton[] buttonArray;
     JLabel[] dataDetail;
     JLabel[] dataLocation;
-    String[][] arrayLocation;
+    String[] detail;
 
 
     public learnMore(String image, String account, String propertyID) {
 
         // put data in array
         try {
-            arrayLocation = FileConverter.readAllLines("location.txt");
+            detail = FileConverter.getSingleLineInfo("location.txt",account, propertyID);
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        for(int i = 0; i < arrayLocation.length; i++){
-            if(arrayLocation[i][1].equals(propertyID)){
-                row = i;
-            }
-        }
-
+        Property data = new Property();
+        data.setPropertyInfo(detail);
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////
         // different button for each account
-
         if (account.contains("TN") || account.contains("AG")) { // if account user
             //todo : assign function dekat button (agent)
-            if(account.equals(arrayLocation[row][0])){// if account agent (tekan dia punya property)
+            if(account.equals(data.getAccountID())){// if account agent (tekan dia punya property)
                 one = new JButton("Manage Property");
                 one.addActionListener(event -> JOptionPane.showMessageDialog(null, "Manage Property button was pushed!"));
 
@@ -77,7 +71,6 @@ public class learnMore extends JFrame  {
 
         cl = new CardLayout(10, 10); // create cardlayout
         homePanel = new JPanel(); // panel for main menu
-        buttonArray = new JButton[arrayLocation.length]; // create button in array
 
         //todo: back button function
         back = new JButton("Back"); // create back button (return to menu)
@@ -90,70 +83,97 @@ public class learnMore extends JFrame  {
         mainContainer = new JPanel(cl);
         learnMorePanel = new JPanel();
         learnMorePanel.setLayout(null);
-
-        /*// test back button (follow button yang ditekan)
-        for (int j = 0; j < arrayLocation.length; j++) {
-            buttonArray[j] = new JButton("Learn More");
-            buttonArray[j].addActionListener(event -> {
-                int indicator = 0 ;
-                for (int n = 0; n < arrayLocation.length; n++) {
-                    if (event.getSource() == buttonArray[n])
-                        indicator = n;
-                        mFrame.dispose();
-                }
-                new learnMore(image, account,indicator);
-                cl.show(mainContainer, "Learn More");
-            });
-            homePanel.add(buttonArray[j]);
-        }
-        */
-        JLabel price = new JLabel("Price");
-        JLabel houseDetail = new JLabel("House Detail");
-        JLabel location = new JLabel("Location");
-        String[] arr1 ={ "Status                 ", "Furnished          ", "Size (sq.ft.)        ", "Bedroom            "
+        /*----------------------------------------------------------------------------------------------------------------------------------------*/
+        //display infomation detail about the house
+        String[] arr1 ={ "Status                 ", "Furnished          ", "Size (sq.ft.)        ", "Rental Rate       ", "Bedroom            "
                 , "Bathroom           ", "Parking               ", "Wifi                      ", "Swimming Pool  ", "Air Cond              "};
         String[] arr2 ={"Street                 ", "City                     ", "Postcode           ", "State                   "};
 
+        //display "House Detail" label
+        JLabel houseDetail = new JLabel("House Detail");
         //set boundary for text "House Detail" & add to panel
         houseDetail.setFont(new Font("Serif", Font.PLAIN, 40));
         houseDetail.setBounds(250,5,400,40);
-        learnMorePanel.add(houseDetail); // text "Location"
+        learnMorePanel.add(houseDetail); // text "House Detail"
 
-        //set boundary for text "Price" & add to panel
+        dataDetail = new JLabel[15];
+
+        // display price
+        JLabel price = new JLabel("Price");
+        //set boundary for text "Price"
         price.setFont(new Font("Serif", Font.PLAIN, 25));
         price.setBounds(455,230,200,30);
+        dataDetail[0] = new JLabel("RM " + data.getPrice());
+        dataDetail[0].setFont(new Font("Serif", Font.PLAIN, 25));
+        dataDetail[0].setBounds(455,260,200,30);
         learnMorePanel.add(price); // text "Price"
 
-        int gap = 25;
-        for (int k = 0; k < 10; k++) {
-            dataDetail = new JLabel[10];
-            if (k == 0) {
-                dataDetail[k] = new JLabel("RM " + arrayLocation[row][k + 2]);
-                dataDetail[k].setFont(new Font("Serif", Font.PLAIN, 25));
-                dataDetail[k].setBounds(455,260,200,30);
-                learnMorePanel.add(dataDetail[k]);
-            } if(k > 0 ) {
-                dataDetail[k] = new JLabel(arr1[k-1] +" : " + arrayLocation[row][k + 2]);
-                dataDetail[k].setBounds(250,gap,200,30);
-                learnMorePanel.add(dataDetail[k]);
-            }gap +=30 ;
-        }
-        gap +=70;
+        //display status
+        dataDetail[1] = new JLabel(arr1[0] +" : " + data.getActiveProperty());
+        dataDetail[1].setBounds(250,50,200,30);
 
+        //display furnish
+        dataDetail[2] = new JLabel(arr1[1] +" : " + data.getFurnishedStatus());
+        dataDetail[2].setBounds(250,80,200,30);
+
+        //display size
+        dataDetail[3] = new JLabel(arr1[2] +" : " + data.getSquareFeet());
+        dataDetail[3].setBounds(250,110,200,30);
+
+        //display rental rate
+        dataDetail[4] = new JLabel(arr1[3] +" : RM " + data.getRentalRate());
+        dataDetail[4].setBounds(250,140,200,30);
+
+        //display num of bedroom
+        dataDetail[5] = new JLabel(arr1[4] +" : " + data.getNumOfBed());
+        dataDetail[5].setBounds(250,170,200,30);
+
+        //display num of bathroom
+        dataDetail[6] = new JLabel(arr1[5] +" : " + data.getNumOfBath());
+        dataDetail[6].setBounds(250,200,200,30);
+
+        //display num of parking
+        dataDetail[7] = new JLabel(arr1[6] +" : " + data.getNumOfParking());
+        dataDetail[7].setBounds(250,230,200,30);
+
+        //display wifi available(true/false)
+        dataDetail[8] = new JLabel(arr1[7] +" : " + data.getHaveWifi());
+        dataDetail[8].setBounds(250,260,200,30);
+
+        //display swimming pool available(true/false)
+        dataDetail[9] = new JLabel(arr1[8] +" : " + data.getHaveSwimmingPool());
+        dataDetail[9].setBounds(250,290,200,30);
+
+        //display aircond available(true/false)
+        dataDetail[10] = new JLabel(arr1[9] +" : " + data.getHaveAirCond());
+        dataDetail[10].setBounds(250,320,200,30);
+
+        JLabel location = new JLabel("Location");
         //set boundary for text "Location" & add to panel
         location.setFont(new Font("Serif", Font.PLAIN, 40));
         location.setVerticalAlignment(JLabel.CENTER);
-        location.setBounds(250,340,400,40);
-        learnMorePanel.add(location); // text "Facilities"
+        location.setBounds(250,365,400,40);
+        learnMorePanel.add(location); // text "Location"
 
-        for (int k = 0; k < 4; k++) {
-            dataLocation = new JLabel[4];
-                dataLocation[k] = new JLabel(arr2[k] + " : " + arrayLocation[row][k + 12]);
-                dataLocation[k].setBounds(250, gap, 400, 30);
-                learnMorePanel.add(dataLocation[k]);
-            gap +=30;
-            }
-        ///////////////////////////////////////////////////////////////////////////////////////////////
+        //display street
+        dataDetail[11] = new JLabel(arr2[0] +" : " + data.getAddress1() + ", " + data.getAddress2());
+        dataDetail[11].setBounds(250,415,500,30);
+
+        //display city
+        dataDetail[12] = new JLabel(arr2[1] +" : " + data.getCityName());
+        dataDetail[12].setBounds(250,445,200,30);
+
+        //display postcode
+        dataDetail[13] = new JLabel(arr2[2] +" : " + data.getPostcode());
+        dataDetail[13].setBounds(250,475,200,30);
+
+        //display state
+        dataDetail[14] = new JLabel(arr2[3] +" : " + data.getState());
+        dataDetail[14].setBounds(250,505,200,30);
+
+        for(int i = 0; i < dataDetail.length; i++){learnMorePanel.add(dataDetail[i]);}
+        /*----------------------------------------------------------------------------------------------------------------------------------------*/
+
         if(account.contains("AD")) {
             // set boundary for button & add to panel (admin - four button)
             one.setBounds(15, 570, 140, 30);
@@ -181,6 +201,8 @@ public class learnMore extends JFrame  {
         pictureLabel.setIcon(finalImg);
         pictureLabel.setBounds(25,70,200,200);
 
+        ///////////////////////////////////////////////////////////////////////////////////////////////
+
         learnMorePanel.add(pictureLabel);
         mainContainer.add(learnMorePanel, "Other Panel");
         mainContainer.add(homePanel, "Back");
@@ -200,9 +222,9 @@ public class learnMore extends JFrame  {
         String agent2 = "AG2345";
         String user = "TN0001";
 
-        String property = "AP008";
+        String property = "AP0008";
         String property2 ="AP0001";
 
-        new learnMore(property2,agent2, property); //row ikut property ID yang tekan
+        new learnMore(property,agent2, property); //row ikut property ID yang tekan
     }
 }
