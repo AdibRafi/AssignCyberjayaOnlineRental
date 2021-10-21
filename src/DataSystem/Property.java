@@ -2,13 +2,9 @@ package DataSystem;
 
 import FileSystem.FileConverter;
 
-import java.io.File;
 import java.io.IOException;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
 public class Property extends Data {
     private String propertyID;
@@ -20,7 +16,8 @@ public class Property extends Data {
     private String squareFeet;
 
     // alamat
-    private String streetName;
+    private String address1;
+    private String address2;
     private String cityName;
     private String postcode;
     private String state;
@@ -56,13 +53,14 @@ public class Property extends Data {
         setHaveWifi(dataFromFile[10]);
         setHaveSwimmingPool(dataFromFile[11]);
         setHaveAirCond(dataFromFile[12]);
-        setStreetName(dataFromFile[13]);
-        setCityName(dataFromFile[14]);
-        setPostcode(dataFromFile[15]);
-        setState(dataFromFile[16]);
+        setAddress1(dataFromFile[13]);
+        setAddress2(dataFromFile[14]);
+        setCityName(dataFromFile[15]);
+        setPostcode(dataFromFile[16]);
+        setState(dataFromFile[17]);
     }
     public String[] getPropertyInfoToDisplay(){
-        String[] result = new String[17];
+        String[] result = new String[18];
         result[0] = getAccountID();
         result[1] = getPropertyID();
         result[2] = getPrice();
@@ -76,10 +74,11 @@ public class Property extends Data {
         result[10] = getHaveWifi();
         result[11] = getHaveSwimmingPool();
         result[12] = getHaveAirCond();
-        result[13] = getStreetName();
-        result[14] = getCityName();
-        result[15] = getPostcode();
-        result[16] = getState();
+        result[13] = getAddress1();
+        result[14] = getAddress2();
+        result[15] = getCityName();
+        result[16] = getPostcode();
+        result[17] = getState();
         return result;
     }
 
@@ -87,7 +86,12 @@ public class Property extends Data {
 
 
 
-
+    public String getAddress2() {
+        return address2;
+    }
+    public void setAddress2(String address2) {
+        this.address2 = address2;
+    }
     public String getActiveProperty() {
         return activeProperty;
     }
@@ -106,11 +110,11 @@ public class Property extends Data {
     public void setHaveAirCond(String haveAirCond) {
         this.haveAirCond = haveAirCond;
     }
-    public String getStreetName() {
-        return streetName;
+    public String getAddress1() {
+        return address1;
     }
-    public void setStreetName(String streetName) {
-        this.streetName = streetName;
+    public void setAddress1(String address1) {
+        this.address1 = address1;
     }
     public String getState() {
         return state;
@@ -197,7 +201,7 @@ public class Property extends Data {
 
     public static void main(String[] args) throws IOException {
         String[][] data = FileConverter.readAllLines("location.txt");
-        String[] info = FileConverter.getSingleLineInfo("location.txt","AG2345");
+        String[] info = FileConverter.getSingleLineInfo("location.txt","AG5372");
         System.out.println(Arrays.toString(info));
         Property n = new Property();
         n.setPropertyInfo(info);

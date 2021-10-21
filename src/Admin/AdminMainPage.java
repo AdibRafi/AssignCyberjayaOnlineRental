@@ -91,7 +91,7 @@ public class AdminMainPage extends JFrame {
             if (userType == 2) {
                 this.dispose();
                 try {
-                    new AdminManageProperty();
+                    new AdminManageProperty(data.getAccountID());
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }

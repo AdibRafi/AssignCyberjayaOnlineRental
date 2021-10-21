@@ -41,7 +41,7 @@ public class FileConverter {
         if (filePath.equals("account.txt"))
             q = 5;
         else if (filePath.equals("location.txt"))
-            q = 17;
+            q = 18;
         String[] result = new String[q];
         while (reader.hasNextLine()) {
             String data = reader.next();
@@ -56,6 +56,20 @@ public class FileConverter {
         reader.close();
         return result;
     }
+    //ONLY USE IN location.txt
+    public static String[] getSingleLineInfo(String filepath, String accountID, String propertyID) throws IOException {
+        String[][] info = readAllLines(filepath);
+        System.out.println(accountID);
+        System.out.println(propertyID);
+        int x = 0;
+        for (int i = 0; i < info.length; i++) {
+            if (info[i][0].equals(accountID) && info[i][1].equals(propertyID))
+                x = i;
+        }
+        return info[x];
+    }
+
+
     public static String[][] readAllLines(String filePath) throws IOException {
         List<String> file = new ArrayList<>(
                 Files.readAllLines(Path.of("src/FileSystem/" + filePath), StandardCharsets.UTF_8)
@@ -117,7 +131,8 @@ public class FileConverter {
     }
     public static void main(String[] args) throws IOException {
         Data data = new Data();
-        System.out.println(Arrays.toString(getSingleLineInfo("location.txt", "AG5372")));
+        System.out.println(Arrays.toString(getSingleLineInfo("location.txt", "AG2345","CD0030")));
+
 
 
 //        TN2875-Chris-list-1141694755-female

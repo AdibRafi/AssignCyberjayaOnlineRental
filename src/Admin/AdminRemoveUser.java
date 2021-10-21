@@ -35,8 +35,8 @@ public class AdminRemoveUser extends JFrame {
                 try {
                     frame.dispose();
                     //parameter: change pictureName n AccountID
-                    new AdminMainPage("Myvi", "AD1234");
-                } catch (FileNotFoundException ex) {
+                    new AdminManageUser();
+                } catch (IOException ex) {
                     ex.printStackTrace();
                 }
             }

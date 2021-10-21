@@ -43,12 +43,12 @@ public class Data {
         return result;
     }
 
-    public void setMainInfo(String[] mainInfo) {
-        setAccountID(mainInfo[0]);
-        setName(mainInfo[1]);
-        setPassword(mainInfo[2]);
-        setPhoneNumber(mainInfo[3]);
-        setGender(mainInfo[4]);
+    public void setMainInfo(String[] mainInfoFromFile) {
+        setAccountID(mainInfoFromFile[0]);
+        setName(mainInfoFromFile[1]);
+        setPassword(mainInfoFromFile[2]);
+        setPhoneNumber(mainInfoFromFile[3]);
+        setGender(mainInfoFromFile[4]);
     }
 
     public String[] getMainInfo() {
