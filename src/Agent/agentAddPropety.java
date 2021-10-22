@@ -1,8 +1,11 @@
 package Agent;
 
+import DataSystem.Property;
 import FileSystem.FileConverter;
 
 import javax.swing.*;
+import javax.swing.border.LineBorder;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -11,13 +14,17 @@ import java.util.Objects;
 public class agentAddPropety extends JFrame implements ActionListener {
     private static String account;
 
+    JPanel topPanel = new JPanel();
+    JPanel mainPanel = new JPanel();
+    JLabel titleLabel = new JLabel("myProperty House Rental", SwingConstants.CENTER);
+
     //dropbox for property type
     String[] propertyType = {"Select", "Double Storey", "Condominium", "Apartment", "Room"};
     JComboBox<String> propertyTypeBox = new JComboBox<>(propertyType);
     JLabel propertyTypeLbl = new JLabel("Property Type");
 
     //dropbox for property status
-    String[] propertyStatus = {"Active", "Inactive"};
+    String[] propertyStatus = {"active", "inactive"};
     JComboBox<String> propertyStatusbox = new JComboBox<>(propertyStatus); //
     JLabel statusTypeLbl = new JLabel("Propety Status");
 
@@ -28,7 +35,6 @@ public class agentAddPropety extends JFrame implements ActionListener {
 
     //house location infomation label box
     JLabel propertyIDLabel = new JLabel("Property ID");
-    JLabel rentalRateLabel = new JLabel("Rental Rate (RM)");
     JLabel priceLabel = new JLabel("Price (RM)");
     JLabel sizeLabel = new JLabel("Size (sq.ft.)");
     JLabel streetLabel = new JLabel("Street");
@@ -42,21 +48,23 @@ public class agentAddPropety extends JFrame implements ActionListener {
 
     JTextField sizeField = new JTextField();
     JTextField propertyIDField = new JTextField();
-    JTextField rentalRateField = new JTextField();
     JTextField priceField = new JTextField();
     JTextField streetLabelField = new JTextField();
     JTextField cityField = new JTextField();
     JTextField postcodeField = new JTextField();
+    JTextField bathField = new JTextField();
+    JTextField bedField = new JTextField();
+    JTextField parkingField = new JTextField();
 
     //facilities information
 
     //dropbox for wifi
-    String[] wifi = {"True", "False"};
+    String[] wifi = {"true", "false"};
     JComboBox<String> wifiBox = new JComboBox<>(wifi);
     JLabel wifiLabel = new JLabel("Wifi");
 
     //dropbox for swimming pool
-    String[] pool = {"True", "False"};
+    String[] pool = {"true", "false"};
     JComboBox<String> poolBox = new JComboBox<>(pool); //
     JLabel poolLabel = new JLabel("Swimming Pool");
 
@@ -66,7 +74,7 @@ public class agentAddPropety extends JFrame implements ActionListener {
     JLabel furnishedLabel = new JLabel("Furnished");
 
     //dropbox for aircond
-    String[] aircond = {"True", "False"};
+    String[] aircond = {"true", "false"};
     JComboBox<String> aircondBox = new JComboBox<>(aircond); //
     JLabel aircondLabel = new JLabel("Aircond");
 
@@ -75,104 +83,101 @@ public class agentAddPropety extends JFrame implements ActionListener {
     JLabel bedLabel = new JLabel("Bedroom");
     JLabel parkingLabel = new JLabel("Parking");
 
-
-    JTextField bathField = new JTextField();
-    JTextField bedField = new JTextField();
-    JTextField parkingField = new JTextField();
-
     public agentAddPropety(String acc){
         account = acc;
-        JPanel panel = new JPanel();
-        panel.setLayout(null);
+        mainPanel.setLayout(null);
         addBtn.addActionListener(this);
         backBtn.addActionListener(this);
+
+        topPanel.setBackground(Color.darkGray);
+        topPanel.setLayout(new BorderLayout());
+        topPanel.setBorder(new LineBorder(Color.darkGray,3));
+        titleLabel.setFont(new Font("Papyrus", Font.BOLD,20));
+        titleLabel.setForeground(Color.white);
 
         //main info label
         propertyIDLabel.setBounds(25,30,100,30);
         propertyTypeLbl.setBounds(25,60,100,30);
         sizeLabel.setBounds(25,90,100,30);
-        rentalRateLabel.setBounds(25,120,100,30);
-        priceLabel.setBounds(25,150,100,30);
-        streetLabel.setBounds(25, 180, 100, 30);
-        cityLabel.setBounds(25, 210, 100, 30);
-        postcodeLabel.setBounds(25,240,150,30);
-        stateLbl.setBounds(25,270,150,30);
-        statusTypeLbl.setBounds(25,300,100,30);
-        bedLabel.setBounds(25,330,150,30);
-        bathLabel.setBounds(25,360,100,30);
-        parkingLabel.setBounds(25,390,100,30);
-        wifiLabel.setBounds(25,420,100,30);
-        poolLabel.setBounds(25,450,100,30);
-        aircondLabel.setBounds(25,480,100,30);
-        furnishedLabel.setBounds(25,510,100,30);
-
+        priceLabel.setBounds(25,120,100,30);
+        streetLabel.setBounds(25,150,100,30);
+        cityLabel.setBounds(25, 180, 100, 30);
+        postcodeLabel.setBounds(25, 210, 100, 30);
+        stateLbl.setBounds(25,240,150,30);
+        statusTypeLbl.setBounds(25,270,150,30);
+        bedLabel.setBounds(25,300,100,30);
+        bathLabel.setBounds(25,330,150,30);
+        parkingLabel.setBounds(25,360,100,30);
+        wifiLabel.setBounds(25,390,100,30);
+        poolLabel.setBounds(25,420,100,30);
+        aircondLabel.setBounds(25,450,100,30);
+        furnishedLabel.setBounds(25,480,100,30);
 
         //main info field
         propertyIDField.setBounds(135, 30, 150, 30);
         propertyTypeBox.setBounds(135, 60, 150, 30);
         sizeField.setBounds(135,90,150,30);
-        rentalRateField.setBounds(135,120,150,30);
-        priceField.setBounds(135,150,150,30);
-        streetLabelField.setBounds(135, 180, 150, 30);
-        cityField.setBounds(135, 210, 150, 30);
-        postcodeField.setBounds(135,240,150,30);
-        statebox.setBounds(135,270,150,30);
-        propertyStatusbox.setBounds(135,300,150,30);
-        bedField.setBounds(135, 330, 150, 30);
-        bathField.setBounds(135,360,150,30);
-        parkingField.setBounds(135,390,150,30);
-        wifiBox.setBounds(135,420,150,30);;
-        poolBox.setBounds(135,450,150,30);
-        aircondBox.setBounds(135,480,150,30);
-        furnishedBox.setBounds(135,510,150,30);
+        priceField.setBounds(135,120,150,30);
+        streetLabelField.setBounds(135,150,150,30);
+        cityField.setBounds(135, 180, 150, 30);
+        postcodeField.setBounds(135, 210, 150, 30);
+        statebox.setBounds(135,240,150,30);
+        propertyStatusbox.setBounds(135,270,150,30);
+        bedField.setBounds(135,300,150,30);
+        bathField.setBounds(135, 330, 150, 30);
+        parkingField.setBounds(135,360,150,30);
+        wifiBox.setBounds(135,390,150,30);
+        poolBox.setBounds(135,420,150,30);;
+        aircondBox.setBounds(135,450,150,30);
+        furnishedBox.setBounds(135,480,150,30);
 
-        addBtn.setBounds(20,575,100,40);
-        backBtn.setBounds(150,575,150,40);
+        addBtn.setBounds(20,550,100,40);
+        backBtn.setBounds(150,550,150,40);
 
         //additional info
+        topPanel.add(titleLabel);
 
-        panel.add(sizeLabel);
-        panel.add(propertyIDLabel);
-        panel.add(propertyTypeLbl);
-        panel.add(statusTypeLbl);
-        panel.add(rentalRateLabel);
-        panel.add(priceLabel);
-        panel.add(streetLabel);
-        panel.add(cityLabel);
-        panel.add(stateLbl);
-        panel.add(postcodeLabel);
-        panel.add(furnishedLabel);
-        panel.add(bathLabel);
-        panel.add(bedLabel);
-        panel.add(parkingLabel);
-        panel.add(wifiLabel);
-        panel.add(poolLabel);
-        panel.add(aircondLabel);
+        mainPanel.add(sizeLabel);
+        mainPanel.add(propertyIDLabel);
+        mainPanel.add(propertyTypeLbl);
+        mainPanel.add(statusTypeLbl);
+        mainPanel.add(priceLabel);
+        mainPanel.add(streetLabel);
+        mainPanel.add(cityLabel);
+        mainPanel.add(stateLbl);
+        mainPanel.add(postcodeLabel);
+        mainPanel.add(furnishedLabel);
+        mainPanel.add(bathLabel);
+        mainPanel.add(bedLabel);
+        mainPanel.add(parkingLabel);
+        mainPanel.add(wifiLabel);
+        mainPanel.add(poolLabel);
+        mainPanel.add(aircondLabel);
 
-        panel.add(sizeField);
-        panel.add(propertyIDField);
-        panel.add(propertyTypeBox);
-        panel.add(propertyStatusbox);
-        panel.add(rentalRateField);
-        panel.add(priceField);
-        panel.add(streetLabelField);
-        panel.add(cityField);
-        panel.add(postcodeField);
-        panel.add(statebox);
-        panel.add(bathField);
-        panel.add(bedField);
-        panel.add(parkingField);
-        panel.add(wifiBox);
-        panel.add(poolBox);
-        panel.add(aircondBox);
-        panel.add(furnishedBox);
+        mainPanel.add(sizeField);
+        mainPanel.add(propertyIDField);
+        mainPanel.add(propertyTypeBox);
+        mainPanel.add(propertyStatusbox);
+        mainPanel.add(priceField);
+        mainPanel.add(streetLabelField);
+        mainPanel.add(cityField);
+        mainPanel.add(postcodeField);
+        mainPanel.add(statebox);
+        mainPanel.add(bathField);
+        mainPanel.add(bedField);
+        mainPanel.add(parkingField);
+        mainPanel.add(wifiBox);
+        mainPanel.add(poolBox);
+        mainPanel.add(aircondBox);
+        mainPanel.add(furnishedBox);
 
-        panel.add(addBtn);
-        panel.add(backBtn);
+        mainPanel.add(addBtn);
+        mainPanel.add(backBtn);
 
-        this.add(panel);
+        this.add(topPanel, BorderLayout.NORTH);
+        this.add(mainPanel);
         this.setTitle("Add Propety");
-        this.setSize(350, 650);
+        this.setSize(350, 700);
         this.setVisible(true);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
@@ -185,6 +190,7 @@ public class agentAddPropety extends JFrame implements ActionListener {
     }
     @Override
     public void actionPerformed(ActionEvent e) {
+        Property data = new Property();
         if (e.getSource() == addBtn){
             //todo: calculate terus rental rate provided in Property
             //todo: do OOP style
@@ -193,9 +199,9 @@ public class agentAddPropety extends JFrame implements ActionListener {
             String addProperty = propertyIDField.getText();
             String propertyType = (String) propertyTypeBox.getSelectedItem();
             String propertyStatus = (String) propertyStatusbox.getSelectedItem();
-            String rentalRate = rentalRateField.getText();
             String price = priceField.getText();
             String size = sizeField.getText();
+            String rentalRate = data.getValueOfRentalRate(price,size);
             String street = streetLabelField.getText();
             String postcode = postcodeField.getText();
             String city = cityField.getText();

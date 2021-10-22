@@ -21,7 +21,7 @@ public class mainDisplay implements ActionListener {
     JFrame frame;
 
     JPanel topPanel = new JPanel();
-    JLabel titleLabel = new JLabel("myProperty House Rental             ");
+    JLabel titleLabel = new JLabel("myProperty House Rental                                                                      ");
     JButton panelBtn;
     JButton logOutBtn;
     JPanel bottomPanel = new JPanel();
@@ -56,10 +56,10 @@ public class mainDisplay implements ActionListener {
     JComboBox<String> wifiComboBox = new JComboBox<>(wifiOption);
     JLabel wifiLbl = new JLabel("   Wifi");
     String[] swimOption = {"Select","true","false"};
-    JComboBox<String> swimComboBox = new JComboBox<>(wifiOption);
+    JComboBox<String> swimComboBox = new JComboBox<>(swimOption);
     JLabel swimLbl = new JLabel("   Swimming Pool");
     String[] aircondOption = {"Select","true","false"};
-    JComboBox<String> aircondComboBox = new JComboBox<>(wifiOption);
+    JComboBox<String> aircondComboBox = new JComboBox<>(aircondOption);
     JLabel aircondLbl = new JLabel("   Aircond");
 
 
@@ -129,7 +129,7 @@ public class mainDisplay implements ActionListener {
     }
 
     public void setSize(){
-        frame.setBounds(40,40,1250,700);
+        frame.setBounds(40,40,1300,700);
         topPanel.setPreferredSize(new Dimension(1250, 50));
         bottomPanel.setPreferredSize(new Dimension(1250, 123));
         projectField.setColumns(15);
@@ -231,7 +231,6 @@ public class mainDisplay implements ActionListener {
                     if (propertyType.equals("Select"))
                         propertyType = data.getHouseType();
 
-                    //for checkbox
                     assert wifi != null;
                     if(wifi.equals("Select")){
                         wifi = data.getHaveWifi();
