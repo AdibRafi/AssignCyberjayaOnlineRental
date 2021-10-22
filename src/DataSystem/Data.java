@@ -26,22 +26,22 @@ public class Data {
         }
         return result;
     }
-    public static int checkPropertyType(String propertyID) {
-        // AP - 0, CD - 1, HO - 2, RM - 3
-        int result = 0;
-        String letter = propertyID.substring(0, 2);
-        String num = propertyID.substring(2);
-        if (letter.matches("[A-Z]+") && num.matches("[0-9]+")) {
-            if (letter.contains("CD")) {
-                result = 1;
-            } else if (letter.contains("HO")) {
-                result = 2;
-            } else if (letter.contains("RM")) {
-                result = 3;
-            }
-        }
-        return result;
-    }
+//    public static int checkPropertyType(String propertyID) {
+//        // AP - 0, CD - 1, HO - 2, RM - 3
+//        int result = 0;
+//        String letter = propertyID.substring(0, 2);
+//        String num = propertyID.substring(2);
+//        if (letter.matches("[A-Z]+") && num.matches("[0-9]+")) {
+//            if (letter.contains("CD")) {
+//                result = 1;
+//            } else if (letter.contains("HO")) {
+//                result = 2;
+//            } else if (letter.contains("RM")) {
+//                result = 3;
+//            }
+//        }
+//        return result;
+//    }
 
     public void setMainInfo(String[] mainInfoFromFile) {
         setAccountID(mainInfoFromFile[0]);
@@ -105,19 +105,19 @@ public class Data {
         }
         return acc;
     }
-    public static String[] changeValue(String[] data, String propertyID) {
-        // AP - 0, CD - 1, HO - 2, RM - 3
-        int num = checkPropertyType(propertyID);
-        if (num == 0)
-            data[1] = "Apartment";
-        else if (num == 1)
-            data[1] = "Condominium";
-        else if (num == 2)
-            data[1] = "Landed House";
-        else
-            data[1] = "Room";
-        return data;
-    }
+//    public static String[] changeValue(String[] data, String propertyID) {
+//        // AP - 0, CD - 1, HO - 2, RM - 3
+//        int num = checkPropertyType(propertyID);
+//        if (num == 0)
+//            data[1] = "Apartment";
+//        else if (num == 1)
+//            data[1] = "Condominium";
+//        else if (num == 2)
+//            data[1] = "Landed House";
+//        else
+//            data[1] = "Room";
+//        return data;
+//    }
 
     public static String[][] removeColumnFromData(String[][] data,int columnNum) {
         int rows = data.length;

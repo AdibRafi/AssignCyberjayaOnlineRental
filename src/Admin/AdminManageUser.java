@@ -53,7 +53,7 @@ public class AdminManageUser extends JFrame {
             try {
                 //parameter: change pictureName n AccountID
                 new AdminMainPage("Myvi","AD1234");
-            } catch (FileNotFoundException ex) {
+            } catch (IOException ex) {
                 ex.printStackTrace();
             }
         });

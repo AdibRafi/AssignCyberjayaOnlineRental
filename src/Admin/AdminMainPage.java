@@ -1,8 +1,10 @@
 package Admin;
 
 import Agent.agentAddPropety;
+import Agent.mainDisplay;
 import DataSystem.AdminData;
 import DataSystem.Data;
+import DataSystem.Property;
 import DataSystem.TenantData;
 import FileSystem.FileConverter;
 import Tenant.*;
@@ -16,7 +18,7 @@ import java.io.IOException;
 
 
 public class AdminMainPage extends JFrame {
-    AdminMainPage(String pictureName, String accountID) throws FileNotFoundException {
+    public AdminMainPage(String pictureName, String accountID) throws IOException {
 
         Data data = new Data();
         data.setMainInfo(FileConverter.getSingleLineInfo("account.txt", accountID));
@@ -26,7 +28,6 @@ public class AdminMainPage extends JFrame {
         JSplitPane finalPanel = new JSplitPane();
 
         // welcomePanel
-        //TODO: need to put more info about the profile, accountID, phoneNum, Gender
         ImageIcon img = new ImageIcon("src/Pictures/" + pictureName + ".png");
         Image scaledImg = img.getImage().getScaledInstance(75, 75, Image.SCALE_DEFAULT);
         Icon finalImg = new ImageIcon(scaledImg);
@@ -48,7 +49,6 @@ public class AdminMainPage extends JFrame {
 
 
         //Button panel
-        //todo: letak each button functionality
         JButton profileBtn = new JButton("Manage Profile");
         String firstBtnName = "";
         String secondBtnName = "";
@@ -68,8 +68,8 @@ public class AdminMainPage extends JFrame {
         firstBtn.addActionListener(e ->{
             if (userType == 1) {
                 try {
-                    new TenantManageProfile(data.getAccountID());
-                } catch (FileNotFoundException ex) {
+                    new AdminManageProperty(data.getAccountID());
+                } catch (IOException ex) {
                     ex.printStackTrace();
                 }
             }
@@ -86,7 +86,7 @@ public class AdminMainPage extends JFrame {
         secondBtn.addActionListener(e -> {
             if (userType == 1) {
                 this.dispose();
-//                new agentAddPropety(userType);
+                new agentAddPropety(data.getAccountID());
             }
             if (userType == 2) {
                 this.dispose();
@@ -95,6 +95,14 @@ public class AdminMainPage extends JFrame {
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
+            }
+        });
+        backToMainBtn.addActionListener(e -> {
+            this.dispose();
+            try {
+                new mainDisplay(true, mainDisplay.resetAllInfo());
+            } catch (IOException ex) {
+                ex.printStackTrace();
             }
         });
 
@@ -130,8 +138,8 @@ public class AdminMainPage extends JFrame {
 
     }
 
-    public static void main(String[] args) throws FileNotFoundException {
-        new AdminMainPage("Myvi", "AD1234");
+    public static void main(String[] args) throws IOException {
+        new AdminMainPage("Myvi", "AG2345");
 
     }
 }

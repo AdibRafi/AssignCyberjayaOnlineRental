@@ -1,5 +1,6 @@
 package Tenant;
 
+import Agent.mainDisplay;
 import FileSystem.FileConverter;
 
 import javax.swing.*;
@@ -149,7 +150,7 @@ public class RegisterTenant implements ActionListener {
                 confirmPasswordField.setEchoChar('*');
             }
         }
-        if(e.getSource() == registerBtn){//todo: save into txt file then goes back to login page//
+        if(e.getSource() == registerBtn){
             String accountID = "";
             if(getUserType.equals("Agent"))
                 accountID += "AG";
@@ -172,8 +173,7 @@ public class RegisterTenant implements ActionListener {
                         JOptionPane.showMessageDialog(frame, "Register Successfully, wait for admin to approve");
                         FileConverter.appendFile("accountApproval.txt", result);
                         frame.dispose();
-                        //fixme: make it go to mainDisplay
-//                        new mainDisplay();
+                        new mainDisplay(false,mainDisplay.resetAllInfo());
                     }
                 }else JOptionPane.showMessageDialog(frame,"Password Confirmation Does Not Match");
             }catch(IOException ex){

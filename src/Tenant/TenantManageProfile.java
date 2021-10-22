@@ -1,5 +1,6 @@
 package Tenant;
 
+import Admin.AdminMainPage;
 import DataSystem.Data;
 import FileSystem.FileConverter;
 
@@ -39,7 +40,7 @@ public class TenantManageProfile extends JFrame implements ActionListener {
     Data data = new Data();
 
     //Constructor
-    public TenantManageProfile(String accountID) throws FileNotFoundException {
+    public TenantManageProfile(String accountID) throws IOException {
         data.setMainInfo(FileConverter.getSingleLineInfo("account.txt",accountID));
         createWindow();
         setLocationAndSize();
@@ -120,7 +121,7 @@ public class TenantManageProfile extends JFrame implements ActionListener {
                 confirmNewPasswordField.setEchoChar('*');
             }
         }
-        if(ae.getSource() == saveBtn){//todo: make save button//
+        if(ae.getSource() == saveBtn){
             try {
                 System.out.println("START");
                 //parameter: change accountID
@@ -142,15 +143,21 @@ public class TenantManageProfile extends JFrame implements ActionListener {
                 confirmNewPasswordField.setText("");
                 contactTextField.setText("");
         }
-        if(ae.getSource() == cancelBtn){//todo: press cancel button and will bring back to tenant profile//
-            new ProfileTenant();
-             }
+        if(ae.getSource() == cancelBtn){
+            try {
+                //parameter: change picture n ID
+                frame.dispose();
+                new AdminMainPage("Myvi", data.getAccountID());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 }
 
 class Tenant{
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws IOException {
         new TenantManageProfile("AG2345");
     }
 }

@@ -24,7 +24,7 @@ public class learnMore extends JFrame  {
     String[] detail;
 
 
-    public learnMore(String image, String account, String propertyID) {
+    public learnMore(String image, String account, String propertyID) throws IOException {
 
         // put data in array
         try {
@@ -216,7 +216,7 @@ public class learnMore extends JFrame  {
         mFrame.setSize(610, 670);
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         String admin = "AD0001";
         String agent = "AG0001";
         String agent2 = "AG2345";

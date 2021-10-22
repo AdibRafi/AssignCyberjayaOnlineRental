@@ -14,6 +14,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class AdminManageProperty extends JFrame {
 
@@ -38,7 +39,7 @@ public class AdminManageProperty extends JFrame {
                     frame.dispose();
                     //parameter: change pictureName n AccountID
                     new AdminMainPage("Myvi", accountData.getAccountID());
-                } catch (FileNotFoundException ex) {
+                } catch (IOException ex) {
                     ex.printStackTrace();
                 }
             }
@@ -46,9 +47,26 @@ public class AdminManageProperty extends JFrame {
 
         String[] column = {"AgentID", "PropertyID", "Price", "ActiveProperty", "Furnished", "Size",
                 "Rental Rate", "Bedroom", "Bathroom", "Parking Spots", "Wifi", "Swimming Pool",
-                "AirConditioner", "Street", "City", "PostCode", "State"};
+                "AirConditioner", "Street","Project", "City", "PostCode", "State"};
         String[][] data = FileConverter.readAllLines("location.txt");
-        DefaultTableModel tableModel = new DefaultTableModel(data, column){
+        int userType = Data.checkTypeUser(accountID);
+        ArrayList<String> info = new ArrayList<>();
+        if (userType == 1) {
+            for (String[] datum : data) {
+                if (datum[0].equals(accountID))
+                    info.add(FileConverter.addDashIntoString(datum));
+            }
+        }
+        else{
+            for (String[] datum : data) {
+                info.add(FileConverter.addDashIntoString(datum));
+            }
+        }
+        String[][] finalInfo = new String[info.size()][20];
+        for (int i = 0; i < info.size(); i++) {
+            finalInfo[i] = FileConverter.lineSplitter(info.get(i));
+        }
+        DefaultTableModel tableModel = new DefaultTableModel(finalInfo, column){
             @Override
             public boolean isCellEditable(int row, int column) {
                 return false;
@@ -61,9 +79,12 @@ public class AdminManageProperty extends JFrame {
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2) {
                     int input = table.getSelectedRow();
-
-                    new learnMore(data[input][1], accountData.getAccountID()
-                            , data[input][1]);
+                    try {
+                        new learnMore(data[input][1], accountData.getAccountID()
+                                , data[input][1]);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
                 }
             }
         });
@@ -76,13 +97,12 @@ public class AdminManageProperty extends JFrame {
         frame.add(mainPanel, BorderLayout.CENTER);
 
         frame.setTitle("Manage Property");
-        frame.setSize(1350, 400);
+        frame.setSize(1500, 400);
         frame.setVisible(true);
-        frame.setResizable(false);
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
     public static void main(String[] args) throws IOException {
-        new AdminManageProperty("AD1234");
+        new AdminManageProperty("AG5372");
     }
 }

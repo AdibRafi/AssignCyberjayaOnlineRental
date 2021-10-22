@@ -1,7 +1,6 @@
-package Admin;
+package Agent;
 
 import Admin.AdminMainPage;
-import Agent.learnMore;
 import DataSystem.Property;
 import FileSystem.FileConverter;
 import Tenant.LoginForm;
@@ -17,7 +16,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class mainMain implements ActionListener {
+public class mainDisplay implements ActionListener {
     boolean login;
     JFrame frame;
 
@@ -65,7 +64,7 @@ public class mainMain implements ActionListener {
 
 
 
-    public mainMain(boolean indicator, String[][] data) throws IOException {
+    public mainDisplay(boolean indicator, String[][] data) throws IOException {
         login = indicator;
         if(!indicator){
             panelBtn = new JButton("Login/Register");
@@ -197,7 +196,7 @@ public class mainMain implements ActionListener {
                 }
             }else if(e.getSource() == logOutBtn){
                 try {
-                    new mainMain(false, resetAllInfo());
+                    new mainDisplay(false, resetAllInfo());
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
@@ -293,7 +292,7 @@ public class mainMain implements ActionListener {
                     finalResult[i] = FileConverter.lineSplitter(result.get(i));
                 }
                 System.out.println(Arrays.deepToString(finalResult));
-                new mainMain(login,finalResult);
+                new mainDisplay(login,finalResult);
 
             } catch (IOException ex) {
                 ex.printStackTrace();
@@ -334,7 +333,7 @@ public class mainMain implements ActionListener {
     }
 
     public static void main(String[] args) throws IOException {
-        new mainMain(true, resetAllInfo());
+        new mainDisplay(true, resetAllInfo());
     }
 }
 

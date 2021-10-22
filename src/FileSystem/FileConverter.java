@@ -20,11 +20,11 @@ import java.util.Scanner;
 
 public class FileConverter {
     //pre converter
-    private static String[] lineSplitter(String lineToBeSplit){
+    public static String[] lineSplitter(String lineToBeSplit){
         return lineToBeSplit.split("-");
     }
 
-    private static String addDashIntoString(String[] stringToBeAdded) {
+    public static String addDashIntoString(String[] stringToBeAdded) {
         StringBuilder content = new StringBuilder();
         for (String s : stringToBeAdded) {
             content.append(s);
@@ -34,33 +34,18 @@ public class FileConverter {
         return content.toString();
     }
     //cari single line
-    public static String[] getSingleLineInfo(String filePath, String accountID) throws FileNotFoundException {
-        Scanner reader = new Scanner(new File("src/FileSystem/" + filePath));
-        reader.useDelimiter("-|\n");
-        int q = 0;
-        if (filePath.equals("account.txt"))
-            q = 5;
-        else if (filePath.equals("location.txt"))
-            q = 18;
-        String[] result = new String[q];
-        while (reader.hasNextLine()) {
-            String data = reader.next();
-            if (data.equals(accountID)) {
-                result[0] = data;
-                for (int i = 1; i < q; i++) {
-                    result[i] = reader.next();
-                }
-                break;
-            }
+    public static String[] getSingleLineInfo(String filePath, String accountID) throws IOException {
+        String[][] info = readAllLines(filePath);
+        int x = 0;
+        for (int i = 0; i < info.length; i++) {
+            if (info[i][0].equals(accountID))
+                x = i;
         }
-        reader.close();
-        return result;
+        return info[x];
     }
     //ONLY USE IN location.txt
     public static String[] getSingleLineInfo(String filepath, String accountID, String propertyID) throws IOException {
         String[][] info = readAllLines(filepath);
-        System.out.println(accountID);
-        System.out.println(propertyID);
         int x = 0;
         for (int i = 0; i < info.length; i++) {
             if (info[i][0].equals(accountID) && info[i][1].equals(propertyID))

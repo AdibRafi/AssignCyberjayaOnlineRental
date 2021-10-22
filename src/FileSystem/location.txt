@@ -1,7 +1,7 @@
 AG2345-AP0001-950-active-Fully-450-2.11-studio-1-1-false-true-true-Jalan Teknokrat 6-Cyber 5-Cyberjaya-63000-Selangor
 AG2345-AP0002-800-active-Fully-450-1.78-studio-1-1-false-false-true-Jalan Teknokrat 6-Cyber 5-CyberJaya-63000-Selangor
 AG2345-CD0003-1500-active-Fully-669-2.24-studio-1-1-false-true-true-Tamarind Suites-Persiaran Sepang-CyberJaya-63000-Selangor
-AG2345-AP0004-1200-active-Partly-495-2.42-1-1-1-false-true-true-Third Avenue-Jalan Teknokrat 3-Cyberjaya-63000-Selangor
+AG2345-AP0004-1200-active-Semi-495-2.42-1-1-1-false-true-true-Third Avenue-Jalan Teknokrat 3-Cyberjaya-63000-Selangor
 AG2345-RM0005-300-active-Fully-90-3.33-1-1-1-true-true-true-The Arc, Persiaran Bestari- Cyber 11-Cyberjaya-63000-Selangor
 AG2345-RM0006-500-active-Fully-125-4.00-1-1-1-true-true-true-The Arc, Persiaran Bestari- Cyber 11-Cyberjaya-63000-Selangor
 AG2345-CD0007-1500-active-Fully-602-2.49-1-1-1-false-true-true-Tamarind Suites- Persiaran Sepang-Cyberjaya-63000-Selangor
@@ -23,7 +23,7 @@ AG2345-HO0022-1420-active-Semi-800-1.78-4-3-2-false-false-true-Taman delima-Deng
 AG5372-AP0023-750-active-Fully-640-1.17-4-3-1-false-false-true-Savanna Southville City-Dengkil-Sepang-43800-Selangor
 AG2345-AP0024-888-active-Semi-600-1.48-3-2-2-false-true-true-Jenderam Indah-Dengkil-Sepang-43800-Selangor
 AG2345-HO0025-1200-active-Fully-1370-0.88-3-3-2-false-false-true-Taman Topaz-Banting-Sepang-43800-Selangor
-AG5372-CD0026-1500-active-Fully-1400-1.07-3-2-1-false-false-true-Jalan Puteri 7/7, Bandar Puteri-null-Puchong-47120-Selangor
+AG5372-CD0026-1500-active-Fully-1400-1.07-3-2-1-false-false-true-Jalan Puteri 7/7-Bandar Puteri-Puchong-47120-Selangor
 AG2345-AP0027-723-active-Fully-590-1.23-2-2-1-false-true-true-Saville Residence-Jalan Klang Lama-Puchong-47130-Selangor
 AG2345-AP0028-987-active-Fully-600-1.65-2-1-1-false-false-true-Jalan Wawasan 2/3-Pusat Bandar Puchong-Puchong-47120-Selangor
 AG5372-HO0029-1400-active-Semi-1360-1.03-4-4-3-false-false-true-Taman Damai Utama-Bandar Kinrara-Puchong-47120-Selangor

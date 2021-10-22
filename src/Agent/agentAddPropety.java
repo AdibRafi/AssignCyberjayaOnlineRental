@@ -186,6 +186,8 @@ public class agentAddPropety extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == addBtn){
+            //todo: calculate terus rental rate provided in Property
+            //todo: do OOP style
 
             //location form
             String addProperty = propertyIDField.getText();

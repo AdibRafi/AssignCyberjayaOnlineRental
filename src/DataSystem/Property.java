@@ -4,6 +4,7 @@ import FileSystem.FileConverter;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Property extends Data {
@@ -39,7 +40,23 @@ public class Property extends Data {
         return f.format(num);
     }
 
-    public void setPropertyInfo(String[] dataFromFile) {
+    private static String checkPropertyType(String propertyID) {
+        String letter = propertyID.substring(0, 2);
+        String num = propertyID.substring(2);
+        String result = "Apartment";
+        if (letter.matches("[A-Z]+") && num.matches("[0-9]+")) {
+            if (letter.contains("CD"))
+                result = "Condominium";
+            else if (letter.contains("HO"))
+                result = "Landed House";
+            else if (letter.contains("RM"))
+                result = "Room";
+        }
+        return result;
+    }
+
+    public void setPropertyInfo(String[] dataFromFile) throws IOException {
+        setMainInfo(FileConverter.getSingleLineInfo("account.txt",dataFromFile[0]));
         setAccountID(dataFromFile[0]);
         setPropertyID(dataFromFile[1]);
         setPrice(dataFromFile[2]);
@@ -58,8 +75,9 @@ public class Property extends Data {
         setCityName(dataFromFile[15]);
         setPostcode(dataFromFile[16]);
         setState(dataFromFile[17]);
+        setHouseType(checkPropertyType(dataFromFile[1]));
     }
-    public String[] getPropertyInfoToDisplay(){
+    public String[] getPropertyInfo(){
         String[] result = new String[18];
         result[0] = getAccountID();
         result[1] = getPropertyID();
@@ -82,8 +100,15 @@ public class Property extends Data {
         return result;
     }
 
-
-
+    public String[] getPropertyInfoForDisplay(){
+        return new String[]{
+                getName(), getHouseType(), getPrice(), getActiveProperty(),
+                getFurnishedStatus(), getSquareFeet(), getNumOfBed(),
+                getNumOfBath(), getNumOfParking(),
+                getAddress1() + "," + getAddress2(), getCityName(),
+                getPostcode(), getState()
+        };
+    }
 
 
     public String getAddress2() {
@@ -206,6 +231,6 @@ public class Property extends Data {
         Property n = new Property();
         n.setPropertyInfo(info);
         System.out.println(n.getCityName());
-        System.out.println(Arrays.toString(n.getPropertyInfoToDisplay()));
+        System.out.println(Arrays.toString(n.getPropertyInfo()));
     }
 }
