@@ -86,7 +86,12 @@ public class agentAddPropety extends JFrame implements ActionListener {
     JLabel bedLabel = new JLabel("Bedroom");
     JLabel parkingLabel = new JLabel("Parking");
 
-    public agentAddPropety(String acc,boolean isItAddProperty){
+    boolean isItAddProperty;
+    String propertyID;
+
+    public agentAddPropety(String acc,boolean isItAddProperty,String propertyID){
+        this.isItAddProperty = isItAddProperty;
+        this.propertyID = propertyID;
         account = acc;
         mainPanel.setLayout(null);
         addBtn.addActionListener(this);
@@ -254,11 +259,14 @@ public class agentAddPropety extends JFrame implements ActionListener {
                     if (checkNum > 0) {
                         JOptionPane.showMessageDialog(this, "Property Already Exist");
                     } else {
-                        if(account.equals("")) //Add
-                            System.out.println(Arrays.toString(location));
-//                            FileConverter.appendFile("location.txt", location);
-                        else
-//                            FileConverter.updateFile("location.txt",);
+                        if(isItAddProperty) //Add
+                            FileConverter.appendFile("location.txt", location);
+                        else{
+                            String[] oldInfo = FileConverter.getSingleLineInfo("location.txt",
+                                    data.getAccountID(), data.getPropertyID());
+
+                            FileConverter.updateFile("location.txt",oldInfo,location);
+                        }
                         JOptionPane.showMessageDialog(this, "Added Successful");
                         this.dispose();
                     }
@@ -273,7 +281,7 @@ public class agentAddPropety extends JFrame implements ActionListener {
         String acc = "AG3902";
         String acc2 = "AD5889";
 
-        new agentAddPropety(acc,true);
+        new agentAddPropety(acc,true,"");
 
     }
 }

@@ -80,7 +80,7 @@ public class AdminMainPage extends JFrame {
             if (userType == 2) {
                 try {
                     this.dispose();
-                    new AdminManageUser();
+                    new AdminManageUser(accountID);
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
@@ -90,7 +90,7 @@ public class AdminMainPage extends JFrame {
         secondBtn.addActionListener(e -> {
             if (userType == 1) {
                 this.dispose();
-                new agentAddPropety(data.getAccountID(),true);
+                new agentAddPropety(data.getAccountID(),true,"");
             }
             if (userType == 2) {
                 this.dispose();
@@ -143,7 +143,7 @@ public class AdminMainPage extends JFrame {
     }
 
     public static void main(String[] args) throws IOException {
-        new AdminMainPage("Myvi", "TN3254");
+        new AdminMainPage("Myvi", "AD1234");
 
     }
 }

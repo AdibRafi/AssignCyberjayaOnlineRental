@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class AdminAddUser extends JFrame implements ActionListener {
-    Data data = new Data();
+    Data accountData = new Data();
     JFrame frame = new JFrame();
 
     String[] userType = {"Select", "Admin", "Agent", "Tenant"};
@@ -40,7 +40,7 @@ public class AdminAddUser extends JFrame implements ActionListener {
 
 
 
-    AdminAddUser() throws FileNotFoundException {
+    AdminAddUser(String accountID) throws FileNotFoundException {
 
         JPanel panel = new JPanel();
         panel.setLayout(null);
@@ -98,7 +98,7 @@ public class AdminAddUser extends JFrame implements ActionListener {
     }
 
     public static void main(String[] args) throws FileNotFoundException {
-        new AdminAddUser();
+        new AdminAddUser("AD1234");
     }
 
     @Override
@@ -127,9 +127,9 @@ public class AdminAddUser extends JFrame implements ActionListener {
                 String[] result = {accountID,addUser,addPass,addPhone,genderType};
                 String[][] check;
                 try {
-                    data.setMainInfo(FileConverter.getSingleLineInfo("account.txt", "AD1234"));
+                    accountData.setMainInfo(FileConverter.getSingleLineInfo("account.txt", "AD1234"));
                     check = FileConverter.readAllLines("account.txt");
-                    if (adminPass.equals(data.getPassword())) {
+                    if (adminPass.equals(accountData.getPassword())) {
                         int checkNum = 0;
                         for (String[] strings : check) {
                             if (Objects.equals(strings[0], accountID)) {
@@ -156,7 +156,7 @@ public class AdminAddUser extends JFrame implements ActionListener {
         if (e.getSource() == backBtn){
             frame.dispose();
             try {
-                new AdminManageUser();
+                new AdminManageUser(accountData.getAccountID());
             } catch (IOException ex) {
                 ex.printStackTrace();
             }

@@ -40,8 +40,10 @@ public class learnMore extends JFrame  {
         if (account.contains("TN") || account.contains("AG")) { // if account user
             //todo : assign function dekat button (agent)
             if(account.equals(data.getAccountID())){// if account agent (tekan dia punya property)
-                one = new JButton("Manage Property");
-                one.addActionListener(event -> JOptionPane.showMessageDialog(null, "Manage Property button was pushed!"));
+                one = new JButton("Edit Property");
+                one.addActionListener(event ->
+                {
+                });
 
                 two = new JButton("Delete");
                 two.addActionListener(event -> JOptionPane.showMessageDialog(null, "Delete button was pushed!"));
@@ -57,18 +59,17 @@ public class learnMore extends JFrame  {
 
         //todo : assign function dekat button (admin)
         if (account.contains("AD")) { // if account admin
-            one = new JButton("Leave Comment");
-            one.addActionListener(event -> {
-                JOptionPane.showMessageDialog(null, "Leave Comment button was pushed!");
-            });
-
             two = new JButton("Edit Property");
             two.addActionListener(event -> {
-
+                new agentAddPropety(account, false,data.getPropertyID());
             });
-
             three = new JButton("Delete");
             three.addActionListener(event -> {
+                try {
+                    FileConverter.removeSingleLine("location.txt",account,data.getPropertyID());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 JOptionPane.showMessageDialog(null, "Delete button was pushed!");
             });
 
@@ -77,12 +78,6 @@ public class learnMore extends JFrame  {
 
         cl = new CardLayout(10, 10); // create cardlayout
         homePanel = new JPanel(); // panel for main menu
-
-        //todo: back button function
-        back = new JButton("Back"); // create back button (return to menu)
-        back.addActionListener(event -> {
-            cl.show(mainContainer, "Back");
-        });
 
         mFrame = new JFrame("learn more test");
 

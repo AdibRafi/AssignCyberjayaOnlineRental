@@ -90,7 +90,29 @@ public class FileConverter {
             row.add(q,file.get(i));
             ++q;
         }
+        Files.write(Paths.get("src/FileSystem/"+filePath),row);
+    }
 
+    public static void removeSingleLine(String filePath, String accountID, String propertyID) throws IOException {
+        String[][] allInfo = readAllLines("location.txt");
+        List<String> file = new ArrayList<>(
+                Files.readAllLines(Path.of("src/FileSystem/" + filePath), StandardCharsets.UTF_8)
+        );
+        List<String> row = new ArrayList<>();
+        for (String[] strings : allInfo) {
+            if (strings[0].equals(accountID) && strings[1].equals(propertyID)){
+                accountID = addDashIntoString(getSingleLineInfo(filePath, accountID));
+                break;
+            }
+        }
+        int q = 0;
+        for (int i = 0; i < file.size(); i++) {
+            if (file.get(i).equals(accountID)){
+                continue;
+            }
+            row.add(q,file.get(i));
+            ++q;
+        }
         Files.write(Paths.get("src/FileSystem/"+filePath),row);
     }
     // update file
@@ -106,7 +128,6 @@ public class FileConverter {
             }
         }
         Files.write(Path.of("src/FileSystem/" + filePath), fileContent, StandardCharsets.UTF_8);
-        System.out.println(fileContent);
     }
     public static void main(String[] args) throws IOException {
         Data data = new Data();

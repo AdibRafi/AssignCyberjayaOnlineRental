@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.util.Arrays;
 
 public class AdminRemoveUser extends JFrame {
-    AdminRemoveUser() throws IOException {
+    AdminRemoveUser(String accountID) throws IOException {
         JFrame frame = new JFrame();
         JPanel topPanel = new JPanel();
         topPanel.setBackground(new Color(0x313131));
@@ -35,7 +35,7 @@ public class AdminRemoveUser extends JFrame {
                 try {
                     frame.dispose();
                     //parameter: change pictureName n AccountID
-                    new AdminManageUser();
+                    new AdminManageUser(accountID);
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
@@ -46,10 +46,6 @@ public class AdminRemoveUser extends JFrame {
         String[] column = {"ID", "Name", "Phone Number", "Gender"};
         String[][] data = FileConverter.readAllLines("account.txt");
         String[][] newData = Data.removeColumnFromData(data, 2);
-        //fixme: change it the sorted data
-        String[][] newData1 = Data.sortData(newData);
-        System.out.println(Arrays.deepToString(newData1));
-
         DefaultTableModel tableModel = new DefaultTableModel(newData, column){
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -98,7 +94,7 @@ public class AdminRemoveUser extends JFrame {
     }
 
     public static void main(String[] args) throws IOException {
-        new AdminRemoveUser();
+        new AdminRemoveUser("AD1234");
     }
 
 }
