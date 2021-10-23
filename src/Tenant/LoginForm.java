@@ -12,7 +12,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class LoginForm extends JFrame implements ActionListener {
-
     JFrame frame;
 
     Container container = getContentPane();
@@ -32,7 +31,7 @@ public class LoginForm extends JFrame implements ActionListener {
     Data accountData;
 
     //Constructor
-    public LoginForm(){
+    public LoginForm() throws IOException {
         createWindow();
         setLocationAndSize();
         addComponentsToContainer();
@@ -122,7 +121,7 @@ public class LoginForm extends JFrame implements ActionListener {
                 if (findAcc){
                     JOptionPane.showMessageDialog(this,"Login Successful");
                     frame.dispose();
-                    new mainDisplay(true, mainDisplay.resetAllInfo(), accountData.getAccountID());
+                    new mainDisplay(true, Agent.mainDisplay.resetAllInfo(), accountData.getAccountID());
 
                 }
                 else JOptionPane.showMessageDialog(this, "Invalid Username or Password");
@@ -153,7 +152,7 @@ public class LoginForm extends JFrame implements ActionListener {
 
 }
 class Login{
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         new LoginForm();
     }
 }

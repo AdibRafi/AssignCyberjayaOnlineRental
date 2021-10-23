@@ -1,6 +1,6 @@
 package Admin;
 
-import Agent.agentAddPropety;
+import Agent.agentAddProperty;
 import Agent.mainDisplay;
 import DataSystem.Data;
 import FileSystem.FileConverter;
@@ -90,7 +90,12 @@ public class AdminMainPage extends JFrame {
         secondBtn.addActionListener(e -> {
             if (userType == 1) {
                 this.dispose();
-                new agentAddPropety(data.getAccountID(),true,"");
+                try {
+                    new agentAddProperty(data.getAccountID(),true
+                            , "",true,data.getAccountID(),mainDisplay.resetAllInfo());
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
             }
             if (userType == 2) {
                 this.dispose();

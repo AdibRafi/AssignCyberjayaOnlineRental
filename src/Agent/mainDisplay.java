@@ -70,11 +70,12 @@ public class mainDisplay implements ActionListener {
 
     Data account;
 
-
     public mainDisplay(boolean indicator, String[][] data,String accountID) throws IOException {
         login = indicator;
         if(!indicator){
             panelBtn = new JButton("Login/Register");
+            account = new Data();
+            account.setMainInfo(FileConverter.getSingleLineInfo("account.txt",accountID));
         }
         if(indicator){
             account = new Data();
@@ -117,7 +118,8 @@ public class mainDisplay implements ActionListener {
                     String accountID = data[input][column];
                     String propertyID = data[input][column + 1];
                     try {
-                        new learnMore(propertyID,accountID,propertyID);
+                        frame.dispose();
+                        new learnMore(propertyID,accountID,propertyID,login,account.getAccountID(),data);
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }
@@ -194,8 +196,11 @@ public class mainDisplay implements ActionListener {
         //top button
         if(!login) {
             if (e.getSource() == panelBtn) {
-                new LoginForm();
-                frame.setVisible(false);
+                try {
+                    new LoginForm();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
             }
         }
         if(login){

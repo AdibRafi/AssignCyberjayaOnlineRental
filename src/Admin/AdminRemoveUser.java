@@ -62,11 +62,8 @@ public class AdminRemoveUser extends JFrame {
                             "Are you sure to remove this user?","Select an Options...",
                             JOptionPane.YES_NO_OPTION);
                     if (input == 0) {
-                        //fixme: change it the sorted data
-                        System.out.println(newData[table.getSelectedRow()][0]);
                         frame.dispose();
                         try {
-                            //fixme: change it the sorted data
                             FileConverter.removeSingleLine("account.txt",newData[table.getSelectedRow()][0]);
                             //parameter: change picture name and ID
                             new AdminMainPage("Myvi", "AD1234");

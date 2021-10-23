@@ -9,12 +9,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.Objects;
 
-public class agentAddPropety extends JFrame implements ActionListener {
-    private String account;
-
+public class agentAddProperty extends JFrame implements ActionListener {
     JPanel topPanel = new JPanel();
     JPanel mainPanel = new JPanel();
     JLabel titleLabel = new JLabel("myProperty House Rental", SwingConstants.CENTER);
@@ -45,7 +42,7 @@ public class agentAddPropety extends JFrame implements ActionListener {
 
 
     //button
-    JButton addBtn = new JButton("Add");
+    JButton addBtn = new JButton("Save");
     JButton backBtn = new JButton("Back to Main Menu");
 
     JTextField sizeField = new JTextField();
@@ -86,13 +83,21 @@ public class agentAddPropety extends JFrame implements ActionListener {
     JLabel bedLabel = new JLabel("Bedroom");
     JLabel parkingLabel = new JLabel("Parking");
 
+    Property accountData = new Property();
+    String[][] reservedDataFromMainDisplay;
+    String loginAccount;
     boolean isItAddProperty;
-    String propertyID;
+    boolean alreadyLogin;
 
-    public agentAddPropety(String acc,boolean isItAddProperty,String propertyID){
+    public agentAddProperty(String acc, boolean isItAddProperty, String propertyID, boolean alreadyLogin,
+                            String loginAccount, String[][] reservedDataFromMainDisplay) throws IOException {
+
+        accountData.setPropertyInfo(FileConverter.getSingleLineInfo("location.txt", acc, propertyID));
         this.isItAddProperty = isItAddProperty;
-        this.propertyID = propertyID;
-        account = acc;
+        this.reservedDataFromMainDisplay = reservedDataFromMainDisplay;
+        this.alreadyLogin = alreadyLogin;
+        this.loginAccount = loginAccount;
+
         mainPanel.setLayout(null);
         addBtn.addActionListener(this);
 
@@ -100,51 +105,52 @@ public class agentAddPropety extends JFrame implements ActionListener {
 
         topPanel.setBackground(Color.darkGray);
         topPanel.setLayout(new BorderLayout());
-        topPanel.setBorder(new LineBorder(Color.darkGray,3));
-        titleLabel.setFont(new Font("Papyrus", Font.BOLD,20));
+        topPanel.setBorder(new LineBorder(Color.darkGray, 3));
+        titleLabel.setFont(new Font("Papyrus", Font.BOLD, 20));
         titleLabel.setForeground(Color.white);
 
         //main info label
-        propertyIDLabel.setBounds(25,30,100,30);
-        propertyTypeLbl.setBounds(25,60,100,30);
-        sizeLabel.setBounds(25,90,100,30);
-        priceLabel.setBounds(25,120,100,30);
-        streetOneLabel.setBounds(25,150,100,30);
-        streetTwoLabel.setBounds(25,180,100,30);
+        propertyIDLabel.setBounds(25, 30, 100, 30);
+        propertyTypeLbl.setBounds(25, 60, 100, 30);
+        sizeLabel.setBounds(25, 90, 100, 30);
+        priceLabel.setBounds(25, 120, 100, 30);
+        streetOneLabel.setBounds(25, 150, 100, 30);
+        streetTwoLabel.setBounds(25, 180, 100, 30);
         cityLabel.setBounds(25, 210, 100, 30);
-        postcodeLabel.setBounds(25,240,150,30);
-        stateLbl.setBounds(25,270,150,30);
-        statusTypeLbl.setBounds(25,300,100,30);
-        bedLabel.setBounds(25,330,150,30);
-        bathLabel.setBounds(25,360,100,30);
-        parkingLabel.setBounds(25,390,100,30);
-        wifiLabel.setBounds(25,420,100,30);
-        poolLabel.setBounds(25,450,100,30);
-        aircondLabel.setBounds(25,480,100,30);
-        furnishedLabel.setBounds(25,510,100,30);
+        postcodeLabel.setBounds(25, 240, 150, 30);
+        stateLbl.setBounds(25, 270, 150, 30);
+        statusTypeLbl.setBounds(25, 300, 100, 30);
+        bedLabel.setBounds(25, 330, 150, 30);
+        bathLabel.setBounds(25, 360, 100, 30);
+        parkingLabel.setBounds(25, 390, 100, 30);
+        wifiLabel.setBounds(25, 420, 100, 30);
+        poolLabel.setBounds(25, 450, 100, 30);
+        aircondLabel.setBounds(25, 480, 100, 30);
+        furnishedLabel.setBounds(25, 510, 100, 30);
 
 
         //main info field
         propertyIDField.setBounds(135, 30, 150, 30);
         propertyTypeBox.setBounds(135, 60, 150, 30);
-        sizeField.setBounds(135,90,150,30);
-        priceField.setBounds(135,120,150,30);
-        streetOneLabelField.setBounds(135,150,150,30);
+        sizeField.setBounds(135, 90, 150, 30);
+        priceField.setBounds(135, 120, 150, 30);
+        streetOneLabelField.setBounds(135, 150, 150, 30);
         streetTwoLabelField.setBounds(135, 180, 150, 30);
         cityField.setBounds(135, 210, 150, 30);
-        postcodeField.setBounds(135,240,150,30);
-        statebox.setBounds(135,270,150,30);
-        propertyStatusbox.setBounds(135,300,150,30);
+        postcodeField.setBounds(135, 240, 150, 30);
+        statebox.setBounds(135, 270, 150, 30);
+        propertyStatusbox.setBounds(135, 300, 150, 30);
         bedField.setBounds(135, 330, 150, 30);
-        bathField.setBounds(135,360,150,30);
-        parkingField.setBounds(135,390,150,30);
-        wifiBox.setBounds(135,420,150,30);;
-        poolBox.setBounds(135,450,150,30);
-        aircondBox.setBounds(135,480,150,30);
-        furnishedBox.setBounds(135,510,150,30);
+        bathField.setBounds(135, 360, 150, 30);
+        parkingField.setBounds(135, 390, 150, 30);
+        wifiBox.setBounds(135, 420, 150, 30);
+        ;
+        poolBox.setBounds(135, 450, 150, 30);
+        aircondBox.setBounds(135, 480, 150, 30);
+        furnishedBox.setBounds(135, 510, 150, 30);
 
-        addBtn.setBounds(20,560,100,40);
-        backBtn.setBounds(150,560,150,40);
+        addBtn.setBounds(20, 560, 100, 40);
+        backBtn.setBounds(150, 560, 150, 40);
 
         //additional info
         topPanel.add(titleLabel);
@@ -198,6 +204,14 @@ public class agentAddPropety extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         Property data = new Property();
+        if (e.getSource() == backBtn) {
+            try {
+                new learnMore(accountData.getPropertyID(), accountData.getAccountID()
+                        , accountData.getPropertyID(),alreadyLogin,loginAccount,reservedDataFromMainDisplay);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
         if (e.getSource() == addBtn){
             //todo: calculate terus rental rate provided in Property
             //todo: do OOP style
@@ -208,7 +222,6 @@ public class agentAddPropety extends JFrame implements ActionListener {
             String propertyStatus = (String) propertyStatusbox.getSelectedItem();
             String price = priceField.getText();
             String size = sizeField.getText();
-            String rentalRate = data.getValueOfRentalRate(price,size);
             String street1 = streetOneLabelField.getText();
             String street2 = streetTwoLabelField.getText();
             String postcode = postcodeField.getText();
@@ -230,10 +243,11 @@ public class agentAddPropety extends JFrame implements ActionListener {
             assert state != null;
             if (state.equals("Select")) {
                 JOptionPane.showMessageDialog(this,"Please Select State");
-            } else if (addProperty == null || rentalRate == null || price == null || size == null || street1 == null || street2 == null
+            } else if (addProperty == null || price == null || size == null || street1 == null || street2 == null
                     || postcode == null || city == null || bathroom == null || bedroom == null || parking == null ) {
                 JOptionPane.showMessageDialog(this,"Please fill in the form");
             } else {
+                String rentalRate = data.getValueOfRentalRate(price,size);
                 String propertyID = "";
                 if (propertyType.equals("Double Storey"))
                     propertyID += "HO";
@@ -244,7 +258,7 @@ public class agentAddPropety extends JFrame implements ActionListener {
                 if (propertyType.equals("Room"))
                     propertyID += "RO";
                 propertyID += addProperty;
-                String[] location = {account,propertyID,rentalRate,price,propertyStatus,furnished,size
+                String[] location = {accountData.getAccountID(),propertyID,rentalRate,price,propertyStatus,furnished,size
                         ,bedroom,bathroom,parking,wifi,pool,aircond,street1,street2,city,postcode,state};
                 String[][] checkPropertyID;
                 try {
@@ -277,11 +291,11 @@ public class agentAddPropety extends JFrame implements ActionListener {
             }
         }
     }
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         String acc = "AG3902";
         String acc2 = "AD5889";
 
-        new agentAddPropety(acc,true,"");
+//        new agentAddProperty(acc,true,"");
 
     }
 }

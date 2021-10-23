@@ -1,6 +1,7 @@
 package Admin;
 
 import Agent.learnMore;
+import Agent.mainDisplay;
 import DataSystem.Data;
 import DataSystem.Property;
 import FileSystem.FileConverter;
@@ -81,7 +82,7 @@ public class AdminManageProperty extends JFrame {
                     int input = table.getSelectedRow();
                     try {
                         new learnMore(data[input][1], accountData.getAccountID()
-                                , data[input][1]);
+                                , data[input][1], true, accountID, mainDisplay.resetAllInfo());
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }

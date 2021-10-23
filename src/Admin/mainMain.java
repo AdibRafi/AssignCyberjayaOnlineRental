@@ -2,6 +2,7 @@ package Admin;
 
 import Admin.AdminMainPage;
 import Agent.learnMore;
+import Agent.mainDisplay;
 import DataSystem.Property;
 import FileSystem.FileConverter;
 import Tenant.LoginForm;
@@ -110,7 +111,7 @@ public class mainMain implements ActionListener {
                         String[][] allInfo = FileConverter.readAllLines("location.txt");
                         String propertyID = allInfo[input][1];
                         String accountID = allInfo[input][0];
-                        new learnMore(propertyID,accountID,propertyID);
+//                        new learnMore(propertyID,accountID,propertyID, mainDisplay.resetAllInfo());
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }
@@ -184,7 +185,11 @@ public class mainMain implements ActionListener {
         //top button
         if(!login) {
             if (e.getSource() == panelBtn) {
-                new LoginForm();
+                try {
+                    new LoginForm();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
             }
         }
         if(login){
