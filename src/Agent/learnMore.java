@@ -1,10 +1,12 @@
 package Agent;
 
+import DataSystem.Data;
 import DataSystem.Property;
 import FileSystem.FileConverter;
 
 import java.io.*;
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 
 public class learnMore extends JFrame  {
@@ -17,56 +19,49 @@ public class learnMore extends JFrame  {
     JButton back;
     JButton one;
     JButton two;
-    JButton three;
-    JButton[] buttonArray;
-    JLabel[] dataDetail;
-    JLabel[] dataLocation;
-    String[] detail;
-
+    JLabel[] agentInfo;
+    JLabel[] houseInfo;
 
     public learnMore(String image, String account, String propertyID) throws IOException {
 
+        Property houseData = new Property();
+        Data agentData = new Property();
+
+
         // put data in array
         try {
-            detail = FileConverter.getSingleLineInfo("location.txt",account, propertyID);
+            // get single line of house detail
+            houseData.setPropertyInfo(FileConverter.getSingleLineInfo("location.txt",account, propertyID));
+
+            // get single line of house detail
+            agentData.setMainInfo(FileConverter.getSingleLineInfo("account.txt",houseData.getAccountID()));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Property data = new Property();
-        data.setPropertyInfo(detail);
-
+        System.out.println(houseData.getAccountID());
         //////////////////////////////////////////////////////////////////////////////////////////////////////
         // different button for each account
-        if (account.contains("TN") || account.contains("AG")) { // if account user
-            //todo : assign function dekat button (agent)
-            if(account.equals(data.getAccountID())){// if account agent (tekan dia punya property)
-                one = new JButton("Edit Property");
-                one.addActionListener(event ->
-                {
-                });
+        //todo : assign function dekat button (agent)
+        if(account.equals(houseData.getAccountID())){// if account agent (tekan dia punya property)
+            one = new JButton("Edit Property");
+            one.addActionListener(event ->
+            {
+            });
 
-                two = new JButton("Delete");
-                two.addActionListener(event -> JOptionPane.showMessageDialog(null, "Delete button was pushed!"));
+            two = new JButton("Delete");
+            two.addActionListener(event -> JOptionPane.showMessageDialog(null, "Delete button was pushed!"));
 
-            }else {//todo : assign function dekat button (user)
-                one = new JButton("Apply");
-                one.addActionListener(event -> JOptionPane.showMessageDialog(null, "Apply button was pushed!"));
-
-                two = new JButton("Contact");
-                two.addActionListener(event -> JOptionPane.showMessageDialog(null, "Contact button was pushed!"));
-            }
         }
-
         //todo : assign function dekat button (admin)
         if (account.contains("AD")) { // if account admin
-            two = new JButton("Edit Property");
-            two.addActionListener(event -> {
-                new agentAddPropety(account, false,data.getPropertyID());
+            one = new JButton("Edit Property");
+            one.addActionListener(event -> {
+                new agentAddPropety(account, false,houseData.getPropertyID());
             });
-            three = new JButton("Delete");
-            three.addActionListener(event -> {
+            two = new JButton("Delete");
+            two.addActionListener(event -> {
                 try {
-                    FileConverter.removeSingleLine("location.txt",account,data.getPropertyID());
+                    FileConverter.removeSingleLine("location.txt",account,houseData.getPropertyID());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -74,8 +69,16 @@ public class learnMore extends JFrame  {
             });
 
         }
+
+        // for all account
+        //todo : assign function dekat back button
+        back = new JButton("Back");
+        back.addActionListener(event -> {
+            JOptionPane.showMessageDialog(null, "Back button was pushed!");
+        });
         //////////////////////////////////////////////////////////////////////////////////////////////////////
 
+        back = new JButton("Back");
         cl = new CardLayout(10, 10); // create cardlayout
         homePanel = new JPanel(); // panel for main menu
 
@@ -97,110 +100,121 @@ public class learnMore extends JFrame  {
         houseDetail.setBounds(250,5,400,40);
         learnMorePanel.add(houseDetail); // text "House Detail"
 
-        dataDetail = new JLabel[15];
+        //display "Location" label
+        JLabel location = new JLabel("Location");
+        //set boundary for text "Location" & add to panel
+        location.setFont(new Font("Serif", Font.PLAIN, 40));
+        location.setBounds(250,365,400,40);
+        learnMorePanel.add(location); // text "Location"
+
+        houseInfo = new JLabel[15];
 
         // display price
         JLabel price = new JLabel("Price");
         //set boundary for text "Price"
-        price.setFont(new Font("Serif", Font.PLAIN, 25));
-        price.setBounds(455,230,200,30);
-        dataDetail[0] = new JLabel("RM " + data.getPrice());
-        dataDetail[0].setFont(new Font("Serif", Font.PLAIN, 25));
-        dataDetail[0].setBounds(455,260,200,30);
+        price.setFont(new Font("Serif", Font.PLAIN, 30));
+        price.setBounds(485,230,200,30);
+        houseInfo[0] = new JLabel("RM " + houseData.getPrice());
+        houseInfo[0].setFont(new Font("Serif", Font.PLAIN, 30));
+        houseInfo[0].setBounds(485,260,200,30);
         learnMorePanel.add(price); // text "Price"
 
         //display status
-        dataDetail[1] = new JLabel(arr1[0] +" : " + data.getActiveProperty());
-        dataDetail[1].setBounds(250,50,200,30);
+        houseInfo[1] = new JLabel(arr1[0] +" : " + houseData.getActiveProperty());
+        houseInfo[1].setBounds(250,50,200,30);
 
         //display furnish
-        dataDetail[2] = new JLabel(arr1[1] +" : " + data.getFurnishedStatus());
-        dataDetail[2].setBounds(250,80,200,30);
+        houseInfo[2] = new JLabel(arr1[1] +" : " + houseData.getFurnishedStatus());
+        houseInfo[2].setBounds(250,80,200,30);
 
         //display size
-        dataDetail[3] = new JLabel(arr1[2] +" : " + data.getSquareFeet());
-        dataDetail[3].setBounds(250,110,200,30);
+        houseInfo[3] = new JLabel(arr1[2] +" : " + houseData.getSquareFeet());
+        houseInfo[3].setBounds(250,110,200,30);
 
         //display rental rate
-        dataDetail[4] = new JLabel(arr1[3] +" : RM " + data.getRentalRate());
-        dataDetail[4].setBounds(250,140,200,30);
+        houseInfo[4] = new JLabel(arr1[3] +" : RM " + houseData.getRentalRate());
+        houseInfo[4].setBounds(250,140,200,30);
 
         //display num of bedroom
-        dataDetail[5] = new JLabel(arr1[4] +" : " + data.getNumOfBed());
-        dataDetail[5].setBounds(250,170,200,30);
+        houseInfo[5] = new JLabel(arr1[4] +" : " + houseData.getNumOfBed());
+        houseInfo[5].setBounds(250,170,200,30);
 
         //display num of bathroom
-        dataDetail[6] = new JLabel(arr1[5] +" : " + data.getNumOfBath());
-        dataDetail[6].setBounds(250,200,200,30);
+        houseInfo[6] = new JLabel(arr1[5] +" : " + houseData.getNumOfBath());
+        houseInfo[6].setBounds(250,200,200,30);
 
         //display num of parking
-        dataDetail[7] = new JLabel(arr1[6] +" : " + data.getNumOfParking());
-        dataDetail[7].setBounds(250,230,200,30);
+        houseInfo[7] = new JLabel(arr1[6] +" : " + houseData.getNumOfParking());
+        houseInfo[7].setBounds(250,230,200,30);
 
         //display wifi available(true/false)
-        dataDetail[8] = new JLabel(arr1[7] +" : " + data.getHaveWifi());
-        dataDetail[8].setBounds(250,260,200,30);
+        houseInfo[8] = new JLabel(arr1[7] +" : " + houseData.getHaveWifi());
+        houseInfo[8].setBounds(250,260,200,30);
 
         //display swimming pool available(true/false)
-        dataDetail[9] = new JLabel(arr1[8] +" : " + data.getHaveSwimmingPool());
-        dataDetail[9].setBounds(250,290,200,30);
+        houseInfo[9] = new JLabel(arr1[8] +" : " + houseData.getHaveSwimmingPool());
+        houseInfo[9].setBounds(250,290,200,30);
 
         //display aircond available(true/false)
-        dataDetail[10] = new JLabel(arr1[9] +" : " + data.getHaveAirCond());
-        dataDetail[10].setBounds(250,320,200,30);
-
-        JLabel location = new JLabel("Location");
-        //set boundary for text "Location" & add to panel
-        location.setFont(new Font("Serif", Font.PLAIN, 40));
-        location.setVerticalAlignment(JLabel.CENTER);
-        location.setBounds(250,365,400,40);
-        learnMorePanel.add(location); // text "Location"
+        houseInfo[10] = new JLabel(arr1[9] +" : " + houseData.getHaveAirCond());
+        houseInfo[10].setBounds(250,320,200,30);
 
         //display street
-        dataDetail[11] = new JLabel(arr2[0] +" : " + data.getAddress1() + ", " + data.getAddress2());
-        dataDetail[11].setBounds(250,415,500,30);
+        houseInfo[11] = new JLabel(arr2[0] +" : " + houseData.getAddress1() + ", " + houseData.getAddress2());
+        houseInfo[11].setBounds(250,415,500,30);
 
         //display city
-        dataDetail[12] = new JLabel(arr2[1] +" : " + data.getCityName());
-        dataDetail[12].setBounds(250,445,200,30);
+        houseInfo[12] = new JLabel(arr2[1] +" : " + houseData.getCityName());
+        houseInfo[12].setBounds(250,445,200,30);
 
         //display postcode
-        dataDetail[13] = new JLabel(arr2[2] +" : " + data.getPostcode());
-        dataDetail[13].setBounds(250,475,200,30);
+        houseInfo[13] = new JLabel(arr2[2] +" : " + houseData.getPostcode());
+        houseInfo[13].setBounds(250,475,200,30);
 
         //display state
-        dataDetail[14] = new JLabel(arr2[3] +" : " + data.getState());
-        dataDetail[14].setBounds(250,505,200,30);
+        houseInfo[14] = new JLabel(arr2[3] +" : " + houseData.getState());
+        houseInfo[14].setBounds(250,505,200,30);
 
-        for(int i = 0; i < dataDetail.length; i++){learnMorePanel.add(dataDetail[i]);}
+        for(int i = 0; i < houseInfo.length; i++){learnMorePanel.add(houseInfo[i]);}
+
+        // for agent information
+        agentInfo = new JLabel[3];
+        //display agent name
+        agentInfo[0] = new JLabel("       Contact Information");
+        agentInfo[0].setFont(new Font("Serif", Font.BOLD, 16));
+        agentInfo[0].setBounds(10,445,200,30);
+        //display agent name
+        agentInfo[1] = new JLabel("Name                     : " + agentData.getName());
+        agentInfo[1].setBounds(25,475,200,30);
+        //display agent contact num
+        agentInfo[2] = new JLabel("Contact Number  : " + agentData.getPhoneNumber());
+        agentInfo[2].setBounds(25,505,200,30);
+        Border blackline = BorderFactory.createLineBorder(Color.black);
+        agentInfo[0].setBorder(blackline);
+        for(int i = 0; i < agentInfo.length; i++){
+            learnMorePanel.add(agentInfo[i]);
+        }
         /*----------------------------------------------------------------------------------------------------------------------------------------*/
 
-        if(account.contains("AD")) {
-            // set boundary for button & add to panel (admin - four button)
-            one.setBounds(15, 570, 140, 30);
-            two.setBounds(150, 570, 140, 30);
-            three.setBounds(285, 570, 140, 30);
-            back.setBounds(420, 570, 140, 30);
-            learnMorePanel.add(one); // letak button(base on account) at learn more punya panel
-            learnMorePanel.add(two); // letak second button(base on account) at learn more punya panel
-            learnMorePanel.add(three); // letak third button (delete) at learn more punya panel
-            learnMorePanel.add(back); // letak back button at learn more punya panel
-
-        }else {
-            // set boundary for button & add to panel (user/agent - three button)
+        if(account.equals(houseData.getAccountID()) || account.contains("AD")){// if account agent (tekan dia punya property)
+            // set boundary for button & add to panel (three button)
             one.setBounds(95, 570, 140, 30);
             two.setBounds(230, 570, 140, 30);
             back.setBounds(365, 570, 140, 30);
             learnMorePanel.add(one); // letak button(base on account) at learn more punya panel
             learnMorePanel.add(two); // letak second button(base on account) at learn more punya panel
             learnMorePanel.add(back); // letak back button at learn more punya panel
+        }else{
+            back.setBounds(250, 570, 140, 30);
+            learnMorePanel.add(back); // letak back button at learn more punya panel
         }
+
         ImageIcon img = new ImageIcon("src/Pictures/" + image + ".png");
         Image scaledImg = img.getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT);
         Icon finalImg = new ImageIcon(scaledImg);
         JLabel pictureLabel = new JLabel();
         pictureLabel.setIcon(finalImg);
-        pictureLabel.setBounds(25,70,200,200);
+        pictureLabel.setBounds(25,100,200,200);
 
         ///////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -214,7 +228,7 @@ public class learnMore extends JFrame  {
 //        mFrame.setExtendedState(JFrame.MAXIMIZED_BOTH);
         mFrame.pack();
         mFrame.setVisible(true);
-        mFrame.setSize(610, 670);
+        mFrame.setSize(650, 670);
     }
 
     public static void main(String[] args) throws IOException {
