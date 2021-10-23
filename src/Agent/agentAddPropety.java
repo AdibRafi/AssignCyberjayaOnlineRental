@@ -9,10 +9,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Objects;
 
 public class agentAddPropety extends JFrame implements ActionListener {
-    private static String account;
+    private String account;
 
     JPanel topPanel = new JPanel();
     JPanel mainPanel = new JPanel();
@@ -83,7 +84,7 @@ public class agentAddPropety extends JFrame implements ActionListener {
     JLabel bedLabel = new JLabel("Bedroom");
     JLabel parkingLabel = new JLabel("Parking");
 
-    public agentAddPropety(String acc){
+    public agentAddPropety(String acc,boolean isItAddProperty){
         account = acc;
         mainPanel.setLayout(null);
         addBtn.addActionListener(this);
@@ -181,13 +182,6 @@ public class agentAddPropety extends JFrame implements ActionListener {
         this.setVisible(true);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
-    public static void main(String[] args) {
-        String acc = "AG3902";
-        String acc2 = "AD5889";
-
-        new agentAddPropety(acc);
-
-    }
     @Override
     public void actionPerformed(ActionEvent e) {
         Property data = new Property();
@@ -215,9 +209,12 @@ public class agentAddPropety extends JFrame implements ActionListener {
             String furnished = (String) furnishedBox.getSelectedItem();
 
             //facilities form
+            assert propertyType != null;
             if (propertyType.equals("Select")) {
                 JOptionPane.showMessageDialog(this,"Please Select Property Type");
-            }if (state.equals("Select")) {
+            }
+            assert state != null;
+            if (state.equals("Select")) {
                 JOptionPane.showMessageDialog(this,"Please Select State");
             } else if (addProperty == null || rentalRate == null || price == null || size == null || street == null
                     || postcode == null || city == null || bathroom == null || bedroom == null || parking == null ) {
@@ -248,8 +245,12 @@ public class agentAddPropety extends JFrame implements ActionListener {
                     if (checkNum > 0) {
                         JOptionPane.showMessageDialog(this, "Property Already Exist");
                     } else {
+                        if(account.equals("")) //Add
+                            System.out.println(Arrays.toString(location));
+//                            FileConverter.appendFile("location.txt", location);
+                        else
+//                            FileConverter.updateFile("location.txt",);
                         JOptionPane.showMessageDialog(this, "Added Successful");
-                        FileConverter.appendFile("location.txt", location);
                         this.dispose();
                     }
 
@@ -258,6 +259,13 @@ public class agentAddPropety extends JFrame implements ActionListener {
                 }
             }
         }
+    }
+    public static void main(String[] args) {
+        String acc = "AG3902";
+        String acc2 = "AD5889";
+
+        new agentAddPropety("",true);
+
     }
 }
 
