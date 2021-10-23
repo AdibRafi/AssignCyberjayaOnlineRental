@@ -156,7 +156,7 @@ public class AdminAddUser extends JFrame implements ActionListener {
         if (e.getSource() == backBtn){
             frame.dispose();
             try {
-                new AdminManageUser(accountData.getAccountID());
+                new AdminManageUser(profileAccountID);
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
