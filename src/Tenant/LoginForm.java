@@ -1,5 +1,7 @@
 package Tenant;
 
+import Agent.mainDisplay;
+import DataSystem.Data;
 import FileSystem.FileConverter;
 
 import javax.swing.*;
@@ -27,6 +29,7 @@ public class LoginForm extends JFrame implements ActionListener {
     JButton resetBtn = new JButton("Reset");
     JButton registerBtn = new JButton("Register");
     JCheckBox showPassword = new JCheckBox("Show Password");
+    Data accountData;
 
     //Constructor
     public LoginForm(){
@@ -44,7 +47,7 @@ public class LoginForm extends JFrame implements ActionListener {
         frame.getContentPane().setBackground(Color.cyan);
         frame.getContentPane().setLayout(null);
         frame.setVisible(true);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setResizable(false);
     }
     public void setLocationAndSize(){
@@ -108,15 +111,19 @@ public class LoginForm extends JFrame implements ActionListener {
                 for (int i = 0; i < data.length; i++) {
                     for (int j = 0; j < data[i].length; j++) {
                         if (data[i][j].equals(userText)) {
-                            if (data[i][j+1].equals(pswrdText))
+                            if (data[i][j+1].equals(pswrdText)){
                                 findAcc = true;
+                                accountData = new Data();
+                                accountData.setMainInfo(data[i]);
+                            }
                         }
                     }
                 }
-                System.out.println(findAcc);
                 if (findAcc){
                     JOptionPane.showMessageDialog(this,"Login Successful");
                     frame.dispose();
+                    new mainDisplay(true, mainDisplay.resetAllInfo(), accountData.getAccountID());
+
                 }
                 else JOptionPane.showMessageDialog(this, "Invalid Username or Password");
             } catch (IOException ex) {

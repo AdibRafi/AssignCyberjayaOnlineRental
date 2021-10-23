@@ -58,13 +58,19 @@ public class learnMore extends JFrame  {
         //todo : assign function dekat button (admin)
         if (account.contains("AD")) { // if account admin
             one = new JButton("Leave Comment");
-            one.addActionListener(event -> JOptionPane.showMessageDialog(null, "Leave Comment button was pushed!"));
+            one.addActionListener(event -> {
+                JOptionPane.showMessageDialog(null, "Leave Comment button was pushed!");
+            });
 
-            two = new JButton("Manage Property");
-            two.addActionListener(event -> JOptionPane.showMessageDialog(null, "Manage Property button was pushed!"));
+            two = new JButton("Edit Property");
+            two.addActionListener(event -> {
+
+            });
 
             three = new JButton("Delete");
-            three.addActionListener(event -> JOptionPane.showMessageDialog(null, "Delete button was pushed!"));
+            three.addActionListener(event -> {
+                JOptionPane.showMessageDialog(null, "Delete button was pushed!");
+            });
 
         }
         //////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -217,7 +223,7 @@ public class learnMore extends JFrame  {
     }
 
     public static void main(String[] args) throws IOException {
-        String admin = "AD0001";
+        String admin = "AD1234";
         String agent = "AG0001";
         String agent2 = "AG2345";
         String user = "TN0001";

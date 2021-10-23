@@ -1,6 +1,5 @@
 package Agent;
 
-import DataSystem.AdminData;
 import DataSystem.Data;
 import FileSystem.FileConverter;
 
@@ -56,7 +55,7 @@ public class sort {
         return acc;
     }
     public static void main(String[] args) throws IOException {
-        AdminData data = new AdminData();
+        Data data = new Data();
         String[][] n = FileConverter.readAllLines("account.txt");
         //test
         n = sortFile(n);

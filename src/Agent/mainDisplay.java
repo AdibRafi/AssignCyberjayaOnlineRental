@@ -1,6 +1,7 @@
 package Agent;
 
 import Admin.AdminMainPage;
+import DataSystem.Data;
 import DataSystem.Property;
 import FileSystem.FileConverter;
 import Tenant.LoginForm;
@@ -15,6 +16,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 
 public class mainDisplay implements ActionListener {
     boolean login;
@@ -23,7 +25,7 @@ public class mainDisplay implements ActionListener {
     JPanel topPanel = new JPanel();
     JLabel titleLabel = new JLabel("myProperty House Rental                                                                      ");
     JButton panelBtn;
-    JButton logOutBtn;
+    JButton logOutBtn = new JButton("Log Out");
     JPanel bottomPanel = new JPanel();
     JButton refreshButton = new JButton("Refresh");
 
@@ -62,14 +64,21 @@ public class mainDisplay implements ActionListener {
     JComboBox<String> aircondComboBox = new JComboBox<>(aircondOption);
     JLabel aircondLbl = new JLabel("   Aircond");
 
+    String[] priceOption = {"Select", "Low to High", "High to Low"};
+    JComboBox<String> priceComboBox = new JComboBox<>(priceOption);
+    JLabel priceLbl = new JLabel("   Sort Price");
+
+    Data account;
 
 
-    public mainDisplay(boolean indicator, String[][] data) throws IOException {
+    public mainDisplay(boolean indicator, String[][] data,String accountID) throws IOException {
         login = indicator;
         if(!indicator){
             panelBtn = new JButton("Login/Register");
         }
         if(indicator){
+            account = new Data();
+            account.setMainInfo(FileConverter.getSingleLineInfo("account.txt", accountID));
             panelBtn = new JButton("Manage Profile");
             logOutBtn = new JButton("Log Out");
         }
@@ -104,14 +113,15 @@ public class mainDisplay implements ActionListener {
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2) {
                     int input = table.getSelectedRow();
+                    int column = table.getColumnCount();
+                    String accountID = data[input][column];
+                    String propertyID = data[input][column + 1];
                     try {
-                        String[][] allInfo = FileConverter.readAllLines("location.txt");
-                        String propertyID = allInfo[input][1];
-                        String accountID = allInfo[input][0];
                         new learnMore(propertyID,accountID,propertyID);
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }
+
                 }
             }
         });
@@ -167,6 +177,8 @@ public class mainDisplay implements ActionListener {
         bottomPanel.add(swimComboBox);
         bottomPanel.add(aircondLbl);
         bottomPanel.add(aircondComboBox);
+        bottomPanel.add(priceLbl);
+        bottomPanel.add(priceComboBox);
         bottomPanel.add(refreshButton);
 
     }
@@ -183,6 +195,7 @@ public class mainDisplay implements ActionListener {
         if(!login) {
             if (e.getSource() == panelBtn) {
                 new LoginForm();
+                frame.setVisible(false);
             }
         }
         if(login){
@@ -190,13 +203,14 @@ public class mainDisplay implements ActionListener {
                 try {
                     //parameter: change picture n ID
                     frame.dispose();
-                    new AdminMainPage("Myvi","AG2345");
+                    new AdminMainPage("Myvi", account.getAccountID());
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
             }else if(e.getSource() == logOutBtn){
                 try {
-                    new mainDisplay(false, resetAllInfo());
+                    frame.dispose();
+                    new mainDisplay(false, resetAllInfo(),"");
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
@@ -286,17 +300,24 @@ public class mainDisplay implements ActionListener {
                             result.add(FileConverter.addDashIntoString(data.getPropertyInfoForDisplay()));
                     }
                 }
+                String getPriceSort = (String) priceComboBox.getSelectedItem();
+                //todo: make sort rental price
                 String[][] finalResult = new String[result.size()][20];
                 for (int i = 0; i < result.size(); i++) {
                     finalResult[i] = FileConverter.lineSplitter(result.get(i));
                 }
-                System.out.println(Arrays.deepToString(finalResult));
-                new mainDisplay(login,finalResult);
+                assert getPriceSort != null;
+                if (getPriceSort.equals("Low to High"))
+                    Arrays.sort(finalResult, Comparator.comparingDouble(o->Double.parseDouble(o[2])));
+                else if (getPriceSort.equals("High to Low"))
+                    Arrays.sort(finalResult, (v1, v2) ->
+                            Double.compare(Double.parseDouble(v2[2]), Double.parseDouble(v1[2])));
+                frame.dispose();
+                new mainDisplay(login,finalResult, account.getAccountID());
 
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
-            //todo: letak for loop dlm ni and make sure pergi else if, if null -> data sama
             //for dropbox furnish
 
 //            Property data;
@@ -324,15 +345,18 @@ public class mainDisplay implements ActionListener {
                     allInfo[i][0],allInfo[i][1]));
             t.add(FileConverter.addDashIntoString(data.getPropertyInfoForDisplay()));
         }
-        String[][] x = new String[t.size()][20];
+        String[][] x = new String[t.size()][15];
         for (int i = 0; i < t.size(); i++) {
             x[i] = FileConverter.lineSplitter(t.get(i));
         }
         return x;
     }
+    public final JFrame getMainFrame(){
+        return frame;
+    }
 
     public static void main(String[] args) throws IOException {
-        new mainDisplay(true, resetAllInfo());
+        new mainDisplay(true, resetAllInfo(),"AG2345");
     }
 }
 

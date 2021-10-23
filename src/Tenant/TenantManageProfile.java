@@ -130,6 +130,8 @@ public class TenantManageProfile extends JFrame implements ActionListener {
                 data.setMainInfo(newInfo);
                 FileConverter.updateFile("account.txt",oldInfoFromData,data.getMainInfo());
                 JOptionPane.showMessageDialog(frame,"New info has been saved");
+                frame.dispose();
+                new AdminMainPage("Myvi", data.getAccountID());
             } catch (IOException e) {
                 e.printStackTrace();
             }

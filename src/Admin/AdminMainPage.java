@@ -2,18 +2,12 @@ package Admin;
 
 import Agent.agentAddPropety;
 import Agent.mainDisplay;
-import DataSystem.AdminData;
 import DataSystem.Data;
-import DataSystem.Property;
-import DataSystem.TenantData;
 import FileSystem.FileConverter;
-import Tenant.*;
+import Tenant.TenantManageProfile;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 
@@ -65,8 +59,18 @@ public class AdminMainPage extends JFrame {
         JButton backToMainBtn = new JButton("Back to Main");
 
         // tenant = 0, agent = 1, admin = 2
+        profileBtn.addActionListener(e -> {
+            this.dispose();
+            try {
+                new TenantManageProfile(accountID);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
+
         firstBtn.addActionListener(e ->{
             if (userType == 1) {
+                this.dispose();
                 try {
                     new AdminManageProperty(data.getAccountID());
                 } catch (IOException ex) {
@@ -86,7 +90,7 @@ public class AdminMainPage extends JFrame {
         secondBtn.addActionListener(e -> {
             if (userType == 1) {
                 this.dispose();
-                new agentAddPropety(data.getAccountID());
+                new agentAddPropety(data.getAccountID(),true);
             }
             if (userType == 2) {
                 this.dispose();
@@ -100,7 +104,7 @@ public class AdminMainPage extends JFrame {
         backToMainBtn.addActionListener(e -> {
             this.dispose();
             try {
-                new mainDisplay(true, mainDisplay.resetAllInfo());
+                new mainDisplay(true, mainDisplay.resetAllInfo(),accountID);
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -139,7 +143,7 @@ public class AdminMainPage extends JFrame {
     }
 
     public static void main(String[] args) throws IOException {
-        new AdminMainPage("Myvi", "AG2345");
+        new AdminMainPage("Myvi", "TN3254");
 
     }
 }

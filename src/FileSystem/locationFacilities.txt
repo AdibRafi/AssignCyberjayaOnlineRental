@@ -1,6 +1,0 @@
-LO1234-300-3-3-1-half-yes-yes-yes
-LO1434-400-3-3-1-full-yes-yes-yes
-LO1004-333-3-3-1-half-no-yes-yes
-LO2222-260-3-3-1-half-yes-no-yes
-LO4872-390-3-3-1-full-yes-yes-yes
-LO1902-821-3-3-1-half-yes-yes-no

@@ -59,7 +59,7 @@ public class RegisterTenant implements ActionListener {
         frame.getContentPane().setBackground(Color.cyan);
         frame.getContentPane().setLayout(null);
         frame.setVisible(true);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setResizable(false);
     }
     public void setLocationAndSize() {
@@ -173,7 +173,7 @@ public class RegisterTenant implements ActionListener {
                         JOptionPane.showMessageDialog(frame, "Register Successfully, wait for admin to approve");
                         FileConverter.appendFile("accountApproval.txt", result);
                         frame.dispose();
-                        new mainDisplay(false,mainDisplay.resetAllInfo());
+                        new mainDisplay(false,mainDisplay.resetAllInfo(),"");
                     }
                 }else JOptionPane.showMessageDialog(frame,"Password Confirmation Does Not Match");
             }catch(IOException ex){

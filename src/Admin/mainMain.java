@@ -16,6 +16,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 
 public class mainMain implements ActionListener {
     boolean login;
@@ -24,7 +25,7 @@ public class mainMain implements ActionListener {
     JPanel topPanel = new JPanel();
     JLabel titleLabel = new JLabel("myProperty House Rental             ");
     JButton panelBtn;
-    JButton logOutBtn;
+    JButton logOutBtn = new JButton("Log Out");
     JPanel bottomPanel = new JPanel();
     JButton refreshButton = new JButton("Refresh");
 
@@ -288,6 +289,7 @@ public class mainMain implements ActionListener {
                             result.add(FileConverter.addDashIntoString(data.getPropertyInfoForDisplay()));
                     }
                 }
+                //todo: need to sort based on rental price
                 String[][] finalResult = new String[result.size()][20];
                 for (int i = 0; i < result.size(); i++) {
                     finalResult[i] = FileConverter.lineSplitter(result.get(i));
@@ -334,7 +336,9 @@ public class mainMain implements ActionListener {
     }
 
     public static void main(String[] args) throws IOException {
-        new mainMain(true, resetAllInfo());
+        String[][] data = FileConverter.readAllLines("location.txt");
+        Arrays.sort(data, Comparator.comparingDouble(o -> Double.parseDouble(o[2])));
+        new mainMain(false, data);
     }
 }
 

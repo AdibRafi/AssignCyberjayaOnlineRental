@@ -33,7 +33,7 @@ public class Property extends Data {
 
     public Property(){}
 
-    private static String getValueOfRentalRate(String price, String sqFt) {
+    public String getValueOfRentalRate(String price, String sqFt) {
         float num = Float.parseFloat(price)/Float.parseFloat(sqFt);
         DecimalFormat f = new DecimalFormat();
         f.setMaximumFractionDigits(2);
@@ -106,7 +106,7 @@ public class Property extends Data {
                 getFurnishedStatus(), getSquareFeet(), getNumOfBed(),
                 getNumOfBath(), getNumOfParking(),
                 getAddress1() + "," + getAddress2(), getCityName(),
-                getPostcode(), getState()
+                getPostcode(), getState(), getAccountID(), getPropertyID()
         };
     }
 
