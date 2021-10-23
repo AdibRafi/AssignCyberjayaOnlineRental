@@ -14,7 +14,6 @@ import java.io.IOException;
 public class LoginForm extends JFrame implements ActionListener {
     JFrame frame;
 
-    Container container = getContentPane();
     JPanel titlePanel = new JPanel();
     JLabel titleLabel = new JLabel("myProperty House Rental", JLabel.CENTER);
     JLabel title2Label = new JLabel("Log in", JLabel.CENTER);
@@ -150,14 +149,20 @@ public class LoginForm extends JFrame implements ActionListener {
         if(e.getSource() == registerBtn){
             new RegisterTenant();
             frame.dispose();
-
+        }
+        if (e.getSource() == backBtn) {
+            try {
+                frame.dispose();
+                new mainDisplay(false, mainDisplay.resetAllInfo(), "AD1234");
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
         }
     }
 
-
-}
-class Login{
     public static void main(String[] args) throws IOException {
         new LoginForm();
     }
+
+
 }

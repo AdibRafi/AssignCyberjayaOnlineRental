@@ -184,9 +184,16 @@ public class RegisterTenant implements ActionListener {
                 ex.printStackTrace();
             }
         }
+        if (e.getSource() == backBtn) {
+            frame.dispose();
+            try {
+                new mainDisplay(false,mainDisplay.resetAllInfo(),"AD1234");
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
     }
-}
-class Register {
+
     public static void main(String[] args) {
         new RegisterTenant();
     }

@@ -39,8 +39,9 @@ public class AdminAddUser extends JFrame implements ActionListener {
 
 
 
-
-    AdminAddUser(String accountID) throws FileNotFoundException {
+    String profileAccountID;
+    AdminAddUser(String profileAccountID) throws FileNotFoundException {
+        this.profileAccountID = profileAccountID;
 
         JPanel panel = new JPanel();
         panel.setLayout(null);
@@ -142,8 +143,7 @@ public class AdminAddUser extends JFrame implements ActionListener {
                             JOptionPane.showMessageDialog(frame, "Added Successful");
                             FileConverter.appendFile("account.txt", result);
                             frame.dispose();
-                            //parameter: change pictureName
-                            new AdminMainPage("Myvi", "AD1234");
+                            new AdminMainPage("Myvi", profileAccountID);
                         }
                     }else {
                         JOptionPane.showMessageDialog(frame, "Incorrect Password");

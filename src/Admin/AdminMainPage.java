@@ -12,11 +12,11 @@ import java.io.IOException;
 
 
 public class AdminMainPage extends JFrame {
-    public AdminMainPage(String pictureName, String accountID) throws IOException {
+    public AdminMainPage(String pictureName, String profileAccountID) throws IOException {
 
         Data data = new Data();
-        data.setMainInfo(FileConverter.getSingleLineInfo("account.txt", accountID));
-        int userType = Data.checkTypeUser(accountID);
+        data.setMainInfo(FileConverter.getSingleLineInfo("account.txt", profileAccountID));
+        int userType = Data.checkTypeUser(profileAccountID);
         JPanel welcomePanel = new JPanel();
         JPanel btnPanel = new JPanel(new GridLayout(4, 0));
         JSplitPane finalPanel = new JSplitPane();
@@ -62,7 +62,7 @@ public class AdminMainPage extends JFrame {
         profileBtn.addActionListener(e -> {
             this.dispose();
             try {
-                new TenantManageProfile(accountID);
+                new TenantManageProfile(profileAccountID);
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -80,7 +80,7 @@ public class AdminMainPage extends JFrame {
             if (userType == 2) {
                 try {
                     this.dispose();
-                    new AdminManageUser(accountID);
+                    new AdminManageUser(profileAccountID);
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
@@ -92,7 +92,7 @@ public class AdminMainPage extends JFrame {
                 this.dispose();
                 try {
                     new agentAddProperty(data.getAccountID(),true
-                            , "",true,data.getAccountID(),mainDisplay.resetAllInfo());
+                            , "",true,data.getAccountID(),mainDisplay.resetAllInfo(),true);
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
@@ -109,7 +109,7 @@ public class AdminMainPage extends JFrame {
         backToMainBtn.addActionListener(e -> {
             this.dispose();
             try {
-                new mainDisplay(true, mainDisplay.resetAllInfo(),accountID);
+                new mainDisplay(true, mainDisplay.resetAllInfo(),profileAccountID);
             } catch (IOException ex) {
                 ex.printStackTrace();
             }

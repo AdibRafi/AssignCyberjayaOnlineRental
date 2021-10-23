@@ -15,9 +15,8 @@ import java.io.IOException;
 
 public class AdminManageUser extends JFrame {
     JFrame frame = new JFrame();
-    Data accountData;
 
-    AdminManageUser(String accountID) throws IOException {
+    AdminManageUser(String profileAccountID) throws IOException {
         JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         topPanel.setBackground(new Color(0x313131));
 
@@ -33,7 +32,7 @@ public class AdminManageUser extends JFrame {
             System.out.println("add");
             frame.dispose();
             try {
-                new AdminAddUser(accountID);
+                new AdminAddUser(profileAccountID);
             } catch (FileNotFoundException ex) {
                 ex.printStackTrace();
             }
@@ -42,7 +41,7 @@ public class AdminManageUser extends JFrame {
             System.out.println("Remove");
             frame.dispose();
             try {
-                new AdminRemoveUser(accountID);
+                new AdminRemoveUser(profileAccountID);
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -51,8 +50,7 @@ public class AdminManageUser extends JFrame {
             System.out.println("Back");
             frame.dispose();
             try {
-                //parameter: change pictureName n AccountID
-                new AdminMainPage("Myvi",accountID);
+                new AdminMainPage("Myvi",profileAccountID);
             } catch (IOException ex) {
                 ex.printStackTrace();
             }

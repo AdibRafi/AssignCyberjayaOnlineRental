@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.util.Arrays;
 
 public class AdminRemoveUser extends JFrame {
-    AdminRemoveUser(String accountID) throws IOException {
+    AdminRemoveUser(String profileAccountID) throws IOException {
         JFrame frame = new JFrame();
         JPanel topPanel = new JPanel();
         topPanel.setBackground(new Color(0x313131));
@@ -34,8 +34,7 @@ public class AdminRemoveUser extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 try {
                     frame.dispose();
-                    //parameter: change pictureName n AccountID
-                    new AdminManageUser(accountID);
+                    new AdminManageUser(profileAccountID);
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
@@ -64,9 +63,9 @@ public class AdminRemoveUser extends JFrame {
                     if (input == 0) {
                         frame.dispose();
                         try {
+                            frame.dispose();
                             FileConverter.removeSingleLine("account.txt",newData[table.getSelectedRow()][0]);
-                            //parameter: change picture name and ID
-                            new AdminMainPage("Myvi", "AD1234");
+                            new AdminManageUser(profileAccountID);
                         } catch (IOException ex) {
                             ex.printStackTrace();
                         }

@@ -9,10 +9,7 @@ import javax.swing.JComboBox;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.lang.reflect.Array;
-import java.util.Arrays;
 
 public class TenantManageProfile extends JFrame implements ActionListener {
     JFrame frame;
@@ -37,11 +34,11 @@ public class TenantManageProfile extends JFrame implements ActionListener {
     JCheckBox showNewPassword = new JCheckBox("Show Password");
     JCheckBox showConfirmPassword = new JCheckBox("Show Password");
 
-    Data data = new Data();
+    Data accountData = new Data();
 
     //Constructor
-    public TenantManageProfile(String accountID) throws IOException {
-        data.setMainInfo(FileConverter.getSingleLineInfo("account.txt",accountID));
+    public TenantManageProfile(String profileAccountID) throws IOException {
+        accountData.setMainInfo(FileConverter.getSingleLineInfo("account.txt",profileAccountID));
         createWindow();
         setLocationAndSize();
         addComponentToFrame();
@@ -123,15 +120,14 @@ public class TenantManageProfile extends JFrame implements ActionListener {
         }
         if(ae.getSource() == saveBtn){
             try {
-                System.out.println("START");
-                //parameter: change accountID
-                String[] oldInfoFromData = data.getMainInfo();
-                String[] newInfo = {data.getAccountID(),nameTextField.getText(),newPasswordField.getText(),contactTextField.getText(), (String) genderComboBox.getSelectedItem()};
-                data.setMainInfo(newInfo);
-                FileConverter.updateFile("account.txt",oldInfoFromData,data.getMainInfo());
+                String[] oldInfoFromData = accountData.getMainInfo();
+                String[] newInfo = {accountData.getAccountID(),nameTextField.getText(),newPasswordField.getText(),
+                        contactTextField.getText(), (String) genderComboBox.getSelectedItem()};
+                accountData.setMainInfo(newInfo);
+                FileConverter.updateFile("account.txt",oldInfoFromData, accountData.getMainInfo());
                 JOptionPane.showMessageDialog(frame,"New info has been saved");
                 frame.dispose();
-                new AdminMainPage("Myvi", data.getAccountID());
+                new AdminMainPage("Myvi", accountData.getAccountID());
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -147,18 +143,14 @@ public class TenantManageProfile extends JFrame implements ActionListener {
         }
         if(ae.getSource() == cancelBtn){
             try {
-                //parameter: change picture n ID
                 frame.dispose();
-                new AdminMainPage("Myvi", data.getAccountID());
+                new AdminMainPage("Myvi", accountData.getAccountID());
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
 
-}
-
-class Tenant{
     public static void main(String[] args) throws IOException {
         new TenantManageProfile("AG2345");
     }

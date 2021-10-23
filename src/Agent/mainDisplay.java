@@ -70,20 +70,20 @@ public class mainDisplay implements ActionListener {
 
     Data account;
 
-    public mainDisplay(boolean indicator, String[][] data,String accountID) throws IOException {
-        login = indicator;
-        if(!indicator){
+    public mainDisplay(boolean alreadyLogin, String[][] dataToDisplay,String profileAccountID) throws IOException {
+        login = alreadyLogin;
+        if(!alreadyLogin){
             panelBtn = new JButton("Login/Register");
             account = new Data();
-            account.setMainInfo(FileConverter.getSingleLineInfo("account.txt",accountID));
+            account.setMainInfo(FileConverter.getSingleLineInfo("account.txt",profileAccountID));
         }
-        if(indicator){
+        if(alreadyLogin){
             account = new Data();
-            account.setMainInfo(FileConverter.getSingleLineInfo("account.txt", accountID));
+            account.setMainInfo(FileConverter.getSingleLineInfo("account.txt", profileAccountID));
             panelBtn = new JButton("Manage Profile");
             logOutBtn = new JButton("Log Out");
         }
-        createWindow(data);
+        createWindow(dataToDisplay);
         setSize();
         addComponent();
         actionEvent();
@@ -119,7 +119,7 @@ public class mainDisplay implements ActionListener {
                     String propertyID = data[input][column + 1];
                     try {
                         frame.dispose();
-                        new learnMore(propertyID,accountID,propertyID,login,account.getAccountID(),data);
+                        new learnMore(propertyID,accountID,propertyID,login,account.getAccountID(),data,false);
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }
@@ -197,6 +197,7 @@ public class mainDisplay implements ActionListener {
         if(!login) {
             if (e.getSource() == panelBtn) {
                 try {
+                    frame.dispose();
                     new LoginForm();
                 } catch (IOException ex) {
                     ex.printStackTrace();
@@ -206,7 +207,6 @@ public class mainDisplay implements ActionListener {
         if(login){
             if(e.getSource() == panelBtn) {
                 try {
-                    //parameter: change picture n ID
                     frame.dispose();
                     new AdminMainPage("Myvi", account.getAccountID());
                 } catch (IOException ex) {
@@ -215,7 +215,7 @@ public class mainDisplay implements ActionListener {
             }else if(e.getSource() == logOutBtn){
                 try {
                     frame.dispose();
-                    new mainDisplay(false, resetAllInfo(),"");
+                    new mainDisplay(false, resetAllInfo(),"TN0000");
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
@@ -306,7 +306,6 @@ public class mainDisplay implements ActionListener {
                     }
                 }
                 String getPriceSort = (String) priceComboBox.getSelectedItem();
-                //todo: make sort rental price
                 String[][] finalResult = new String[result.size()][20];
                 for (int i = 0; i < result.size(); i++) {
                     finalResult[i] = FileConverter.lineSplitter(result.get(i));

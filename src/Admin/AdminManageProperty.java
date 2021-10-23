@@ -21,8 +21,8 @@ public class AdminManageProperty extends JFrame {
 
     JFrame frame = new JFrame();
     Property accountData = new Property();
-    AdminManageProperty(String accountID) throws IOException {
-        accountData.setMainInfo(FileConverter.getSingleLineInfo("account.txt", accountID));
+    public AdminManageProperty(String profileAccountID) throws IOException {
+        accountData.setMainInfo(FileConverter.getSingleLineInfo("account.txt", profileAccountID));
         JPanel topPanel = new JPanel();
         topPanel.setBackground(new Color(0x313131));
         //fixme: Cari ways txtLabel kat tgh n btn kat kanan
@@ -38,7 +38,6 @@ public class AdminManageProperty extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 try {
                     frame.dispose();
-                    //parameter: change pictureName n AccountID
                     new AdminMainPage("Myvi", accountData.getAccountID());
                 } catch (IOException ex) {
                     ex.printStackTrace();
@@ -50,11 +49,11 @@ public class AdminManageProperty extends JFrame {
                 "Rental Rate", "Bedroom", "Bathroom", "Parking Spots", "Wifi", "Swimming Pool",
                 "AirConditioner", "Street","Project", "City", "PostCode", "State"};
         String[][] data = FileConverter.readAllLines("location.txt");
-        int userType = Data.checkTypeUser(accountID);
+        int userType = Data.checkTypeUser(profileAccountID);
         ArrayList<String> info = new ArrayList<>();
         if (userType == 1) {
             for (String[] datum : data) {
-                if (datum[0].equals(accountID))
+                if (datum[0].equals(profileAccountID))
                     info.add(FileConverter.addDashIntoString(datum));
             }
         }
@@ -81,8 +80,9 @@ public class AdminManageProperty extends JFrame {
                 if (e.getClickCount() == 2) {
                     int input = table.getSelectedRow();
                     try {
+                        frame.dispose();
                         new learnMore(data[input][1], accountData.getAccountID()
-                                , data[input][1], true, accountID, mainDisplay.resetAllInfo());
+                                , data[input][1], true, profileAccountID, mainDisplay.resetAllInfo(),true);
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }

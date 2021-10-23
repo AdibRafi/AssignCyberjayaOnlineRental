@@ -1,5 +1,6 @@
 package Agent;
 
+import Admin.AdminMainPage;
 import DataSystem.Property;
 import FileSystem.FileConverter;
 
@@ -83,20 +84,28 @@ public class agentAddProperty extends JFrame implements ActionListener {
     JLabel bedLabel = new JLabel("Bedroom");
     JLabel parkingLabel = new JLabel("Parking");
 
+
+    String displayAccountID;
+    String displayPropertyID;
     Property accountData = new Property();
     String[][] reservedDataFromMainDisplay;
-    String loginAccount;
+    String loginAccountID;
     boolean isItAddProperty;
     boolean alreadyLogin;
+    boolean alreadyGoProfile;
 
-    public agentAddProperty(String acc, boolean isItAddProperty, String propertyID, boolean alreadyLogin,
-                            String loginAccount, String[][] reservedDataFromMainDisplay) throws IOException {
+    public agentAddProperty(String displayAccountID, boolean isItAddProperty, String displayPropertyID,
+                            boolean alreadyLogin, String loginAccountID, String[][] reservedDataFromMainDisplay,
+                            boolean alreadyGoProfile) throws IOException {
 
-        accountData.setPropertyInfo(FileConverter.getSingleLineInfo("location.txt", acc, propertyID));
+        this.displayAccountID = displayAccountID;
+        this.displayPropertyID = displayPropertyID;
+        accountData.setPropertyInfo(FileConverter.getSingleLineInfo("location.txt", displayAccountID, displayPropertyID));
         this.isItAddProperty = isItAddProperty;
         this.reservedDataFromMainDisplay = reservedDataFromMainDisplay;
         this.alreadyLogin = alreadyLogin;
-        this.loginAccount = loginAccount;
+        this.loginAccountID = loginAccountID;
+        this.alreadyGoProfile = alreadyGoProfile;
 
         mainPanel.setLayout(null);
         addBtn.addActionListener(this);
@@ -203,20 +212,26 @@ public class agentAddProperty extends JFrame implements ActionListener {
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        Property data = new Property();
         if (e.getSource() == backBtn) {
             try {
-                new learnMore(accountData.getPropertyID(), accountData.getAccountID()
-                        , accountData.getPropertyID(),alreadyLogin,loginAccount,reservedDataFromMainDisplay);
+                this.dispose();
+                if (alreadyGoProfile)
+                    new AdminMainPage("Myvi", loginAccountID);
+                else
+                    new learnMore(accountData.getPropertyID(), accountData.getAccountID()
+                        , accountData.getPropertyID(),alreadyLogin, loginAccountID,reservedDataFromMainDisplay, alreadyGoProfile);
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
         }
         if (e.getSource() == addBtn){
-            //todo: calculate terus rental rate provided in Property
-            //todo: do OOP style
-
             //location form
+            Property setData = new Property();
+            try {
+                setData.setPropertyInfo(FileConverter.getSingleLineInfo("location.txt", displayAccountID, displayPropertyID));
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
             String addProperty = propertyIDField.getText();
             String propertyType = (String) propertyTypeBox.getSelectedItem();
             String propertyStatus = (String) propertyStatusbox.getSelectedItem();
@@ -247,7 +262,7 @@ public class agentAddProperty extends JFrame implements ActionListener {
                     || postcode == null || city == null || bathroom == null || bedroom == null || parking == null ) {
                 JOptionPane.showMessageDialog(this,"Please fill in the form");
             } else {
-                String rentalRate = data.getValueOfRentalRate(price,size);
+                String rentalRate = setData.getValueOfRentalRate(price,size);
                 String propertyID = "";
                 if (propertyType.equals("Double Storey"))
                     propertyID += "HO";
@@ -258,12 +273,11 @@ public class agentAddProperty extends JFrame implements ActionListener {
                 if (propertyType.equals("Room"))
                     propertyID += "RO";
                 propertyID += addProperty;
-                String[] location = {accountData.getAccountID(),propertyID,rentalRate,price,propertyStatus,furnished,size
+                String[] location = {setData.getAccountID(),propertyID,price,propertyStatus,furnished,size,rentalRate
                         ,bedroom,bathroom,parking,wifi,pool,aircond,street1,street2,city,postcode,state};
                 String[][] checkPropertyID;
                 try {
                     checkPropertyID = FileConverter.readAllLines("location.txt");
-
                     int checkNum = 0;
                     for (String[] strings : checkPropertyID) {
                         if (Objects.equals(strings[1], propertyID)) {
@@ -276,13 +290,15 @@ public class agentAddProperty extends JFrame implements ActionListener {
                         if(isItAddProperty) //Add
                             FileConverter.appendFile("location.txt", location);
                         else{
-                            String[] oldInfo = FileConverter.getSingleLineInfo("location.txt",
-                                    data.getAccountID(), data.getPropertyID());
-
+                            String[] oldInfo = setData.getPropertyInfo();
                             FileConverter.updateFile("location.txt",oldInfo,location);
                         }
                         JOptionPane.showMessageDialog(this, "Added Successful");
                         this.dispose();
+                        if (alreadyGoProfile)
+                            new AdminMainPage("Myvi", loginAccountID);
+                        else
+                            new mainDisplay(true,mainDisplay.resetAllInfo(), loginAccountID);
                     }
 
                 }catch(IOException ex){
@@ -294,7 +310,8 @@ public class agentAddProperty extends JFrame implements ActionListener {
     public static void main(String[] args) throws IOException {
         String acc = "AG3902";
         String acc2 = "AD5889";
-
+        new agentAddProperty("AG2345", false, "CD5433", true,
+                "AD1234", mainDisplay.resetAllInfo(), false);
 //        new agentAddProperty(acc,true,"");
 
     }
