@@ -28,6 +28,7 @@ public class LoginForm extends JFrame implements ActionListener {
     JButton resetBtn = new JButton("Reset");
     JButton registerBtn = new JButton("Register");
     JCheckBox showPassword = new JCheckBox("Show Password");
+    JButton backBtn = new JButton("Back");
     Data accountData;
 
     //Constructor
@@ -62,8 +63,10 @@ public class LoginForm extends JFrame implements ActionListener {
 
         loginBtn.setBounds(50,270,100,30);
         resetBtn.setBounds(200,270,100,30);
-        question1.setBounds(90,340,180,30);
-        registerBtn.setBounds(120,370,100,30);
+        backBtn.setBounds(120,310,100,30);
+        question1.setBounds(90,360,180,30);
+        registerBtn.setBounds(120,390,100,30);
+
     }
     public void addComponentsToContainer(){
         frame.add(titlePanel);
@@ -82,6 +85,7 @@ public class LoginForm extends JFrame implements ActionListener {
         frame.add(showPassword);
         frame.add(loginBtn);
         frame.add(resetBtn);
+        frame.add(backBtn);
         frame.add(question1);
         frame.add(registerBtn);
     }
@@ -91,6 +95,7 @@ public class LoginForm extends JFrame implements ActionListener {
         resetBtn.addActionListener(this);
         showPassword.addActionListener(this);
         registerBtn.addActionListener(this);
+        backBtn.addActionListener(this);
 
     }
 

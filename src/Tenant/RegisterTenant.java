@@ -38,6 +38,7 @@ public class RegisterTenant implements ActionListener {
 
 
     JButton registerBtn = new JButton("Register");
+    JButton backBtn = new JButton("Back");
 
     JCheckBox showPassword = new JCheckBox("Show Password");
     JCheckBox showConfirmPassword = new JCheckBox("Show Password");
@@ -86,7 +87,8 @@ public class RegisterTenant implements ActionListener {
         contactTextField.setBounds(180,343,165,23);//273
 
 
-        registerBtn.setBounds(150,410,100,35);
+        registerBtn.setBounds(230,410,100,35);
+        backBtn.setBounds(80,410,100,35);
     }
     public void addComponentToFrame(){
         frame.add(titlePanel);
@@ -119,11 +121,13 @@ public class RegisterTenant implements ActionListener {
 
 
         frame.add(registerBtn);
+        frame.add(backBtn);
     }
     public void actionEvent(){
         registerBtn.addActionListener(this);
         showPassword.addActionListener(this);
         showConfirmPassword.addActionListener(this);
+        backBtn.addActionListener(this);
     }
 
     @Override
