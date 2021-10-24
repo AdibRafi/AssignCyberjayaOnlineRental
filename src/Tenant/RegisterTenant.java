@@ -57,7 +57,7 @@ public class RegisterTenant implements ActionListener {
         frame.setLayout(new BorderLayout());
         titlePanel.setBackground(Color.darkGray);
         frame.setBounds(40,40,400,540);
-        frame.getContentPane().setBackground(Color.cyan);
+        frame.getContentPane().setBackground(new Color(51,153,255));
         frame.getContentPane().setLayout(null);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

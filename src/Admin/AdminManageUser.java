@@ -4,6 +4,7 @@ import DataSystem.Data;
 import FileSystem.FileConverter;
 
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -18,10 +19,10 @@ public class AdminManageUser extends JFrame {
 
     AdminManageUser(String profileAccountID) throws IOException {
         JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-        topPanel.setBackground(new Color(0x313131));
+        topPanel.setBackground(new Color(51,153,255));
 
         JLabel txtLabel = new JLabel("Double Click to Approve/Reject");
-        txtLabel.setForeground(Color.white);
+        txtLabel.setForeground(Color.darkGray);
         txtLabel.setFont(new Font("Times New Roman",Font.BOLD,20));
 
         JButton addBtn = new JButton("Add User");
@@ -111,9 +112,11 @@ public class AdminManageUser extends JFrame {
         topPanel.add(addBtn);
         topPanel.add(removeBtn);
         topPanel.add(backBtn);
+        topPanel.setBorder(new LineBorder(Color.darkGray,3));
 
         frame.add(topPanel, BorderLayout.NORTH);
         frame.add(mainPanel,BorderLayout.CENTER);
+        mainPanel.setBackground(new Color(51,153,255));
         frame.setTitle("Manage User");
         frame.setSize(600, 300);
         frame.setVisible(true);

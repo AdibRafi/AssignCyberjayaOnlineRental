@@ -7,6 +7,7 @@ import DataSystem.Property;
 import FileSystem.FileConverter;
 
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -24,10 +25,12 @@ public class AdminManageProperty extends JFrame {
     public AdminManageProperty(String profileAccountID) throws IOException {
         accountData.setMainInfo(FileConverter.getSingleLineInfo("account.txt", profileAccountID));
         JPanel topPanel = new JPanel();
-        topPanel.setBackground(new Color(0x313131));
+        topPanel.setBackground(new Color(51,153,255));
+        topPanel.setBorder(new LineBorder(Color.darkGray,3));
+
         //fixme: Cari ways txtLabel kat tgh n btn kat kanan
         JLabel txtLabel = new JLabel("Double Click for Options");
-        txtLabel.setForeground(Color.white);
+        txtLabel.setForeground(Color.darkGray);
         txtLabel.setFont(new Font("Times New Roman", Font.BOLD, 20));
 
         JButton backBtn = new JButton("Back");

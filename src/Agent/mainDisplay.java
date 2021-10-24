@@ -93,7 +93,7 @@ public class mainDisplay implements ActionListener {
     public void createWindow(String[][] data) throws IOException {
         frame = new JFrame();
         frame.setTitle("Agent.Main frame");
-        topPanel.setBackground(Color.cyan);
+        topPanel.setBackground(new Color(51,153,255));
         topPanel.setLayout(new BorderLayout());
         topPanel.setBorder(new LineBorder(Color.darkGray,3));
 
@@ -131,7 +131,7 @@ public class mainDisplay implements ActionListener {
 
         JScrollPane mainPanel = new JScrollPane(table);
         bottomPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
-        bottomPanel.setBackground(Color.cyan);
+        bottomPanel.setBackground(new Color(51,153,255));
         frame.add(topPanel, BorderLayout.NORTH);
         frame.add(mainPanel, BorderLayout.CENTER);
         frame.add(bottomPanel, BorderLayout.SOUTH);
@@ -151,7 +151,7 @@ public class mainDisplay implements ActionListener {
 
     public void addComponent(){
         titleLabel.setForeground(Color.DARK_GRAY);
-        titleLabel.setFont(new Font("Papyrus", Font.BOLD,20));
+        titleLabel.setFont(new Font("Papyrus", Font.BOLD,23));
 
         //top panel(title and button)
         topPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));

@@ -49,7 +49,7 @@ public class TenantManageProfile extends JFrame implements ActionListener {
         frame = new JFrame();
         frame.setTitle("Tenant Profile Manager");
         frame.setBounds(40,40,400,600);
-        frame.getContentPane().setBackground(Color.cyan);
+        frame.getContentPane().setBackground(new Color(51,153,255));
         frame.getContentPane().setLayout(null);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -73,7 +73,7 @@ public class TenantManageProfile extends JFrame implements ActionListener {
 
         saveBtn.setBounds(70,400,100,35);
         resetBtn.setBounds(220,400,100,35);
-        cancelBtn.setBounds(70,450,100,35);
+        cancelBtn.setBounds(145,450,100,35);
 
     }
     public void addComponentToFrame() {

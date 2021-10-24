@@ -117,7 +117,7 @@ public class AdminMainPage extends JFrame {
 
 
         welcomePanel.setLayout(new BoxLayout(welcomePanel, BoxLayout.Y_AXIS));
-        welcomePanel.setBackground(new Color(0xD9533A));
+        welcomePanel.setBackground(new Color(51,153,255));
         welcomePanel.add(pictureLabel);
         welcomePanel.add(Box.createRigidArea(new Dimension(0, 15)));
         welcomePanel.add(welcomeLabel);

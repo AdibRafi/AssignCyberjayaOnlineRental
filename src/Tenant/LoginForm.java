@@ -43,7 +43,7 @@ public class LoginForm extends JFrame implements ActionListener {
         frame.setLayout(new BorderLayout());
         titlePanel.setBackground(Color.darkGray);
         frame.setBounds(10,10,370,500);
-        frame.getContentPane().setBackground(Color.cyan);
+        frame.getContentPane().setBackground(new Color(51,153,255));
         frame.getContentPane().setLayout(null);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
