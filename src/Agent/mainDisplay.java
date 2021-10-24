@@ -23,7 +23,8 @@ public class mainDisplay implements ActionListener {
     JFrame frame;
 
     JPanel topPanel = new JPanel();
-    JLabel titleLabel = new JLabel("myProperty House Rental                                                                      ");
+    JLabel titleLabel = new JLabel("myProperty House Rental                                                                        "
+            ,JLabel.CENTER);
     JButton panelBtn;
     JButton logOutBtn = new JButton("Log Out");
     JPanel bottomPanel = new JPanel();
@@ -92,7 +93,7 @@ public class mainDisplay implements ActionListener {
     public void createWindow(String[][] data) throws IOException {
         frame = new JFrame();
         frame.setTitle("Agent.Main frame");
-        topPanel.setBackground(Color.darkGray);
+        topPanel.setBackground(Color.cyan);
         topPanel.setLayout(new BorderLayout());
         topPanel.setBorder(new LineBorder(Color.darkGray,3));
 
@@ -130,6 +131,7 @@ public class mainDisplay implements ActionListener {
 
         JScrollPane mainPanel = new JScrollPane(table);
         bottomPanel.setLayout(new FlowLayout(FlowLayout.CENTER));
+        bottomPanel.setBackground(Color.cyan);
         frame.add(topPanel, BorderLayout.NORTH);
         frame.add(mainPanel, BorderLayout.CENTER);
         frame.add(bottomPanel, BorderLayout.SOUTH);
@@ -148,7 +150,7 @@ public class mainDisplay implements ActionListener {
     }
 
     public void addComponent(){
-        titleLabel.setForeground(Color.white);
+        titleLabel.setForeground(Color.DARK_GRAY);
         titleLabel.setFont(new Font("Papyrus", Font.BOLD,20));
 
         //top panel(title and button)
