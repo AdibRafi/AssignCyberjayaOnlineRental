@@ -1,5 +1,6 @@
 package Admin;
 
+import Agent.agentAddProperty;
 import Agent.learnMore;
 import Agent.mainDisplay;
 import DataSystem.Data;
@@ -32,6 +33,20 @@ public class AdminManageProperty extends JFrame {
         JLabel txtLabel = new JLabel("Double Click for Options");
         txtLabel.setForeground(Color.darkGray);
         txtLabel.setFont(new Font("Times New Roman", Font.BOLD, 20));
+
+        JButton addBtn = new JButton("Add");
+        addBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                try {
+                    new agentAddProperty(accountData.getAccountID(), true, "",
+                            true, profileAccountID, mainDisplay.resetAllInfo(), true);
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
 
         JButton backBtn = new JButton("Back");
         backBtn.setAlignmentX(JFrame.RIGHT_ALIGNMENT);
@@ -95,6 +110,7 @@ public class AdminManageProperty extends JFrame {
         JScrollPane mainPanel = new JScrollPane(table);
 
         topPanel.add(txtLabel);
+        topPanel.add(addBtn);
         topPanel.add(backBtn);
 
         frame.add(topPanel, BorderLayout.NORTH);
@@ -107,6 +123,6 @@ public class AdminManageProperty extends JFrame {
     }
 
     public static void main(String[] args) throws IOException {
-        new AdminManageProperty("AG5372");
+        new AdminManageProperty("AD1234");
     }
 }

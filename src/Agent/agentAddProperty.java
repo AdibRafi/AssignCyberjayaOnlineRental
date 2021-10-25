@@ -228,7 +228,10 @@ public class agentAddProperty extends JFrame implements ActionListener {
             //location form
             Property setData = new Property();
             try {
-                setData.setPropertyInfo(FileConverter.getSingleLineInfo("location.txt", displayAccountID, displayPropertyID));
+                if (!isItAddProperty)
+                    setData.setPropertyInfo(FileConverter.getSingleLineInfo("location.txt", displayAccountID, displayPropertyID));
+                else
+                    setData.setMainInfo(FileConverter.getSingleLineInfo("account.txt",displayAccountID));
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
