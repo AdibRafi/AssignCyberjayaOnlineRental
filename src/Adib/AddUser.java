@@ -37,9 +37,14 @@ public class AddUser extends JFrame implements ActionListener {
     JComboBox<String> genderTypeCB = new JComboBox<>(genderType);
     JLabel genderLabel = new JLabel("Gender");
 
-
-
     String profileAccountID;
+
+    /**
+     * Start GUI for adding user
+     * @param profileAccountID accountID that already log in
+     * @throws FileNotFoundException File not found
+     * @author Adib
+     */
     AddUser(String profileAccountID) throws FileNotFoundException {
         this.profileAccountID = profileAccountID;
 
