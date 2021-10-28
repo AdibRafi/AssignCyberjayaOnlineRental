@@ -146,7 +146,7 @@ public class LoginForm extends JFrame implements ActionListener {
             }
         }
         if(e.getSource() == registerBtn){
-            new RegisterTenant();
+            new RegisterForm();
             frame.dispose();
         }
         if (e.getSource() == backBtn) {

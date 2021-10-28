@@ -9,7 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-public class RegisterTenant implements ActionListener {
+public class RegisterForm implements ActionListener {
 
     JFrame frame;
 
@@ -43,7 +43,7 @@ public class RegisterTenant implements ActionListener {
     JCheckBox showConfirmPassword = new JCheckBox("Show Password");
 
     //constructor
-    RegisterTenant(){
+    RegisterForm(){
         createWindow();
         setLocationAndSize();
         addComponentToFrame();
