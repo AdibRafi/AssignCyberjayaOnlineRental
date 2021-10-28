@@ -129,54 +129,54 @@ public class FileConverter {
         }
         Files.write(Path.of("src/FileSystem/" + filePath), fileContent, StandardCharsets.UTF_8);
     }
-    public static void main(String[] args) throws IOException {
-        Data data = new Data();
-        System.out.println(Arrays.toString(getSingleLineInfo("location.txt", "AG2345","CD0030")));
-
-
-
-//        TN2875-Chris-list-1141694755-female
-//        System.out.println(Arrays.toString(getSingleLineInfo("account.txt","TN2345")));
-//        String[] old = FileConverter.getSingleLineInfo("account.txt", "AG2345");
-//        System.out.println(Arrays.toString(old));
-//        String[] newInfo = {"AG2345", "jg", "jg", "jg", "female"};
-//        updateFile("account.txt",old,newInfo);
-//        System.out.println(Arrays.deepToString(readAllLines("location.txt")));
-
-//        TN2293-Zaki-button-2421996685-female
-//        AG2345-Darwisy-apple-01293847564-male
-
-
-
-//        String[] oldInfo = data.getMainInfo();
-//        data.setGender("female");
-//        String[] newInfo = data.getMainInfo();
-//        updateFile("testWrite.txt",oldInfo,newInfo);
-//        String[][] n = readAllLines("account.txt");
-//        AdminData[] data1 = new AdminData[n.length];
-//        for (int i = 0; i < 3; i++) {
-//            data1[i] = new AdminData();
-//            data1[i].setMainInfo(getSingleLineInfo("account.txt",n[i][0]));
-//        }
-//        System.out.println(Arrays.toString(data1[0].getMainInfo()));
-//        System.out.println(Arrays.toString(data1[1].getMainInfo()));
-//        System.out.println(Arrays.toString(data1[2].getMainInfo()));
+//    public static void main(String[] args) throws IOException {
+//        Data data = new Data();
+//        System.out.println(Arrays.toString(getSingleLineInfo("location.txt", "AG2345","CD0030")));
 //
-//        data1[0].setPhoneNumber("test");
-//        System.out.println(data1[0].getPhoneNumber());
-//        System.out.println(data1[0].getAccountID());
-
-//        String[][] arr = new String[6][5];
-//        for (int i = 0; i < arr.length; i++) {
-//            arr[i][0] = n[i];
-//        }
-//        System.out.println(arr[4][0]);
-//        System.out.println(Arrays.toString(lineSplitter(arr[4][0])));
-//        String[] p = lineSplitter(arr[4][0]);
-//        for (int i = 0; i < arr[4].length; i++) {
-//            arr[4][i] = p[i];
-//        }
-//        System.out.println(arr[4][1]);
-
-    }
+//
+//
+////        TN2875-Chris-list-1141694755-female
+////        System.out.println(Arrays.toString(getSingleLineInfo("account.txt","TN2345")));
+////        String[] old = FileConverter.getSingleLineInfo("account.txt", "AG2345");
+////        System.out.println(Arrays.toString(old));
+////        String[] newInfo = {"AG2345", "jg", "jg", "jg", "female"};
+////        updateFile("account.txt",old,newInfo);
+////        System.out.println(Arrays.deepToString(readAllLines("location.txt")));
+//
+////        TN2293-Zaki-button-2421996685-female
+////        AG2345-Darwisy-apple-01293847564-male
+//
+//
+//
+////        String[] oldInfo = data.getMainInfo();
+////        data.setGender("female");
+////        String[] newInfo = data.getMainInfo();
+////        updateFile("testWrite.txt",oldInfo,newInfo);
+////        String[][] n = readAllLines("account.txt");
+////        AdminData[] data1 = new AdminData[n.length];
+////        for (int i = 0; i < 3; i++) {
+////            data1[i] = new AdminData();
+////            data1[i].setMainInfo(getSingleLineInfo("account.txt",n[i][0]));
+////        }
+////        System.out.println(Arrays.toString(data1[0].getMainInfo()));
+////        System.out.println(Arrays.toString(data1[1].getMainInfo()));
+////        System.out.println(Arrays.toString(data1[2].getMainInfo()));
+////
+////        data1[0].setPhoneNumber("test");
+////        System.out.println(data1[0].getPhoneNumber());
+////        System.out.println(data1[0].getAccountID());
+//
+////        String[][] arr = new String[6][5];
+////        for (int i = 0; i < arr.length; i++) {
+////            arr[i][0] = n[i];
+////        }
+////        System.out.println(arr[4][0]);
+////        System.out.println(Arrays.toString(lineSplitter(arr[4][0])));
+////        String[] p = lineSplitter(arr[4][0]);
+////        for (int i = 0; i < arr[4].length; i++) {
+////            arr[4][i] = p[i];
+////        }
+////        System.out.println(arr[4][1]);
+//
+//    }
 }

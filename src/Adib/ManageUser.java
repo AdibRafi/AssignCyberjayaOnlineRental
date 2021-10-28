@@ -1,4 +1,4 @@
-package Admin;
+package Adib;
 
 import DataSystem.Data;
 import FileSystem.FileConverter;
@@ -7,17 +7,15 @@ import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-public class AdminManageUser extends JFrame {
+public class ManageUser extends JFrame {
     JFrame frame = new JFrame();
 
-    AdminManageUser(String profileAccountID) throws IOException {
+    ManageUser(String profileAccountID) throws IOException {
         JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         topPanel.setBackground(new Color(51,153,255));
 
@@ -33,7 +31,7 @@ public class AdminManageUser extends JFrame {
             System.out.println("add");
             frame.dispose();
             try {
-                new AdminAddUser(profileAccountID);
+                new AddUser(profileAccountID);
             } catch (FileNotFoundException ex) {
                 ex.printStackTrace();
             }
@@ -42,7 +40,7 @@ public class AdminManageUser extends JFrame {
             System.out.println("Remove");
             frame.dispose();
             try {
-                new AdminRemoveUser(profileAccountID);
+                new RemoveUser(profileAccountID);
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -51,7 +49,7 @@ public class AdminManageUser extends JFrame {
             System.out.println("Back");
             frame.dispose();
             try {
-                new AdminMainPage("Myvi",profileAccountID);
+                new ProfileMainPage("Myvi",profileAccountID);
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -123,7 +121,7 @@ public class AdminManageUser extends JFrame {
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
     }
-    public static void main(String[] args) throws IOException {
-        new AdminManageUser("AD1234");
-    }
+//    public static void main(String[] args) throws IOException {
+//        new ManageUser("AD1234");
+//    }
 }

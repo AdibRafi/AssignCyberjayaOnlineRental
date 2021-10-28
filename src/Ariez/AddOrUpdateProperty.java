@@ -1,6 +1,6 @@
-package Agent;
+package Ariez;
 
-import Admin.AdminMainPage;
+import Adib.ProfileMainPage;
 import DataSystem.Property;
 import FileSystem.FileConverter;
 
@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.Objects;
 
-public class agentAddProperty extends JFrame implements ActionListener {
+public class AddOrUpdateProperty extends JFrame implements ActionListener {
     JPanel topPanel = new JPanel();
     JPanel mainPanel = new JPanel();
     JLabel titleLabel = new JLabel("myProperty House Rental", SwingConstants.CENTER);
@@ -94,9 +94,9 @@ public class agentAddProperty extends JFrame implements ActionListener {
     boolean alreadyLogin;
     boolean alreadyGoProfile;
 
-    public agentAddProperty(String displayAccountID, boolean isItAddProperty, String displayPropertyID,
-                            boolean alreadyLogin, String loginAccountID, String[][] reservedDataFromMainDisplay,
-                            boolean alreadyGoProfile) throws IOException {
+    public AddOrUpdateProperty(String displayAccountID, boolean isItAddProperty, String displayPropertyID,
+                               boolean alreadyLogin, String loginAccountID, String[][] reservedDataFromMainDisplay,
+                               boolean alreadyGoProfile) throws IOException {
 
         this.displayAccountID = displayAccountID;
         this.displayPropertyID = displayPropertyID;
@@ -216,9 +216,9 @@ public class agentAddProperty extends JFrame implements ActionListener {
             try {
                 this.dispose();
                 if (alreadyGoProfile)
-                    new AdminMainPage("Myvi", loginAccountID);
+                    new ProfileMainPage("Myvi", loginAccountID);
                 else
-                    new learnMore(accountData.getPropertyID(), accountData.getAccountID()
+                    new LearnMore(accountData.getPropertyID(), accountData.getAccountID()
                         , accountData.getPropertyID(),alreadyLogin, loginAccountID,reservedDataFromMainDisplay, alreadyGoProfile);
             } catch (IOException ex) {
                 ex.printStackTrace();
@@ -299,9 +299,9 @@ public class agentAddProperty extends JFrame implements ActionListener {
                         JOptionPane.showMessageDialog(this, "Added Successful");
                         this.dispose();
                         if (alreadyGoProfile)
-                            new AdminMainPage("Myvi", loginAccountID);
+                            new ProfileMainPage("Myvi", loginAccountID);
                         else
-                            new mainDisplay(true,mainDisplay.resetAllInfo(), loginAccountID);
+                            new MainDisplay(true, MainDisplay.resetAllInfo(), loginAccountID);
                     }
 
                 }catch(IOException ex){
@@ -310,13 +310,12 @@ public class agentAddProperty extends JFrame implements ActionListener {
             }
         }
     }
-    public static void main(String[] args) throws IOException {
-        String acc = "AG3902";
-        String acc2 = "AD5889";
-        new agentAddProperty("AG2345", false, "CD5433", true,
-                "AD1234", mainDisplay.resetAllInfo(), false);
-//        new agentAddProperty(acc,true,"");
-
-    }
+//    public static void main(String[] args) throws IOException {
+//        String acc = "AG3902";
+//        String acc2 = "AD5889";
+//        new AddOrUpdateProperty("AG2345", false, "CD5433", true,
+//                "AD1234", MainDisplay.resetAllInfo(), false);
+////        new agentAddProperty(acc,true,"");
+//    }
 }
 

@@ -1,7 +1,6 @@
-package Agent;
+package Ariez;
 
-import Admin.AdminManageProperty;
-import DataSystem.Data;
+import Adib.ManageProperty;
 import DataSystem.Property;
 import FileSystem.FileConverter;
 
@@ -10,7 +9,7 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 
-public class learnMore extends JFrame  {
+public class LearnMore extends JFrame  {
     static JPanel mainContainer;
     static CardLayout cl;
 
@@ -22,9 +21,9 @@ public class learnMore extends JFrame  {
     JButton two;
     JLabel[] agentInfo;
     JLabel[] houseInfo;
-    public learnMore(String imageDisplay, String displayAccountID, String displayPropertyID,
+    public LearnMore(String imageDisplay, String displayAccountID, String displayPropertyID,
                      boolean alreadyLogin, String loginAccountID,
-                     String[][] reservedDataFromMainDisplay,boolean alreadyGoProfile) throws IOException {
+                     String[][] reservedDataFromMainDisplay, boolean alreadyGoProfile) throws IOException {
 
         Property propertyData = new Property();
         // put data in array
@@ -42,7 +41,7 @@ public class learnMore extends JFrame  {
             one.addActionListener(event -> {
                 try {
                     mFrame.dispose();
-                    new agentAddProperty(displayAccountID, false,propertyData.getPropertyID(),alreadyLogin
+                    new AddOrUpdateProperty(displayAccountID, false,propertyData.getPropertyID(),alreadyLogin
                             ,loginAccountID,reservedDataFromMainDisplay,false);
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -58,7 +57,7 @@ public class learnMore extends JFrame  {
                         mFrame.dispose();
                         FileConverter.removeSingleLine("location.txt",displayAccountID,propertyData.getPropertyID());
                         JOptionPane.showMessageDialog(null, "Property deleted");
-                        new mainDisplay(true,mainDisplay.resetAllInfo(),loginAccountID);
+                        new MainDisplay(true, MainDisplay.resetAllInfo(),loginAccountID);
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -78,10 +77,10 @@ public class learnMore extends JFrame  {
             try {
                 if((loginAccountID.equals(propertyData.getAccountID())||loginAccountID.contains("AD"))
                 && alreadyGoProfile){
-                    new AdminManageProperty(loginAccountID);
+                    new ManageProperty(loginAccountID);
                 }
                 else
-                    new mainDisplay(alreadyLogin,reservedDataFromMainDisplay,loginAccountID);
+                    new MainDisplay(alreadyLogin,reservedDataFromMainDisplay,loginAccountID);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -240,15 +239,15 @@ public class learnMore extends JFrame  {
         mFrame.setSize(650, 670);
     }
 
-    public static void main(String[] args) throws IOException {
-        String admin = "AD1234";
-        String agent = "AG0001";
-        String agent2 = "AG2345";
-        String user = "TN0001";
-
-        String property = "AP0008";
-        String property2 ="AP0001";
-
-        new learnMore(property,agent2, property,false,"tah",mainDisplay.resetAllInfo(),false); //row ikut property ID yang tekan
-    }
+//    public static void main(String[] args) throws IOException {
+//        String admin = "AD1234";
+//        String agent = "AG0001";
+//        String agent2 = "AG2345";
+//        String user = "TN0001";
+//
+//        String property = "AP0008";
+//        String property2 ="AP0001";
+//
+//        new LearnMore(property,agent2, property,false,"tah", MainDisplay.resetAllInfo(),false); //row ikut property ID yang tekan
+//    }
 }

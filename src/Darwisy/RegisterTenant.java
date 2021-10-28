@@ -1,10 +1,9 @@
-package Tenant;
+package Darwisy;
 
-import Agent.mainDisplay;
+import Ariez.MainDisplay;
 import FileSystem.FileConverter;
 
 import javax.swing.*;
-import java.awt.event.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,7 +15,7 @@ public class RegisterTenant implements ActionListener {
 
 
     String[] gender = {"Male", "Female"};
-    String[] accID = {"Agent","Tenant"};
+    String[] accID = {"Ariez", "Darwisy"};
     JPanel titlePanel = new JPanel();
     JLabel titleLabel = new JLabel("myProperty House Rental");
     JLabel title2Label = new JLabel("Register");
@@ -156,9 +155,9 @@ public class RegisterTenant implements ActionListener {
         }
         if(e.getSource() == registerBtn){
             String accountID = "";
-            if(getUserType.equals("Agent"))
+            if(getUserType.equals("Ariez"))
                 accountID += "AG";
-            if(getUserType.equals("Tenant"))
+            if(getUserType.equals("Darwisy"))
                 accountID += "TN";
             accountID += accountIDNum;
             String[] result = {accountID,nameResult,passwordResult,contactResult,genderResult};
@@ -177,7 +176,7 @@ public class RegisterTenant implements ActionListener {
                         JOptionPane.showMessageDialog(frame, "Register Successfully, wait for admin to approve");
                         FileConverter.appendFile("accountApproval.txt", result);
                         frame.dispose();
-                        new mainDisplay(false,mainDisplay.resetAllInfo(),"");
+                        new MainDisplay(false, MainDisplay.resetAllInfo(),"");
                     }
                 }else JOptionPane.showMessageDialog(frame,"Password Confirmation Does Not Match");
             }catch(IOException ex){
@@ -187,14 +186,14 @@ public class RegisterTenant implements ActionListener {
         if (e.getSource() == backBtn) {
             frame.dispose();
             try {
-                new mainDisplay(false,mainDisplay.resetAllInfo(),"AD1234");
+                new MainDisplay(false, MainDisplay.resetAllInfo(),"AD1234");
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
         }
     }
 
-    public static void main(String[] args) {
-        new RegisterTenant();
-    }
+//    public static void main(String[] args) {
+//        new RegisterTenant();
+//    }
 }

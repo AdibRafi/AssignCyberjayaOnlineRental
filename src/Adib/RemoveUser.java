@@ -1,4 +1,4 @@
-package Admin;
+package Adib;
 
 import DataSystem.Data;
 import FileSystem.FileConverter;
@@ -10,13 +10,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Arrays;
 
-public class AdminRemoveUser extends JFrame {
-    AdminRemoveUser(String profileAccountID) throws IOException {
+public class RemoveUser extends JFrame {
+    RemoveUser(String profileAccountID) throws IOException {
         JFrame frame = new JFrame();
         JPanel topPanel = new JPanel();
         topPanel.setBackground(new Color(0x313131));
@@ -34,7 +31,7 @@ public class AdminRemoveUser extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 try {
                     frame.dispose();
-                    new AdminManageUser(profileAccountID);
+                    new ManageUser(profileAccountID);
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
@@ -65,7 +62,7 @@ public class AdminRemoveUser extends JFrame {
                         try {
                             frame.dispose();
                             FileConverter.removeSingleLine("account.txt",newData[table.getSelectedRow()][0]);
-                            new AdminManageUser(profileAccountID);
+                            new ManageUser(profileAccountID);
                         } catch (IOException ex) {
                             ex.printStackTrace();
                         }
@@ -89,8 +86,8 @@ public class AdminRemoveUser extends JFrame {
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
-    public static void main(String[] args) throws IOException {
-        new AdminRemoveUser("AD1234");
-    }
+//    public static void main(String[] args) throws IOException {
+//        new RemoveUser("AD1234");
+//    }
 
 }

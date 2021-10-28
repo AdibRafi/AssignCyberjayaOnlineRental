@@ -1,6 +1,6 @@
-package Tenant;
+package Darwisy;
 
-import Agent.mainDisplay;
+import Ariez.MainDisplay;
 import DataSystem.Data;
 import FileSystem.FileConverter;
 
@@ -8,7 +8,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class LoginForm extends JFrame implements ActionListener {
@@ -125,7 +124,7 @@ public class LoginForm extends JFrame implements ActionListener {
                 if (findAcc){
                     JOptionPane.showMessageDialog(this,"Login Successful");
                     frame.dispose();
-                    new mainDisplay(true, Agent.mainDisplay.resetAllInfo(), accountData.getAccountID());
+                    new MainDisplay(true, MainDisplay.resetAllInfo(), accountData.getAccountID());
 
                 }
                 else JOptionPane.showMessageDialog(this, "Invalid Username or Password");
@@ -153,16 +152,16 @@ public class LoginForm extends JFrame implements ActionListener {
         if (e.getSource() == backBtn) {
             try {
                 frame.dispose();
-                new mainDisplay(false, mainDisplay.resetAllInfo(), "AD1234");
+                new MainDisplay(false, MainDisplay.resetAllInfo(), "AD1234");
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
         }
     }
 
-    public static void main(String[] args) throws IOException {
-        new LoginForm();
-    }
+//    public static void main(String[] args) throws IOException {
+//        new LoginForm();
+//    }
 
 
 }

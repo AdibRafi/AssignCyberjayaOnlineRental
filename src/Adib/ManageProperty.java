@@ -1,8 +1,8 @@
-package Admin;
+package Adib;
 
-import Agent.agentAddProperty;
-import Agent.learnMore;
-import Agent.mainDisplay;
+import Ariez.AddOrUpdateProperty;
+import Ariez.LearnMore;
+import Ariez.MainDisplay;
 import DataSystem.Data;
 import DataSystem.Property;
 import FileSystem.FileConverter;
@@ -15,15 +15,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class AdminManageProperty extends JFrame {
+public class ManageProperty extends JFrame {
 
     JFrame frame = new JFrame();
     Property accountData = new Property();
-    public AdminManageProperty(String profileAccountID) throws IOException {
+    public ManageProperty(String profileAccountID) throws IOException {
         accountData.setMainInfo(FileConverter.getSingleLineInfo("account.txt", profileAccountID));
         JPanel topPanel = new JPanel();
         topPanel.setBackground(new Color(51,153,255));
@@ -40,8 +39,8 @@ public class AdminManageProperty extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
                 try {
-                    new agentAddProperty(accountData.getAccountID(), true, "",
-                            true, profileAccountID, mainDisplay.resetAllInfo(), true);
+                    new AddOrUpdateProperty(accountData.getAccountID(), true, "",
+                            true, profileAccountID, MainDisplay.resetAllInfo(), true);
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
@@ -56,7 +55,7 @@ public class AdminManageProperty extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 try {
                     frame.dispose();
-                    new AdminMainPage("Myvi", accountData.getAccountID());
+                    new ProfileMainPage("Myvi", accountData.getAccountID());
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
@@ -99,8 +98,8 @@ public class AdminManageProperty extends JFrame {
                     int input = table.getSelectedRow();
                     try {
                         frame.dispose();
-                        new learnMore(data[input][1], accountData.getAccountID()
-                                , data[input][1], true, profileAccountID, mainDisplay.resetAllInfo(),true);
+                        new LearnMore(data[input][1], accountData.getAccountID()
+                                , data[input][1], true, profileAccountID, MainDisplay.resetAllInfo(),true);
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }
@@ -122,7 +121,7 @@ public class AdminManageProperty extends JFrame {
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
-    public static void main(String[] args) throws IOException {
-        new AdminManageProperty("AD1234");
-    }
+//    public static void main(String[] args) throws IOException {
+//        new ManageProperty("AD1234");
+//    }
 }

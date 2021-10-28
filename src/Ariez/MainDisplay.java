@@ -1,10 +1,10 @@
-package Agent;
+package Ariez;
 
-import Admin.AdminMainPage;
+import Adib.ProfileMainPage;
 import DataSystem.Data;
 import DataSystem.Property;
 import FileSystem.FileConverter;
-import Tenant.LoginForm;
+import Darwisy.LoginForm;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 
-public class mainDisplay implements ActionListener {
+public class MainDisplay implements ActionListener {
     boolean login;
     JFrame frame;
 
@@ -71,7 +71,7 @@ public class mainDisplay implements ActionListener {
 
     Data account;
 
-    public mainDisplay(boolean alreadyLogin, String[][] dataToDisplay,String profileAccountID) throws IOException {
+    public MainDisplay(boolean alreadyLogin, String[][] dataToDisplay, String profileAccountID) throws IOException {
         login = alreadyLogin;
         if(!alreadyLogin){
             panelBtn = new JButton("Login/Register");
@@ -98,7 +98,7 @@ public class mainDisplay implements ActionListener {
         topPanel.setBorder(new LineBorder(Color.darkGray,3));
 
         //table part - adib
-        String[] column = {"Agent", "Type", "price", "Active Property", "Furnished",
+        String[] column = {"Ariez", "Type", "price", "Active Property", "Furnished",
                 "Size (sq.ft.)", "bed", "bath", "parking", "Address", "City",
                 "Postcode", "State"};
 
@@ -120,7 +120,7 @@ public class mainDisplay implements ActionListener {
                     String propertyID = data[input][column + 1];
                     try {
                         frame.dispose();
-                        new learnMore(propertyID,accountID,propertyID,login,account.getAccountID(),data,false);
+                        new LearnMore(propertyID,accountID,propertyID,login,account.getAccountID(),data,false);
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }
@@ -210,14 +210,14 @@ public class mainDisplay implements ActionListener {
             if(e.getSource() == panelBtn) {
                 try {
                     frame.dispose();
-                    new AdminMainPage("Myvi", account.getAccountID());
+                    new ProfileMainPage("Myvi", account.getAccountID());
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
             }else if(e.getSource() == logOutBtn){
                 try {
                     frame.dispose();
-                    new mainDisplay(false, resetAllInfo(),"TN0000");
+                    new MainDisplay(false, resetAllInfo(),"TN0000");
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
@@ -319,7 +319,7 @@ public class mainDisplay implements ActionListener {
                     Arrays.sort(finalResult, (v1, v2) ->
                             Double.compare(Double.parseDouble(v2[2]), Double.parseDouble(v1[2])));
                 frame.dispose();
-                new mainDisplay(login,finalResult, account.getAccountID());
+                new MainDisplay(login,finalResult, account.getAccountID());
 
             } catch (IOException ex) {
                 ex.printStackTrace();
@@ -357,12 +357,8 @@ public class mainDisplay implements ActionListener {
         }
         return x;
     }
-    public final JFrame getMainFrame(){
-        return frame;
-    }
-
-    public static void main(String[] args) throws IOException {
-        new mainDisplay(true, resetAllInfo(),"AG2345");
-    }
+//    public static void main(String[] args) throws IOException {
+//        new MainDisplay(true, resetAllInfo(),"AG2345");
+//    }
 }
 

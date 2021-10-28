@@ -1,4 +1,4 @@
-package Admin;
+package Adib;
 
 import DataSystem.Data;
 import FileSystem.FileConverter;
@@ -10,11 +10,11 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Objects;
 
-public class AdminAddUser extends JFrame implements ActionListener {
+public class AddUser extends JFrame implements ActionListener {
     Data accountData = new Data();
     JFrame frame = new JFrame();
 
-    String[] userType = {"Select", "Admin", "Agent", "Tenant"};
+    String[] userType = {"Select", "Adib", "Ariez", "Darwisy"};
     JComboBox<String> userTypeCB = new JComboBox<>(userType);
     JLabel userTypeLabel = new JLabel("User Type");
 
@@ -40,7 +40,7 @@ public class AdminAddUser extends JFrame implements ActionListener {
 
 
     String profileAccountID;
-    AdminAddUser(String profileAccountID) throws FileNotFoundException {
+    AddUser(String profileAccountID) throws FileNotFoundException {
         this.profileAccountID = profileAccountID;
 
         JPanel panel = new JPanel();
@@ -97,11 +97,6 @@ public class AdminAddUser extends JFrame implements ActionListener {
         frame.setVisible(true);
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
-
-    public static void main(String[] args) throws FileNotFoundException {
-        new AdminAddUser("AD1234");
-    }
-
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == addBtn){
@@ -118,11 +113,11 @@ public class AdminAddUser extends JFrame implements ActionListener {
                 JOptionPane.showMessageDialog(this,"Please fill in the form");
             } else {
                 String accountID = "";
-                if (userType.equals("Admin"))
+                if (userType.equals("Adib"))
                     accountID += "AD";
-                if (userType.equals("Agent"))
+                if (userType.equals("Ariez"))
                     accountID += "AG";
-                if (userType.equals("Tenant"))
+                if (userType.equals("Darwisy"))
                     accountID += "TN";
                 accountID += addAccount;
                 String[] result = {accountID,addUser,addPass,addPhone,genderType};
@@ -143,7 +138,7 @@ public class AdminAddUser extends JFrame implements ActionListener {
                             JOptionPane.showMessageDialog(frame, "Added Successful");
                             FileConverter.appendFile("account.txt", result);
                             frame.dispose();
-                            new AdminMainPage("Myvi", profileAccountID);
+                            new ProfileMainPage("Myvi", profileAccountID);
                         }
                     }else {
                         JOptionPane.showMessageDialog(frame, "Incorrect Password");
@@ -156,10 +151,13 @@ public class AdminAddUser extends JFrame implements ActionListener {
         if (e.getSource() == backBtn){
             frame.dispose();
             try {
-                new AdminManageUser(profileAccountID);
+                new ManageUser(profileAccountID);
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
         }
     }
+//    public static void main(String[] args) throws FileNotFoundException {
+//        new AddUser("AD1234");
+//    }
 }

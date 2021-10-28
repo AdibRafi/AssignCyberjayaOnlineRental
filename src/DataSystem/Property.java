@@ -4,8 +4,6 @@ import FileSystem.FileConverter;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Property extends Data {
     private String propertyID;
@@ -224,13 +222,13 @@ public class Property extends Data {
 
 
 
-    public static void main(String[] args) throws IOException {
-        String[][] data = FileConverter.readAllLines("location.txt");
-        String[] info = FileConverter.getSingleLineInfo("location.txt","AG5372");
-        System.out.println(Arrays.toString(info));
-        Property n = new Property();
-        n.setPropertyInfo(info);
-        System.out.println(n.getCityName());
-        System.out.println(Arrays.toString(n.getPropertyInfo()));
-    }
+//    public static void main(String[] args) throws IOException {
+//        String[][] data = FileConverter.readAllLines("location.txt");
+//        String[] info = FileConverter.getSingleLineInfo("location.txt","AG5372");
+//        System.out.println(Arrays.toString(info));
+//        Property n = new Property();
+//        n.setPropertyInfo(info);
+//        System.out.println(n.getCityName());
+//        System.out.println(Arrays.toString(n.getPropertyInfo()));
+//    }
 }

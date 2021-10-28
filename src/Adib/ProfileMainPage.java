@@ -1,18 +1,18 @@
-package Admin;
+package Adib;
 
-import Agent.agentAddProperty;
-import Agent.mainDisplay;
+import Ariez.AddOrUpdateProperty;
+import Ariez.MainDisplay;
 import DataSystem.Data;
 import FileSystem.FileConverter;
-import Tenant.TenantManageProfile;
+import Darwisy.EditProfile;
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 
 
-public class AdminMainPage extends JFrame {
-    public AdminMainPage(String pictureName, String profileAccountID) throws IOException {
+public class ProfileMainPage extends JFrame {
+    public ProfileMainPage(String pictureName, String profileAccountID) throws IOException {
 
         Data data = new Data();
         data.setMainInfo(FileConverter.getSingleLineInfo("account.txt", profileAccountID));
@@ -62,7 +62,7 @@ public class AdminMainPage extends JFrame {
         profileBtn.addActionListener(e -> {
             this.dispose();
             try {
-                new TenantManageProfile(profileAccountID);
+                new EditProfile(profileAccountID);
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -72,7 +72,7 @@ public class AdminMainPage extends JFrame {
             if (userType == 1) {
                 this.dispose();
                 try {
-                    new AdminManageProperty(data.getAccountID());
+                    new ManageProperty(data.getAccountID());
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
@@ -80,7 +80,7 @@ public class AdminMainPage extends JFrame {
             if (userType == 2) {
                 try {
                     this.dispose();
-                    new AdminManageUser(profileAccountID);
+                    new ManageUser(profileAccountID);
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
@@ -91,8 +91,8 @@ public class AdminMainPage extends JFrame {
             if (userType == 1) {
                 this.dispose();
                 try {
-                    new agentAddProperty(data.getAccountID(),true
-                            , "",true,data.getAccountID(),mainDisplay.resetAllInfo(),true);
+                    new AddOrUpdateProperty(data.getAccountID(),true
+                            , "",true,data.getAccountID(), MainDisplay.resetAllInfo(),true);
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
@@ -100,7 +100,7 @@ public class AdminMainPage extends JFrame {
             if (userType == 2) {
                 this.dispose();
                 try {
-                    new AdminManageProperty(data.getAccountID());
+                    new ManageProperty(data.getAccountID());
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
@@ -109,7 +109,7 @@ public class AdminMainPage extends JFrame {
         backToMainBtn.addActionListener(e -> {
             this.dispose();
             try {
-                new mainDisplay(true, mainDisplay.resetAllInfo(),profileAccountID);
+                new MainDisplay(true, MainDisplay.resetAllInfo(),profileAccountID);
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -147,8 +147,7 @@ public class AdminMainPage extends JFrame {
 
     }
 
-    public static void main(String[] args) throws IOException {
-        new AdminMainPage("Myvi", "AD1234");
-
-    }
+//    public static void main(String[] args) throws IOException {
+//        new ProfileMainPage("Myvi", "AD1234");
+//    }
 }

@@ -1,6 +1,6 @@
-package Tenant;
+package Darwisy;
 
-import Admin.AdminMainPage;
+import Adib.ProfileMainPage;
 import DataSystem.Data;
 import FileSystem.FileConverter;
 
@@ -11,7 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-public class TenantManageProfile extends JFrame implements ActionListener {
+public class EditProfile extends JFrame implements ActionListener {
     JFrame frame;
 
     String[] gender = {"male", "female"};
@@ -37,7 +37,7 @@ public class TenantManageProfile extends JFrame implements ActionListener {
     Data accountData = new Data();
 
     //Constructor
-    public TenantManageProfile(String profileAccountID) throws IOException {
+    public EditProfile(String profileAccountID) throws IOException {
         accountData.setMainInfo(FileConverter.getSingleLineInfo("account.txt",profileAccountID));
         createWindow();
         setLocationAndSize();
@@ -127,7 +127,7 @@ public class TenantManageProfile extends JFrame implements ActionListener {
                 FileConverter.updateFile("account.txt",oldInfoFromData, accountData.getMainInfo());
                 JOptionPane.showMessageDialog(frame,"New info has been saved");
                 frame.dispose();
-                new AdminMainPage("Myvi", accountData.getAccountID());
+                new ProfileMainPage("Myvi", accountData.getAccountID());
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -144,14 +144,14 @@ public class TenantManageProfile extends JFrame implements ActionListener {
         if(ae.getSource() == cancelBtn){
             try {
                 frame.dispose();
-                new AdminMainPage("Myvi", accountData.getAccountID());
+                new ProfileMainPage("Myvi", accountData.getAccountID());
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
 
-    public static void main(String[] args) throws IOException {
-        new TenantManageProfile("AG2345");
-    }
+//    public static void main(String[] args) throws IOException {
+//        new EditProfile("AG2345");
+//    }
 }
