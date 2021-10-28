@@ -66,12 +66,10 @@ public class LearnMore extends JFrame  {
 
         }
         else {
-            one = new JButton("");
-            two = new JButton("");
+            // for all account
+            back = new JButton("Back");
         }
 
-        // for all account
-        back = new JButton("Back");
         back.addActionListener(event -> {
             mFrame.dispose();
             try {
@@ -204,7 +202,7 @@ public class LearnMore extends JFrame  {
         }
         /*----------------------------------------------------------------------------------------------------------------------------------------*/
 
-        if(displayAccountID.equals(propertyData.getAccountID()) || displayAccountID.contains("AD")){// if account agent (tekan dia punya property)
+        if(loginAccountID.equals(propertyData.getAccountID()) || loginAccountID.contains("AD")){// if account agent (tekan dia punya property)
             // set boundary for button & add to panel (three button)
             one.setBounds(95, 570, 140, 30);
             two.setBounds(230, 570, 140, 30);

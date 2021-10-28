@@ -274,7 +274,7 @@ public class AddOrUpdateProperty extends JFrame implements ActionListener {
                 if (propertyType.equals("Apartment"))
                     propertyID += "AP";
                 if (propertyType.equals("Room"))
-                    propertyID += "RO";
+                    propertyID += "RM";
                 propertyID += addProperty;
                 String[] location = {setData.getAccountID(),propertyID,price,propertyStatus,furnished,size,rentalRate
                         ,bedroom,bathroom,parking,wifi,pool,aircond,street1,street2,city,postcode,state};
