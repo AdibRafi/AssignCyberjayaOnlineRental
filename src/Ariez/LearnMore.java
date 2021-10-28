@@ -65,16 +65,13 @@ public class LearnMore extends JFrame  {
             });
 
         }
-        else {
-            // for all account
-            back = new JButton("Back");
-        }
-
+        // for all account
+        back = new JButton("Back");
         back.addActionListener(event -> {
             mFrame.dispose();
             try {
                 if((loginAccountID.equals(propertyData.getAccountID())||loginAccountID.contains("AD"))
-                && alreadyGoProfile){
+                        && alreadyGoProfile){
                     new ManageProperty(loginAccountID);
                 }
                 else
