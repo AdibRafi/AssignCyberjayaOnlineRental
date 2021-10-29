@@ -14,7 +14,7 @@ public class AddUser extends JFrame implements ActionListener {
     Data accountData = new Data();
     JFrame frame = new JFrame();
 
-    String[] userType = {"Select", "Adib", "Ariez", "Darwisy"};
+    String[] userType = {"Select", "Admin", "Agent", "Tenant"};
     JComboBox<String> userTypeCB = new JComboBox<>(userType);
     JLabel userTypeLabel = new JLabel("User Type");
 
