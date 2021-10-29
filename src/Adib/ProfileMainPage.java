@@ -140,7 +140,7 @@ public class ProfileMainPage extends JFrame {
 
 
         this.add(finalPanel);
-        this.setTitle("Admin page");
+        this.setTitle("Profile page");
         this.setSize(500, 300);
         this.setVisible(true);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
