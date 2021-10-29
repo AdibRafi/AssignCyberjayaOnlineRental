@@ -4,6 +4,7 @@ import DataSystem.Data;
 import FileSystem.FileConverter;
 
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -16,10 +17,11 @@ public class RemoveUser extends JFrame {
     RemoveUser(String profileAccountID) throws IOException {
         JFrame frame = new JFrame();
         JPanel topPanel = new JPanel();
-        topPanel.setBackground(new Color(0x313131));
+        topPanel.setBackground(new Color(51,153,255));
+        topPanel.setBorder(new LineBorder(Color.darkGray,3));
 
         JLabel titleLabel = new JLabel("Remove User");
-        titleLabel.setForeground(Color.white);
+        titleLabel.setForeground(Color.darkGray);
         titleLabel.setAlignmentX(JFrame.CENTER_ALIGNMENT);
         titleLabel.setFont(new Font("Times New Roman",Font.BOLD,20));
 
