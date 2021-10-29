@@ -47,7 +47,7 @@ public class EditProfile extends JFrame implements ActionListener {
 
     public void createWindow() {
         frame = new JFrame();
-        frame.setTitle("Tenant Profile Manager");
+        frame.setTitle("Profile Manager");
         frame.setBounds(40,40,400,600);
         frame.getContentPane().setBackground(new Color(51,153,255));
         frame.getContentPane().setLayout(null);

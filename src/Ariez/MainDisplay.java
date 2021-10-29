@@ -92,7 +92,7 @@ public class MainDisplay implements ActionListener {
 
     public void createWindow(String[][] data) throws IOException {
         frame = new JFrame();
-        frame.setTitle("Agent.Main frame");
+        frame.setTitle("Main Page");
         topPanel.setBackground(new Color(51,153,255));
         topPanel.setLayout(new BorderLayout());
         topPanel.setBorder(new LineBorder(Color.darkGray,3));
