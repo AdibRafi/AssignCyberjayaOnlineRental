@@ -9,6 +9,7 @@ import javax.swing.JComboBox;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class EditProfile extends JFrame implements ActionListener {
@@ -37,6 +38,12 @@ public class EditProfile extends JFrame implements ActionListener {
     Data accountData = new Data();
 
     //Constructor
+    /**
+     * Start GUI for Edit Profile
+     * @param profileAccountID accountID that already log in
+     * @throws IOException
+     * @author Darwisy
+     */
     public EditProfile(String profileAccountID) throws IOException {
         accountData.setMainInfo(FileConverter.getSingleLineInfo("account.txt",profileAccountID));
         createWindow();

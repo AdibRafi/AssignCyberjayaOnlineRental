@@ -30,6 +30,11 @@ public class LoginForm extends JFrame implements ActionListener {
     Data accountData;
 
     //Constructor
+    /**
+     * Start GUI for Login form
+     * @throws IOException
+     * @author Darwisy
+     */
     public LoginForm() throws IOException {
         createWindow();
         setLocationAndSize();

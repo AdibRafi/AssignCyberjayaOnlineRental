@@ -43,6 +43,10 @@ public class RegisterForm implements ActionListener {
     JCheckBox showConfirmPassword = new JCheckBox("Show Password");
 
     //constructor
+    /**
+     * Start GUI for Register form
+     * @author Darwisy
+     */
     RegisterForm(){
         createWindow();
         setLocationAndSize();
