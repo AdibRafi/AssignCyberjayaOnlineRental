@@ -205,7 +205,7 @@ public class AddOrUpdateProperty extends JFrame implements ActionListener {
 
         this.add(topPanel, BorderLayout.NORTH);
         this.add(mainPanel);
-        this.setTitle("Add Property");
+        this.setTitle("Property Manager");
         this.setSize(350, 700);
         this.setVisible(true);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);

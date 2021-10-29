@@ -85,7 +85,7 @@ public class LearnMore extends JFrame  {
         cl = new CardLayout(10, 10); // create cardlayout
         homePanel = new JPanel(); // panel for main menu
 
-        mFrame = new JFrame("learn more test");
+        mFrame = new JFrame("learn more");
 
         mainContainer = new JPanel(cl);
         learnMorePanel = new JPanel();
