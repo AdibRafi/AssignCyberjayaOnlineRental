@@ -116,7 +116,7 @@ public class AddOrUpdateProperty extends JFrame implements ActionListener {
         topPanel.setLayout(new BorderLayout());
         topPanel.setBorder(new LineBorder(Color.darkGray, 3));
         titleLabel.setFont(new Font("Papyrus", Font.BOLD, 20));
-        titleLabel.setForeground(Color.white);
+        titleLabel.setForeground(Color.darkGray);
 
         //main info label
         propertyIDLabel.setBounds(25, 30, 100, 30);
