@@ -112,7 +112,7 @@ public class AddOrUpdateProperty extends JFrame implements ActionListener {
 
         backBtn.addActionListener(this);
 
-        topPanel.setBackground(Color.darkGray);
+        topPanel.setBackground(new Color(51,153,255));
         topPanel.setLayout(new BorderLayout());
         topPanel.setBorder(new LineBorder(Color.darkGray, 3));
         titleLabel.setFont(new Font("Papyrus", Font.BOLD, 20));
@@ -205,7 +205,7 @@ public class AddOrUpdateProperty extends JFrame implements ActionListener {
 
         this.add(topPanel, BorderLayout.NORTH);
         this.add(mainPanel);
-        this.setTitle("Add Propety");
+        this.setTitle("Add Property");
         this.setSize(350, 700);
         this.setVisible(true);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);

@@ -15,7 +15,7 @@ public class RegisterForm implements ActionListener {
 
 
     String[] gender = {"Male", "Female"};
-    String[] accID = {"Ariez", "Darwisy"};
+    String[] accID = {"Agent", "Tenant"};
     JPanel titlePanel = new JPanel();
     JLabel titleLabel = new JLabel("myProperty House Rental");
     JLabel title2Label = new JLabel("Register");
