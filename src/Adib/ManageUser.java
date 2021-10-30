@@ -126,7 +126,7 @@ public class ManageUser extends JFrame {
         frame.add(mainPanel,BorderLayout.CENTER);
         mainPanel.setBackground(new Color(51,153,255));
         frame.setTitle("Manage User");
-        frame.setSize(600, 300);
+        frame.setSize(650, 300);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 

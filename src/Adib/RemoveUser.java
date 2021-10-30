@@ -91,7 +91,7 @@ public class RemoveUser extends JFrame {
         frame.add(mainPanel, BorderLayout.CENTER);
 
         frame.setTitle("Remove User");
-        frame.setSize(500, 300);
+        frame.setSize(600, 300);
         frame.setVisible(true);
         frame.setResizable(false);
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
