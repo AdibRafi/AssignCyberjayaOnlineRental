@@ -108,8 +108,8 @@ public class ManageProperty extends JFrame {
                     int input = table.getSelectedRow();
                     try {
                         frame.dispose();
-                        new LearnMore(data[input][1], accountData.getAccountID()
-                                , data[input][1], true, profileAccountID, MainDisplay.resetAllInfo(),true);
+                        new LearnMore(finalInfo[input][1], finalInfo[input][0]
+                                , finalInfo[input][1], true, profileAccountID, MainDisplay.resetAllInfo(),true);
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }

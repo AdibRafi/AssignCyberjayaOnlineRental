@@ -9,6 +9,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.Arrays;
 
 /**
  * Represent Login form for users
@@ -139,8 +140,6 @@ public class LoginForm extends JFrame implements ActionListener {
             String pswrdText;
             userText = userTextField.getText();
             pswrdText = passwordField.getText();
-            System.out.println(userText);
-            System.out.println(pswrdText);
             boolean findAcc = false;
             try {
                 String[][] data = FileConverter.readAllLines("account.txt");
