@@ -86,7 +86,6 @@ public class RemoveUser extends JFrame {
         JScrollPane mainPanel = new JScrollPane(table);
 
         topPanel.add(titleLabel);
-        //fixme: cari ways utk letak backBtn belah kanan
         topPanel.add(backBtn);
         frame.add(topPanel, BorderLayout.NORTH);
         frame.add(mainPanel, BorderLayout.CENTER);
