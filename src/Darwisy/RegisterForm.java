@@ -58,7 +58,7 @@ public class RegisterForm implements ActionListener {
     }
 
     /**
-     * Create windor for GUI
+     * Create window for GUI
      * @author Darwisy
      */
     public void createWindow(){
