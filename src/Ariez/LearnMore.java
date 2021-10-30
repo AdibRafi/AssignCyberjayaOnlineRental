@@ -9,6 +9,10 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 
+/**
+ * Represent Learn more display for users
+ * @author Ariez
+ */
 public class LearnMore extends JFrame  {
     static JPanel mainContainer;
     static CardLayout cl;
@@ -21,6 +25,20 @@ public class LearnMore extends JFrame  {
     JButton two;
     JLabel[] agentInfo;
     JLabel[] houseInfo;
+
+    /**
+     * Start GUI of LearnMore
+     * @param imageDisplay Name of the pictures in Picture package
+     * @param displayAccountID AccountID that wanted to be display
+     * @param displayPropertyID PropertyID that wanted to be display
+     * @param alreadyLogin Determine if user already login
+     * @param loginAccountID AccountID that is being login
+     * @param reservedDataFromMainDisplay Property data that being display
+     *                                    from mainDisplay
+     * @param alreadyGoProfile Determine if user is in profile page
+     * @throws IOException Occurred when I/O operation is interrupted or failed
+     * @author Ariez, Adib
+     */
     public LearnMore(String imageDisplay, String displayAccountID, String displayPropertyID,
                      boolean alreadyLogin, String loginAccountID,
                      String[][] reservedDataFromMainDisplay, boolean alreadyGoProfile) throws IOException {

@@ -12,9 +12,19 @@ import java.awt.event.MouseEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+/**
+ * Represent Managing User by Admin
+ * @author Adib
+ */
 public class ManageUser extends JFrame {
     JFrame frame = new JFrame();
 
+    /**
+     * Start GUI for ManageUser
+     * @param profileAccountID accountID that already log in
+     * @throws IOException occurred when I/O operation is interrupted or failed
+     * @author Adib, Darwisy
+     */
     ManageUser(String profileAccountID) throws IOException {
         JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         topPanel.setBackground(new Color(51,153,255));

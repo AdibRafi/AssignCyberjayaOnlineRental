@@ -10,8 +10,18 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 
-
+/**
+ * Represent Profile Page for users
+ * @author Adib
+ */
 public class ProfileMainPage extends JFrame {
+    /**
+     * Start GUI for ProfileMainPage
+     * @param pictureName Name of the picture in Picture package
+     * @param profileAccountID AccountID that already log in
+     * @throws IOException Occurred when I/O operation is interrupted or failed
+     * @author Adib, Darwisy
+     */
     public ProfileMainPage(String pictureName, String profileAccountID) throws IOException {
 
         Data data = new Data();

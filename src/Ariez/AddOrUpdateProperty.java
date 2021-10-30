@@ -12,6 +12,10 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.Objects;
 
+/**
+ * Represent Adding or Updating a property by Agent and Admin
+ * @author Ariez
+ */
 public class AddOrUpdateProperty extends JFrame implements ActionListener {
     JPanel topPanel = new JPanel();
     JPanel mainPanel = new JPanel();
@@ -94,6 +98,19 @@ public class AddOrUpdateProperty extends JFrame implements ActionListener {
     boolean alreadyLogin;
     boolean alreadyGoProfile;
 
+    /**
+     * Start GUI for AddOrUpdateProperty
+     * @param displayAccountID AccountID that wanted to be display
+     * @param isItAddProperty Determine add or update property
+     * @param displayPropertyID PropertyID that wanted to be display
+     * @param alreadyLogin Determine if user already log in
+     * @param loginAccountID AccountID that is being log in
+     * @param reservedDataFromMainDisplay Property data that being display
+     *                                   from mainDisplay
+     * @param alreadyGoProfile Determine if user is in profile page
+     * @throws IOException Occurred when I/O operation is interrupted or failed
+     * @author Ariez, Adib
+     */
     public AddOrUpdateProperty(String displayAccountID, boolean isItAddProperty, String displayPropertyID,
                                boolean alreadyLogin, String loginAccountID, String[][] reservedDataFromMainDisplay,
                                boolean alreadyGoProfile) throws IOException {
@@ -210,6 +227,12 @@ public class AddOrUpdateProperty extends JFrame implements ActionListener {
         this.setVisible(true);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
+
+    /**
+     * Perform action when ActionEvent occurred
+     * @param e source from AddOrUpdateProperty()
+     * @author Ariez, Adib
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == backBtn) {
@@ -310,6 +333,7 @@ public class AddOrUpdateProperty extends JFrame implements ActionListener {
             }
         }
     }
+
 //    public static void main(String[] args) throws IOException {
 //        String acc = "AG3902";
 //        String acc2 = "AD5889";

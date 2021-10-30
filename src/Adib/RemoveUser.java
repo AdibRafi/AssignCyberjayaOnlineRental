@@ -13,7 +13,17 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 
+/**
+ * Represent for Removing User by Admin
+ * @author Adib
+ */
 public class RemoveUser extends JFrame {
+    /**
+     * Start GUI for RemoveUser
+     * @param profileAccountID AccountID that already log in
+     * @throws IOException Occurred when I/O operation is interrupted or failed
+     * @author Adib, Darwisy
+     */
     RemoveUser(String profileAccountID) throws IOException {
         JFrame frame = new JFrame();
         JPanel topPanel = new JPanel();

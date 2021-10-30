@@ -10,6 +10,10 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Objects;
 
+/**
+ * Represent Adding User by Admin
+ * @author Adib
+ */
 public class AddUser extends JFrame implements ActionListener {
     Data accountData = new Data();
     JFrame frame = new JFrame();
@@ -40,9 +44,9 @@ public class AddUser extends JFrame implements ActionListener {
     String profileAccountID;
 
     /**
-     * Start GUI for adding user
+     * Start GUI
      * @param profileAccountID accountID that already log in
-     * @throws FileNotFoundException File not found
+     * @throws FileNotFoundException Occurred when file not found
      * @author Adib
      */
     AddUser(String profileAccountID) throws FileNotFoundException {
@@ -102,6 +106,12 @@ public class AddUser extends JFrame implements ActionListener {
         frame.setVisible(true);
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
+
+    /**
+     * Perform action when ActionEvent occurred
+     * @param e source from AddUser()
+     * @author Adib
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == addBtn){
@@ -162,6 +172,7 @@ public class AddUser extends JFrame implements ActionListener {
             }
         }
     }
+
 //    public static void main(String[] args) throws FileNotFoundException {
 //        new AddUser("AD1234");
 //    }

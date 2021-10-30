@@ -12,6 +12,10 @@ import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+/**
+ * Represent editing profile information for users
+ * @author Darwisy
+ */
 public class EditProfile extends JFrame implements ActionListener {
     JFrame frame;
 
@@ -37,11 +41,10 @@ public class EditProfile extends JFrame implements ActionListener {
 
     Data accountData = new Data();
 
-    //Constructor
     /**
      * Start GUI for Edit Profile
-     * @param profileAccountID accountID that already log in
-     * @throws IOException
+     * @param profileAccountID AccountID that already log in
+     * @throws IOException Occurred when I/O operation is interrupted or failed
      * @author Darwisy
      */
     public EditProfile(String profileAccountID) throws IOException {
@@ -52,6 +55,10 @@ public class EditProfile extends JFrame implements ActionListener {
         actionEvent();
     }
 
+    /**
+     * Create window for GUI
+     * @author Darwisy
+     */
     public void createWindow() {
         frame = new JFrame();
         frame.setTitle("Profile Manager");
@@ -62,6 +69,11 @@ public class EditProfile extends JFrame implements ActionListener {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
     }
+
+    /**
+     * Set location for each component into GUI
+     * @author Darwisy
+     */
     private void setLocationAndSize() {
         nameLabel.setBounds(20,20,100,70);
         genderLabel.setBounds(20,70,80,70);
@@ -83,6 +95,11 @@ public class EditProfile extends JFrame implements ActionListener {
         cancelBtn.setBounds(145,450,100,35);
 
     }
+
+    /**
+     * Adding component into GUI
+     * @author Darwisy
+     */
     public void addComponentToFrame() {
         frame.add(nameLabel);
         frame.add(genderLabel);
@@ -102,6 +119,11 @@ public class EditProfile extends JFrame implements ActionListener {
         frame.add(resetBtn);
         frame.add(cancelBtn);
     }
+
+    /**
+     * Initiate ActionListener into component
+     * @author Darwisy
+     */
     public void actionEvent() {
         saveBtn.addActionListener(this);
         resetBtn.addActionListener(this);
@@ -109,6 +131,12 @@ public class EditProfile extends JFrame implements ActionListener {
         showNewPassword.addActionListener(this);
         showConfirmPassword.addActionListener(this);
     }
+
+    /**
+     * Perform action when ActionEvent occurred
+     * @param ae source from EditProfile()
+     * @author Darwisy, Adib
+     */
     @Override
     public void actionPerformed(ActionEvent ae){
         if(ae.getSource() == showNewPassword){

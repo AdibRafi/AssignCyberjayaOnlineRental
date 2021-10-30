@@ -18,17 +18,27 @@ import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Represent managing property by Admin or Agent
+ * @author Adib
+ */
 public class ManageProperty extends JFrame {
 
     JFrame frame = new JFrame();
     Property accountData = new Property();
+
+    /**
+     * Start GUI of ManageProperty
+     * @param profileAccountID accountID that already log in
+     * @throws IOException occurred when I/O operation is interrupted or failed
+     * @author Adib, Darwisy
+     */
     public ManageProperty(String profileAccountID) throws IOException {
         accountData.setMainInfo(FileConverter.getSingleLineInfo("account.txt", profileAccountID));
         JPanel topPanel = new JPanel();
         topPanel.setBackground(new Color(51,153,255));
         topPanel.setBorder(new LineBorder(Color.darkGray,3));
 
-        //fixme: Cari ways txtLabel kat tgh n btn kat kanan
         JLabel txtLabel = new JLabel("Double Click for Options");
         txtLabel.setForeground(Color.darkGray);
         txtLabel.setFont(new Font("Times New Roman", Font.BOLD, 20));

@@ -9,6 +9,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
+/**
+ * Represent Registration form for Tenant and Agent
+ * @author Darwisy
+ */
 public class RegisterForm implements ActionListener {
 
     JFrame frame;
@@ -42,7 +46,6 @@ public class RegisterForm implements ActionListener {
     JCheckBox showPassword = new JCheckBox("Show Password");
     JCheckBox showConfirmPassword = new JCheckBox("Show Password");
 
-    //constructor
     /**
      * Start GUI for Register form
      * @author Darwisy
@@ -54,6 +57,10 @@ public class RegisterForm implements ActionListener {
         actionEvent();
     }
 
+    /**
+     * Create windor for GUI
+     * @author Darwisy
+     */
     public void createWindow(){
         frame = new JFrame();
         frame.setTitle("Register Form");
@@ -66,6 +73,11 @@ public class RegisterForm implements ActionListener {
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setResizable(false);
     }
+
+    /**
+     * Set location for each component into GUI
+     * @author Darwisy
+     */
     public void setLocationAndSize() {
         //lPane.setBounds(0,0,380,80);
         titlePanel.setBounds(0,0,400,60);
@@ -93,6 +105,11 @@ public class RegisterForm implements ActionListener {
         registerBtn.setBounds(230,410,100,35);
         backBtn.setBounds(80,410,100,35);
     }
+
+    /**
+     * Adding component into GUI
+     * @author Darwisy
+     */
     public void addComponentToFrame(){
         frame.add(titlePanel);
         //titlePanel.add(lPane, BorderLayout.CENTER);
@@ -126,6 +143,11 @@ public class RegisterForm implements ActionListener {
         frame.add(registerBtn);
         frame.add(backBtn);
     }
+
+    /**
+     * Initiate ActionListener into component
+     * @author Darwisy
+     */
     public void actionEvent(){
         registerBtn.addActionListener(this);
         showPassword.addActionListener(this);
@@ -133,6 +155,11 @@ public class RegisterForm implements ActionListener {
         backBtn.addActionListener(this);
     }
 
+    /**
+     * Perform action when ActionEvent occurred
+     * @param e source from RegisterForm()
+     * @author Darwisy, Adib
+     */
     @Override
     public void actionPerformed(ActionEvent e){
         String accountIDNum = accountIDTextField.getText();

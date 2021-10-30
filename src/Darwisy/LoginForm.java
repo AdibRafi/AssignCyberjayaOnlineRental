@@ -10,6 +10,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
+/**
+ * Represent Login form for users
+ * @author Darwisy
+ */
 public class LoginForm extends JFrame implements ActionListener {
     JFrame frame;
 
@@ -32,7 +36,7 @@ public class LoginForm extends JFrame implements ActionListener {
     //Constructor
     /**
      * Start GUI for Login form
-     * @throws IOException
+     * @throws IOException Occurred when I/O operation is interrupted or failed
      * @author Darwisy
      */
     public LoginForm() throws IOException {
@@ -41,6 +45,11 @@ public class LoginForm extends JFrame implements ActionListener {
         addComponentsToContainer();
         addActionEvent();
     }
+
+    /**
+     * Create a window for GUI
+     * @author Darwisy
+     */
     public void createWindow(){
         frame = new JFrame();
         frame.setTitle("Login Form");
@@ -53,6 +62,11 @@ public class LoginForm extends JFrame implements ActionListener {
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setResizable(false);
     }
+
+    /**
+     * Set location for each component into GUI
+     * @author Darwisy
+     */
     public void setLocationAndSize(){
         //setting location and Size of each components
         titlePanel.setBounds(0,0,370,60);
@@ -71,6 +85,11 @@ public class LoginForm extends JFrame implements ActionListener {
         registerBtn.setBounds(120,390,100,30);
 
     }
+
+    /**
+     * Adding component into GUI
+     * @author Darwisy
+     */
     public void addComponentsToContainer(){
         frame.add(titlePanel);
         /*frame.add(titleLabel,BorderLayout.NORTH);
@@ -92,6 +111,11 @@ public class LoginForm extends JFrame implements ActionListener {
         frame.add(question1);
         frame.add(registerBtn);
     }
+
+    /**
+     * Initiate ActionListener into component
+     * @author Darwisy
+     */
     public void addActionEvent() {
         //adding Action listener to components
         loginBtn.addActionListener(this);
@@ -102,6 +126,11 @@ public class LoginForm extends JFrame implements ActionListener {
 
     }
 
+    /**
+     * Perform action when ActionEvent occurred
+     * @param e source from LoginForm()
+     * @author Darwisy, Adib
+     */
     @Override
     public void actionPerformed(ActionEvent e){
         //Login button action

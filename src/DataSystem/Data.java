@@ -1,9 +1,12 @@
 package DataSystem;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 
+/**
+ * Represent User Data of the program
+ * @author Adib
+ */
 public class Data {
 
     private String accountID;
@@ -12,6 +15,12 @@ public class Data {
     private String phoneNumber;
     private String gender;
 
+    /**
+     * Determine what type of user
+     * @param accountID accountID to be checked
+     * @return type of users, 0 = Tenant, 1 = Agent, 2 = Admin
+     * @author Adib
+     */
     public static int checkTypeUser(String accountID) {
         int result = 0;
         String letter = accountID.substring(0, 2);
@@ -26,6 +35,11 @@ public class Data {
         return result;
     }
 
+    /**
+     * Setting info into class variables
+     * @param mainInfoFromFile Desired info to be set
+     * @author Adib
+     */
     public void setMainInfo(String[] mainInfoFromFile) {
         setAccountID(mainInfoFromFile[0]);
         setName(mainInfoFromFile[1]);
@@ -34,6 +48,11 @@ public class Data {
         setGender(mainInfoFromFile[4]);
     }
 
+    /**
+     * Getting main info of user
+     * @return main info of user
+     * @author Adib
+     */
     public String[] getMainInfo() {
         String[] result = new String[5];
         result[0] = this.getAccountID();
@@ -44,51 +63,13 @@ public class Data {
         return result;
     }
 
-    public static String[][] sortData(String [][] arr){
-        String[][] acc = new String[arr.length][arr[0].length+2];
-
-        for (int j = 0; j < arr.length; j++) {
-            if (String.valueOf(Data.checkTypeUser(arr[j][0])).equals("2")) {
-                acc[j][0] = "0";
-            }
-            if (String.valueOf(Data.checkTypeUser(arr[j][0])).equals("0")) {
-                acc[j][0] = "1";
-            }
-            if (String.valueOf(Data.checkTypeUser(arr[j][0])).equals("1")) {
-                acc[j][0] = "2";
-            }
-        }
-
-        for (int j = 0; j < arr.length; j++) {
-            for (int k = 1; k < arr[0].length+1; k++) {
-                acc[j][k] = arr[j][k - 1];
-            }
-        }
-
-        //sort accId(admin > user > tenant)
-        Arrays.sort(acc, new Comparator<String[]>(){
-            @Override
-            public int compare(final String[] first, final String[] second){
-                String indicator2 = first[0];
-                String indicator1 = second[0];
-                return indicator2.compareTo(indicator1);
-
-            }
-        });
-
-        for (int j = 0; j < arr.length; j++) {
-            for (int k = 0; k < arr[j].length+1; k++) {
-                if(k == 5){
-                    acc[j][k] = null;
-                }
-                else {
-                    acc[j][k] = acc[j][k + 1];
-                }
-            }
-        }
-        return acc;
-    }
-
+    /**
+     * Removing column from 2d array
+     * @param data Desired data that wanted to be removed
+     * @param columnNum Index number of data's column
+     * @return Data that already removed
+     * @author Adib
+     */
     public static String[][] removeColumnFromData(String[][] data,int columnNum) {
         int rows = data.length;
         int column = data[0].length;
@@ -107,33 +88,91 @@ public class Data {
         return result;
     }
 
+    /**
+     * Getting accountID from class variable
+     * @return accountID
+     * @author Adib
+     */
     public String getAccountID() {
         return accountID;
     }
+
+    /**
+     * Set accountID from class variable
+     * @param accountID Assign value of accountID
+     * @author Adib
+     */
     public void setAccountID(String accountID) {
         this.accountID = accountID;
     }
+
+    /**
+     * Getting name from class variable
+     * @return name
+     * @author Adib
+     */
     public String getName() {
         return name;
     }
+
+    /**
+     * Set name from class variable
+     * @param name Assign value of name
+     * @author Adib
+     */
     public void setName(String name) {
         this.name = name;
     }
+
+    /**
+     * Getting password from class variable
+     * @return password
+     * @author Adib
+     */
     public String getPassword() {
         return password;
     }
+
+    /**
+     * Set password from class variable
+     * @param password Assign value for password
+     * @author Adib
+     */
     public void setPassword(String password) {
         this.password = password;
     }
+
+    /**
+     * Getting gender from class variable
+     * @return gender
+     * @author Adib
+     */
     public String getGender() {
         return gender;
     }
+
+    /**
+     * Set gender from class variable
+     * @param gender Assign value for gender
+     * @author Adib
+     */
     public void setGender(String gender) {
         this.gender = gender;
     }
+
+    /**
+     * Getting phoneNumber from class variable
+     * @return phoneNumber
+     * @author Adib
+     */
     public String getPhoneNumber() {
         return phoneNumber;
     }
+
+    /**
+     * Set phoneNumber from class variable
+     * @param phoneNumber Assign value of phoneNumber
+     */
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }

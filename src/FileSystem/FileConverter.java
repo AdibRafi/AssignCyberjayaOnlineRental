@@ -1,6 +1,5 @@
 package FileSystem;
 
-import DataSystem.Data;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -9,15 +8,31 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Represent file related program
+ * @author Adib
+ */
 public class FileConverter {
     //pre converter
+
+    /**
+     * Getting a value of formatted String and split into String[]
+     * @param lineToBeSplit Formatted String to be split
+     * @return Split string
+     * @author Adib
+     */
     public static String[] lineSplitter(String lineToBeSplit){
         return lineToBeSplit.split("-");
     }
 
+    /**
+     * Adding '-' into a String[]
+     * @param stringToBeAdded String[] to be added a '-'
+     * @return String already been added '-'
+     * @author Adib
+     */
     public static String addDashIntoString(String[] stringToBeAdded) {
         StringBuilder content = new StringBuilder();
         for (String s : stringToBeAdded) {
@@ -27,7 +42,15 @@ public class FileConverter {
         content.deleteCharAt(content.length()-1);
         return content.toString();
     }
-    //cari single line
+
+    /**
+     * Retrieved info from file
+     * @param filePath Desired filePath in FileSystem package
+     * @param accountID Desired accountID to be retrieved from file
+     * @return Info from file
+     * @throws IOException occurred when I/O operations is interrupted or failed
+     * @author Adib
+     */
     public static String[] getSingleLineInfo(String filePath, String accountID) throws IOException {
         String[][] info = readAllLines(filePath);
         int x = 0;
@@ -37,7 +60,16 @@ public class FileConverter {
         }
         return info[x];
     }
-    //ONLY USE IN location.txt
+
+    /**
+     * Retrieved info from file
+     * @param filepath Desired filePath in FileSystem package
+     * @param accountID Desired accountID to be retrieved from file
+     * @param propertyID Desired propertyID to be retrieved from file
+     * @return Info from file
+     * @throws IOException Occurred when I/O operations is interrupted or failed
+     * @author Adib
+     */
     public static String[] getSingleLineInfo(String filepath, String accountID, String propertyID) throws IOException {
         String[][] info = readAllLines(filepath);
         int x = 0;
@@ -48,7 +80,13 @@ public class FileConverter {
         return info[x];
     }
 
-
+    /**
+     * Read all lines and Retrieved Info from file
+     * @param filePath Desired filePath in FileSystem package
+     * @return All info from file
+     * @throws IOException Occurred when I/O operations is interrupted or failed
+     * @author Adib
+     */
     public static String[][] readAllLines(String filePath) throws IOException {
         List<String> file = new ArrayList<>(
                 Files.readAllLines(Path.of("src/FileSystem/" + filePath), StandardCharsets.UTF_8)
@@ -67,7 +105,13 @@ public class FileConverter {
         return lineSplit;
     }
 
-    //append file
+    /**
+     * Append info into a file
+     * @param filePath Desired filePath in FileSystem package
+     * @param info Info to be put into a file
+     * @throws IOException Occurred when I/O operations is interrupted or failed
+     * @author Adib
+     */
     public static void appendFile(String filePath,String[] info) throws IOException {
         String content = addDashIntoString(info);
         List<String> fileContent = new ArrayList<>();
@@ -76,7 +120,13 @@ public class FileConverter {
                 StandardOpenOption.APPEND);
     }
 
-    //remove file
+    /**
+     * Removing specific line in file
+     * @param filePath Desired filePath in FileSystem package
+     * @param ID Desired ID in file to be removed
+     * @throws IOException Occurred when I/O operations is interrupted or failed
+     * @author Adib
+     */
     public static void removeSingleLine(String filePath, String ID) throws IOException {
         List<String> file = new ArrayList<>(
                 Files.readAllLines(Path.of("src/FileSystem/" + filePath), StandardCharsets.UTF_8)
@@ -93,6 +143,14 @@ public class FileConverter {
         Files.write(Paths.get("src/FileSystem/"+filePath),row);
     }
 
+    /**
+     * Removing specific line in file
+     * @param filePath Desired filePath in FileSystem package
+     * @param accountID Desired account ID in file to be removed
+     * @param propertyID Desired propertyID in file to be removed
+     * @throws IOException Occurred when I/O operations is interrupted or failed
+     * @author Adib
+     */
     public static void removeSingleLine(String filePath, String accountID, String propertyID) throws IOException {
         String[][] allInfo = readAllLines("location.txt");
         List<String> file = new ArrayList<>(
@@ -115,7 +173,15 @@ public class FileConverter {
         }
         Files.write(Paths.get("src/FileSystem/"+filePath),row);
     }
-    // update file
+
+    /**
+     * Change a specific line into a new line in file
+     * @param filePath Desired filePath in FileSystem package
+     * @param oldInfo Info to be searched in file
+     * @param newInfo Info to be replaced
+     * @throws IOException Occurred when I/O operations is interrupted or failed
+     * @author Adib
+     */
     public static void updateFile(String filePath, String[] oldInfo, String[] newInfo) throws IOException {
         String old = addDashIntoString(oldInfo);
         String newOne = addDashIntoString(newInfo);
@@ -129,54 +195,9 @@ public class FileConverter {
         }
         Files.write(Path.of("src/FileSystem/" + filePath), fileContent, StandardCharsets.UTF_8);
     }
+
 //    public static void main(String[] args) throws IOException {
 //        Data data = new Data();
 //        System.out.println(Arrays.toString(getSingleLineInfo("location.txt", "AG2345","CD0030")));
-//
-//
-//
-////        TN2875-Chris-list-1141694755-female
-////        System.out.println(Arrays.toString(getSingleLineInfo("account.txt","TN2345")));
-////        String[] old = FileConverter.getSingleLineInfo("account.txt", "AG2345");
-////        System.out.println(Arrays.toString(old));
-////        String[] newInfo = {"AG2345", "jg", "jg", "jg", "female"};
-////        updateFile("account.txt",old,newInfo);
-////        System.out.println(Arrays.deepToString(readAllLines("location.txt")));
-//
-////        TN2293-Zaki-button-2421996685-female
-////        AG2345-Darwisy-apple-01293847564-male
-//
-//
-//
-////        String[] oldInfo = data.getMainInfo();
-////        data.setGender("female");
-////        String[] newInfo = data.getMainInfo();
-////        updateFile("testWrite.txt",oldInfo,newInfo);
-////        String[][] n = readAllLines("account.txt");
-////        AdminData[] data1 = new AdminData[n.length];
-////        for (int i = 0; i < 3; i++) {
-////            data1[i] = new AdminData();
-////            data1[i].setMainInfo(getSingleLineInfo("account.txt",n[i][0]));
-////        }
-////        System.out.println(Arrays.toString(data1[0].getMainInfo()));
-////        System.out.println(Arrays.toString(data1[1].getMainInfo()));
-////        System.out.println(Arrays.toString(data1[2].getMainInfo()));
-////
-////        data1[0].setPhoneNumber("test");
-////        System.out.println(data1[0].getPhoneNumber());
-////        System.out.println(data1[0].getAccountID());
-//
-////        String[][] arr = new String[6][5];
-////        for (int i = 0; i < arr.length; i++) {
-////            arr[i][0] = n[i];
-////        }
-////        System.out.println(arr[4][0]);
-////        System.out.println(Arrays.toString(lineSplitter(arr[4][0])));
-////        String[] p = lineSplitter(arr[4][0]);
-////        for (int i = 0; i < arr[4].length; i++) {
-////            arr[4][i] = p[i];
-////        }
-////        System.out.println(arr[4][1]);
-//
 //    }
 }

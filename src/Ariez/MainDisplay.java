@@ -18,6 +18,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 
+/**
+ * Represent Main Display of the program
+ * @author Ariez
+ */
 public class MainDisplay implements ActionListener {
     boolean login;
     JFrame frame;
@@ -71,6 +75,14 @@ public class MainDisplay implements ActionListener {
 
     Data account;
 
+    /**
+     * Start GUI of MainDisplay
+     * @param alreadyLogin Determine if user already log in
+     * @param dataToDisplay List of property to display
+     * @param profileAccountID AccountID that is being log in
+     * @throws IOException Occurred when I/O operation is interrupted or failed
+     * @author Ariez, Adib
+     */
     public MainDisplay(boolean alreadyLogin, String[][] dataToDisplay, String profileAccountID) throws IOException {
         login = alreadyLogin;
         if(!alreadyLogin){
@@ -90,6 +102,12 @@ public class MainDisplay implements ActionListener {
         actionEvent();
     }
 
+    /**
+     * Create a window for GUI
+     * @param data List of property data to be display
+     * @throws IOException Occurred when I/O operation is interrupted or failed
+     * @author Ariez, Adib, Darwisy
+     */
     public void createWindow(String[][] data) throws IOException {
         frame = new JFrame();
         frame.setTitle("Main Page");
@@ -142,6 +160,10 @@ public class MainDisplay implements ActionListener {
         frame.setResizable(true);
     }
 
+    /**
+     * Set size for the GUI
+     * @author Ariez
+     */
     public void setSize(){
         frame.setBounds(40,40,1300,700);
         topPanel.setPreferredSize(new Dimension(1250, 50));
@@ -149,6 +171,10 @@ public class MainDisplay implements ActionListener {
         projectField.setColumns(15);
     }
 
+    /**
+     * Adding component into GUI
+     * @author Ariez
+     */
     public void addComponent(){
         titleLabel.setForeground(Color.DARK_GRAY);
         titleLabel.setFont(new Font("Papyrus", Font.BOLD,23));
@@ -187,12 +213,21 @@ public class MainDisplay implements ActionListener {
 
     }
 
+    /**
+     * Initiate ActionListener into component
+     * @author Ariez
+     */
     public void actionEvent(){
         panelBtn.addActionListener(this);
         logOutBtn.addActionListener(this);
         refreshButton.addActionListener(this);
     }
 
+    /**
+     * Perform action when ActionEvent occurred
+     * @param e source from MainDisplay()
+     * @author Ariez, Adib
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         //top button
@@ -341,6 +376,13 @@ public class MainDisplay implements ActionListener {
 
         }
     }
+
+    /**
+     * Reset property info to be display
+     * @return All property info to display
+     * @throws IOException Occurred when I/O operations is interrupted or failed
+     * @author Adib
+     */
     public static String[][] resetAllInfo() throws IOException{
         String[][] allInfo = FileConverter.readAllLines("location.txt");
         Property data;
@@ -357,6 +399,7 @@ public class MainDisplay implements ActionListener {
         }
         return x;
     }
+
 //    public static void main(String[] args) throws IOException {
 //        new MainDisplay(true, resetAllInfo(),"AG2345");
 //    }
