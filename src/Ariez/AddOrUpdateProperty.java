@@ -48,7 +48,7 @@ public class AddOrUpdateProperty extends JFrame implements ActionListener {
 
     //button
     JButton addBtn = new JButton("Save");
-    JButton backBtn = new JButton("Back to Main Menu");
+    JButton backBtn = new JButton("Back");
 
     JTextField sizeField = new JTextField();
     JTextField propertyIDField = new JTextField();
@@ -310,7 +310,7 @@ public class AddOrUpdateProperty extends JFrame implements ActionListener {
                             checkNum++;
                         }
                     }
-                    if (checkNum > 0) {
+                    if (checkNum > 0 && isItAddProperty) {
                         JOptionPane.showMessageDialog(this, "Property Already Exist");
                     } else {
                         if(isItAddProperty) //Add

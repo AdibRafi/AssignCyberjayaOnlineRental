@@ -98,6 +98,8 @@ public class ManageUser extends JFrame {
                             FileConverter.removeSingleLine
                                     ("accountApproval.txt",finalData[table.getSelectedRow()][0]);
                             FileConverter.appendFile("account.txt",info);
+                            frame.dispose();
+                            new ManageUser(profileAccountID);
                         } catch (IOException ex) {
                             ex.printStackTrace();
                         }
@@ -106,6 +108,8 @@ public class ManageUser extends JFrame {
                         try {
                             FileConverter.removeSingleLine
                                     ("accountApproval.txt", finalData[table.getSelectedRow()][0]);
+                            frame.dispose();
+                            new ManageUser(profileAccountID);
                         } catch (IOException ex) {
                             ex.printStackTrace();
                         }

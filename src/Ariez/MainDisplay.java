@@ -44,8 +44,8 @@ public class MainDisplay implements ActionListener {
     JLabel propertyTypeLbl = new JLabel("Property Type");
 
     //dropbox for property status
-    String[] propertyStatus = {"active", "inactive"};
-    JComboBox<String> propertyStatusbox = new JComboBox<>(propertyStatus); //
+    String[] propertyStatus = {"Select", "active", "inactive"};
+    JComboBox<String> propertyStatusbox = new JComboBox<>(propertyStatus);
     JLabel statusTypeLbl = new JLabel("   Status");
 
     //dropbox for furnish status
@@ -116,7 +116,7 @@ public class MainDisplay implements ActionListener {
         topPanel.setBorder(new LineBorder(Color.darkGray,3));
 
         //table part - adib
-        String[] column = {"Ariez", "Type", "price", "Active Property", "Furnished",
+        String[] column = {"Agent", "Type", "price", "Active Property", "Furnished",
                 "Size (sq.ft.)", "bed", "bath", "parking", "Address", "City",
                 "Postcode", "State"};
 
@@ -298,6 +298,10 @@ public class MainDisplay implements ActionListener {
                     assert aircond != null;
                     if(aircond.equals("Select")){
                         aircond = data.getHaveAirCond();
+                    }
+                    assert propertyStatus != null;
+                    if (propertyStatus.equals("Select")) {
+                        propertyStatus = data.getActiveProperty();
                     }
 
 //                    System.out.println(data.getAddress2());

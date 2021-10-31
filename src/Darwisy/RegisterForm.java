@@ -186,9 +186,9 @@ public class RegisterForm implements ActionListener {
         }
         if(e.getSource() == registerBtn){
             String accountID = "";
-            if(getUserType.equals("Ariez"))
+            if(getUserType.equals("Agent"))
                 accountID += "AG";
-            if(getUserType.equals("Darwisy"))
+            if(getUserType.equals("Tenant"))
                 accountID += "TN";
             accountID += accountIDNum;
             String[] result = {accountID,nameResult,passwordResult,contactResult,genderResult};
