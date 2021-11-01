@@ -4,6 +4,7 @@ import DataSystem.Data;
 import FileSystem.FileConverter;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
@@ -99,6 +100,7 @@ public class AddUser extends JFrame implements ActionListener {
         panel.add(adminPasswordField);
         panel.add(addBtn);
         panel.add(backBtn);
+        panel.setBackground(new Color(51,153,255));
 
         frame.add(panel);
         frame.setTitle("Add User");

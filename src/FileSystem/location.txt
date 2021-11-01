@@ -12,7 +12,7 @@ AG2345-HO0011-3000-active-Fully-7028.43-0.43-5-4-1-false-false-true-Desa Pinggir
 AG2345-AP0012-2000-active-Fully-1205-1.66-3-2-2-false-true-false-Tamara Residence-Presint 8-Putrajaya-43000-Selangor
 AG2345-AP0013-900-active-Semi-1200-0.75-3-2-1-false-false-false-Apartment Larai-Presint 6-Putrajaya-43000-Selangor
 AG2345-HO0014-1600-active-Semi-2100-0.76-4-3-1-false-false-false-Taman Jenderam Damai-Dengkil-Putrajaya-43000-Selangor
-AG2345-RM0015-321-inactive-Semi-22-14.59-ew-ew-ew-false-false-true-ew-ew-ew-ew-Kedah
+AG2345-RM0015-300-active-Fully-1000-0.30-2-1-1-true-false-false-Selasih-Presint 17-Putrajaya-43000-Selangor
 AG2345-RM0016-300-active-Semi-1000-0.30-2-1-1-false-false-false-PPAM Saderi-Presint 16-Putrajaya-43000-Selangor
 AG2345-RM0017-250-active-Fully-750-0.33-3-1-1-true-false-false-Putra Harmoni-Presint 9-Putrajaya-43000-Selangor
 AG2345-CD0018-1800-active-Fully-950-1.89-3-2-2-true-false-true-Kondominium Dwiputra-Presint 15-Putrajaya-43000-Selangor
